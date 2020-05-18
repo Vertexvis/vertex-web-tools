@@ -8,6 +8,8 @@
   },
   "scripts": {
     "build": "lerna run build",
+    "change": "lerna run version --no-push",
+    "publish": "lerna run publish",
     "test": "lerna run test",
     "lint": "lerna run lint",
     "clean": "lerna clean",

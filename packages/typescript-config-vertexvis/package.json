@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "Sharable TypeScript configs for Vertex",
   "author": "Dan Schultz (https://github.com/danschultz)",
-  "license": "MIT",
   "publishConfig": {
-    "registry": "https://npm.ops.vertexvis.io/"
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   },
   "files": [
     "tsconfig.json",

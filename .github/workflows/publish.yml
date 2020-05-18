@@ -10,4 +10,6 @@ publish:
           npm_access_token: ${{ secrets.NPMJS_ACCESS_TOKEN }}
           git_user_credentials: ${{ secrets.GIT_USER_CREDENTIALS }}
       - name: "Configure Env"
-        run: ./scripts/configure_env.sh
+        run: "./scripts/configure_env.sh"
+      - name: "Publish"
+        run: "yarn publish"

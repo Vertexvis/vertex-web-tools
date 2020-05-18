@@ -3,7 +3,6 @@
   "version": "0.2.0",
   "description": "The Vertex sharable ESLint config for TypeScript.",
   "author": "Dan Schultz (https://github.com/danschultz)",
-  "license": "MIT",
   "contributors": [
     {
       "name": "Dan Schultz",
@@ -12,7 +11,8 @@
     }
   ],
   "publishConfig": {
-    "registry": "https://npm.ops.vertexvis.io/"
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
   },
   "main": "./index.js",
   "scripts": {
