@@ -3,17 +3,21 @@ name: Branch
 on: [push]
 
 jobs:
-  build:
+  build-and-analyze:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout changes"
         uses: actions/checkout@v2
+      - name: "Install"
+        run: "yarn install"
+      - name: "Bootstrap"
+        run: "yarn bootstrap"
       - name: "Build"
-        run: "yarn install && yarn lerna bootstrap && yarn lerna run build"
+        run: "yarn build"
       - name: "Test"
-        run: "yarn install && yarn lerna bootstrap && yarn lerna run test"
+        run: "yarn lerna run test"
       - name: "Lint"
-        run: "yarn install && yarn lerna bootstrap && yarn lerna run lint"
+        run: "yarn lerna run lint"
   # test:
   #   runs-on: ubuntu-latest
   #   steps:
