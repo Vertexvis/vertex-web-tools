@@ -1,0 +1,19 @@
+{
+  "name": "@vertexvis/typescript-config-vertexvis",
+  "version": "1.0.0",
+  "description": "Sharable TypeScript configs for Vertex",
+  "author": "Dan Schultz (https://github.com/danschultz)",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.ops.vertexvis.io/"
+  },
+  "files": [
+    "tsconfig.json",
+    "tsconfig-web.json"
+  ],
+  "scripts": {
+    "build": "exit 0",
+    "format": "exit 0",
+    "lint": "exit 0"
+  }
+}

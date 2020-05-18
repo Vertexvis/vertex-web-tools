@@ -1,0 +1,47 @@
+{
+  "name": "@vertexvis/build-tools",
+  "version": "0.7.1",
+  "description": "Build tools for web development",
+  "main": "./dist/bundle.cjs.js",
+  "module": "./dist/bundle.esm.js",
+  "typings": "./dist/index.d.ts",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.ops.vertexvis.io/"
+  },
+  "sideEffects": false,
+  "files": [
+    "bin/*",
+    "dist/*",
+    "!dist/**/__tests__"
+  ],
+  "bin": {
+    "build-web": "./bin/build-web.js",
+    "vertex-web-lint": "./bin/vertex-web-lint.js"
+  },
+  "scripts": {
+    "clean": "rm -fr ./dist && mkdir ./dist",
+    "format": "yarn lint --fix",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore .",
+    "prebuild": "yarn clean",
+    "build": "./bin/build-web.sh",
+    "test": "echo 'No unit tests defined'",
+    "test:coverage": "echo 'No unit tests defined'"
+  },
+  "dependencies": {
+    "rollup": "^1.19.4",
+    "rollup-plugin-typescript2": "^0.22.1",
+    "rollup-plugin-terser": "^5.1.1",
+    "rollup-plugin-auto-external": "^2.0.0",
+    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-json": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.6.8",
+    "@vertexvis/eslint-config-vertexvis-typescript": "0.2.0",
+    "eslint": "^6.1.0",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.4"
+  }
+}

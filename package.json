@@ -1,0 +1,17 @@
+{
+  "name": "root",
+  "private": true,
+  "devDependencies": {
+    "lerna": "^3.21.0",
+    "eslint": "^6.1.0",
+    "typescript": "^3.7.4"
+  },
+  "scripts": {
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "lint": "lerna run lint",
+    "clean": "lerna clean",
+    "bootstrap": "lerna bootstrap",
+    "validate": "yarn build && yarn test && yarn lint"
+  }
+}

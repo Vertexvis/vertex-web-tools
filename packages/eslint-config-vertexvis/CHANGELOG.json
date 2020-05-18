@@ -1,0 +1,75 @@
+{
+  "name": "@vertexvis/eslint-config-vertexvis",
+  "entries": [
+    {
+      "version": "0.4.0",
+      "tag": "@vertexvis/eslint-config-vertexvis_v0.4.0",
+      "date": "Tue, 07 Jan 2020 00:00:40 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Upgrade to TypeScript 3.7",
+            "author": "Dan Schultz <dan.schultz@vertexvis.com>",
+            "commit": "522a9f5177800f18c9f7a2b25512069b75127d00"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.3.1",
+      "tag": "@vertexvis/eslint-config-vertexvis_v0.3.1",
+      "date": "Mon, 30 Dec 2019 20:50:39 GMT",
+      "comments": {
+        "patch": [
+          {
+            "comment": "Add test coverage script",
+            "author": "Jeff Murray <jeff.murray@vertexvis.com>",
+            "commit": "be5463208e98f4baa90ed774195c8ffb072dc532"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.3.0",
+      "tag": "@vertexvis/eslint-config-vertexvis_v0.3.0",
+      "date": "Fri, 13 Sep 2019 03:14:01 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Add spacing rules for classes and exports",
+            "author": "Dan Schultz <dan.schultz@vertexvis.com>",
+            "commit": "1a123f925c91b82bff6b9cb33f1a9a2d6856f97c"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.2.0",
+      "tag": "@vertexvis/eslint-config-vertexvis_v0.2.0",
+      "date": "Wed, 11 Sep 2019 22:29:36 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Enable rules for null checks and yoda",
+            "author": "Dan Schultz <dan.schultz@vertexvis.com>",
+            "commit": "bf3a94f72223cb22a045604d7e7525af22115b7f"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.1.0",
+      "tag": "@vertexvis/eslint-config-vertexvis_v0.1.0",
+      "date": "Mon, 09 Sep 2019 00:15:44 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Initial release of sharable ESLint config",
+            "author": "Dan Schultz <dan.schultz@vertexvis.com>",
+            "commit": "6e70fd4124b3f71d0c68eee7eaf0ec8085f37391"
+          }
+        ]
+      }
+    }
+  ]
+}
