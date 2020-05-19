@@ -12,11 +12,12 @@
   },
   "scripts": {
     "build": "lerna run build",
-    "change": "lerna run version --no-push",
+    "change": "lerna version --no-push --conventional-commits",
     "commit": "git-cz",
     "publish": "lerna run publish",
     "test": "lerna run test",
     "lint": "lerna run lint",
+    "format": "lerna run format",
     "clean": "lerna clean",
     "bootstrap": "lerna bootstrap",
     "validate": "yarn build && yarn test && yarn lint"

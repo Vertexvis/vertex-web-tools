@@ -1,5 +1,3 @@
-import * as copyright from './copyright';
+import * as copyright from "./copyright";
 
-export {
-  copyright
-};
+export { copyright };

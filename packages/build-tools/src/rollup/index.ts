@@ -7,7 +7,7 @@ import minify from "./minify";
 import output from "./output";
 import typescript from "./typescript";
 
-export * from './types';
+export * from "./types";
 
 export {
   autoExternal,

@@ -1,5 +1,5 @@
-import { RollupConfigBuilder } from '@vertexvis/build-tools';
-import { vertexCopyright } from '../plugin';
+import { RollupConfigBuilder } from "@vertexvis/build-tools";
+import { vertexCopyright } from "../plugin";
 
 /**
  * Adds the provided `copyrightString` to the bundle after minification.
@@ -11,7 +11,7 @@ import { vertexCopyright } from '../plugin';
 export default (copyrightString?: string): RollupConfigBuilder => {
   return config => {
     return {
-      plugins: [vertexCopyright(copyrightString)],
+      plugins: [vertexCopyright(copyrightString)]
     };
   };
 };
