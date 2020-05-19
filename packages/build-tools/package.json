@@ -29,7 +29,6 @@
     "test:coverage": "echo 'No unit tests defined'"
   },
   "dependencies": {
-    "@vertexvis/rollup-plugin-vertexvis-copyright": "0.1.0",
     "rollup": "^1.19.4",
     "rollup-plugin-typescript2": "^0.22.1",
     "rollup-plugin-terser": "^5.1.1",

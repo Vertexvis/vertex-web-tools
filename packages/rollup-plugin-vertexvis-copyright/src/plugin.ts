@@ -1,7 +1,7 @@
 import { Plugin } from 'rollup';
 import { copyrightText } from './copyright';
 
-export function copyright(copyright: string = copyrightText): Plugin {
+export function vertexCopyright(copyright: string = copyrightText): Plugin {
   return {
     name: 'vertex-copyright',
     renderChunk: code => {
