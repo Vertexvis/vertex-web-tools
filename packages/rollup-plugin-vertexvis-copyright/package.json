@@ -8,8 +8,7 @@
   "module": "./dist/bundle.esm.js",
   "typings": "./dist/index.d.ts",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org",
-    "access": "public"
+    "registry": "https://npm.ops.vertexvis.io/"
   },
   "sideEffects": false,
   "files": [

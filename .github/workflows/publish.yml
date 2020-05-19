@@ -4,8 +4,8 @@ publish:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     env:
-      npm_access_token: ${{ secrets.NPMJS_ACCESS_TOKEN }}
-      git_user_credentials: ${{ secrets.GIT_USER_CREDENTIALS }}
+      internal_npm_access_token: ${{ secrets.INTERNAL_NPM_ACCESS_TOKEN }}
+      public_npm_access_token: ${{ secrets.PUBLIC_NPM_ACCESS_TOKEN }}
     steps:
       - name: "Checkout changes"
         uses: actions/checkout@v2

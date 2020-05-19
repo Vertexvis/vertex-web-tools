@@ -11,8 +11,7 @@
     }
   ],
   "publishConfig": {
-    "registry": "https://registry.npmjs.org",
-    "access": "public"
+    "registry": "https://npm.ops.vertexvis.io/"
   },
   "license": "UNLICENSED",
   "main": "./index.js",
