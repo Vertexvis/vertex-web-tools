@@ -6,6 +6,7 @@ import input from "./input";
 import minify from "./minify";
 import output from "./output";
 import typescript from "./typescript";
+import copyright from './copyright';
 
 export {
   autoExternal,
@@ -15,5 +16,6 @@ export {
   minify,
   output,
   config,
-  typescript
+  typescript,
+  copyright
 };

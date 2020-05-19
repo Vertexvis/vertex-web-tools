@@ -1,0 +1,17 @@
+{
+  "name": "@vertexvis/rollup-plugin-vertexvis-copyright",
+  "entries": [
+    {
+      "version": "0.1.0",
+      "tag": "@vertexvis/rollup-plugin-vertexvis-copyright_v0.1.0",
+      "date": "Thu, 05 Mar 2020 22:32:00 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Initial release"
+          }
+        ]
+      }
+    }
+  ]
+}
