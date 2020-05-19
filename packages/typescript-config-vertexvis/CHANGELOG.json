@@ -1,0 +1,33 @@
+{
+  "name": "@vertexvis/typescript-config-vertexvis",
+  "entries": [
+    {
+      "version": "1.0.0",
+      "tag": "@vertexvis/typescript-config-vertexvis_v1.0.0",
+      "date": "Mon, 30 Dec 2019 19:04:27 GMT",
+      "comments": {
+        "major": [
+          {
+            "comment": "Enable esModuleInterop for TypeScript projects",
+            "author": "Dan Schultz <dan.schultz@vertexvis.com>",
+            "commit": "dd54355dfad91de77695c26468e0940aee5d962d"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.1.0",
+      "tag": "@vertexvis/typescript-config-vertexvis_v0.1.0",
+      "date": "Wed, 11 Sep 2019 22:29:36 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Initial release of shared typescript configs",
+            "author": "Dan Schultz <dan.schultz@vertexvis.com>",
+            "commit": "bf3a94f72223cb22a045604d7e7525af22115b7f"
+          }
+        ]
+      }
+    }
+  ]
+}

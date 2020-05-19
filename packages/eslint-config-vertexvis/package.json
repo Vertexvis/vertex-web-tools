@@ -1,0 +1,33 @@
+{
+  "name": "@vertexvis/eslint-config-vertexvis",
+  "version": "0.4.0",
+  "description": "The Vertex sharable ESLint config",
+  "author": "Dan Schultz (https://github.com/danschultz)",
+  "contributors": [
+    {
+      "name": "Dan Schultz",
+      "email": "dan.schultz@vertexvis.com",
+      "url": "https://github.com/danschultz"
+    }
+  ],
+  "publishConfig": {
+    "registry": "https://npm.ops.vertexvis.io/"
+  },
+  "license": "UNLICENSED",
+  "main": "./index.js",
+  "scripts": {
+    "format": "yarn lint --fix",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore .",
+    "build": "exit 0",
+    "test": "echo 'No unit tests defined'",
+    "test:coverage": "echo 'No unit tests defined'"
+  },
+  "dependencies": {
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "prettier": "^1.19.1"
+  },
+  "peerDependencies": {
+    "eslint": "^6.1.0"
+  }
+}
