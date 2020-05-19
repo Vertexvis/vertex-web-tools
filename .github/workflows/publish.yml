@@ -1,5 +1,7 @@
 name: Publish
 
+on: [push]
+
 publish:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
