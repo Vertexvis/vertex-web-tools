@@ -14,7 +14,7 @@
     "build": "lerna run build",
     "change": "lerna version --conventional-commits",
     "commit": "git-cz",
-    "release": "lerna publish",
+    "release": "lerna publish from-git",
     "test": "lerna run test",
     "lint": "lerna run lint",
     "format": "lerna run format",
