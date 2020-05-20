@@ -9,8 +9,6 @@
   "scripts": {
     "build": "lerna run build",
     "change": "lerna version --no-push --no-git-tag-version",
-    "commit": "git-cz",
-    "release": "lerna publish from-git",
     "test": "lerna run test",
     "lint": "lerna run lint",
     "format": "lerna run format",

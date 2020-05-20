@@ -84,8 +84,6 @@ is_publishable() {
   package_name=$1
   version=$2
 
-  return 0
-
   pushd ./common/temp > /dev/null
   versions=`npm info --json "$package_name" versions || true`
   popd > /dev/null
