@@ -1,11 +1,12 @@
 #!/bin/sh
 
 # Check that the release is being created from master
-if ! test -n "$(git branch | grep -E '^[*] master$')"
-then
-  echo "Release branch must be created from master."
-  exit 1
-fi
+# TODO (jeff): re-enable this check after testing
+# if ! test -n "$(git branch | grep -E '^[*] master$')"
+# then
+#   echo "Release branch must be created from master."
+#   exit 1
+# fi
 
 # Check if the local repo is clean
 if test -n "$(git status --porcelain --untracked-files=no)"
