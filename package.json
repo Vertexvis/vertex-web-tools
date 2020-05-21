@@ -9,6 +9,7 @@
   "scripts": {
     "build": "lerna run build",
     "change": "lerna version --no-push --no-git-tag-version",
+    "release": "./scripts/release.sh",
     "test": "lerna run test",
     "lint": "lerna run lint",
     "format": "lerna run format",
