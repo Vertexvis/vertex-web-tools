@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: "Checkout changes"
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
       - name: "Publish changes"
         uses: Vertexvis/npm-publish-action@v1
         with:
