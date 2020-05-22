@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
+    <title>Stencil Component Starter</title>
+
+    <script type="module" src="/build/viewer.esm.js"></script>
+    <script nomodule src="/build/viewer.js"></script>
+    <link rel="stylesheet" href="/build/viewer.css" />
+
+    <style>
+      html, body {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+      }
+
+      #viewer {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+
+    <script>
+      window.addEventListener('DOMContentLoaded', () => {
+        main();
+      });
+
+      async function trySetToken() {
+        try {
+          await setToken();
+        } catch (e) {
+          console.warn('Error retreiving token, trying again in 5 seconds.');
+          setTimeout(() => trySetToken(), 5000);
+        }
+      }
+
+      async function setToken() {
+        const o = {
+          // client_id: 'ADA6562759568F7D37C0860CA5CD91A9D9EBA45AD63FD8242B4A085A3BA266C1',
+          // client_secret: '6EDE03A82727FE0C00DCE685D9E1FEDEA0986A4C4EC4B44ADB7D3191FCD0AF95D5E6494819D9E054B4FBC176C16285BCA618E0335A6D2D4F88320ACB1BFE0959',
+          client_id:
+            'DD085FEBB4B9B8BFC42D575A58323364D236B358F5B5419105802B733308E85D',
+          client_secret:
+            '16576D861A641C4C831A67A8484230FB7308FECCDAA3CE45E52964636D11AFDD2AEC8A6A988D12CD16E4DCEABA336E36A8A9AC41A8351C7AE95A1263566775AE',
+          grant_type: 'client_credentials',
+          expires_in: '600',
+        };
+
+        const body = Object.keys(o)
+          .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(o[k]))
+          .join('&');
+
+        const response = await fetch(
+          viewer.config.network.apiHost + '/rest/api/oauth2/token',
+          {
+            body,
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+              Authorization: '',
+            },
+          }
+        );
+
+        const json = await response.json();
+
+        viewer.credentials = {
+          ...viewer.credentials,
+          token: json.access_token,
+        };
+      }
+
+      async function main() {
+        const viewer = document.querySelector('#viewer');
+
+        viewer.addEventListener('tap', async function(event) {
+          const { position } = event.detail;
+          const scene = await viewer.scene();
+          const raycaster = await scene.raycaster();
+
+          const { bomItems } = await raycaster.intersectItems(position).clearAllHighlights().highlight('#00f0f0').execute();
+
+          if (bomItems.length == 0) {
+            scene.clearAllHighlights().execute();
+          } else {
+            const [item] = bomItems;
+            scene
+            .hide(s => s.withMetadata('Name', 'Intake Port'))
+            .show(s => s.withMetadata('Name', 'Intake Port'))
+              .highlight('#0f0f00', s => s.withMetadata('Name', 'Intake Port'))
+              .execute();
+          }
+
+          // if (result != null && result.length !== 0) {
+          //   const result2 = await raycaster.intersectItems({ x: 1, y: 1 }).highlight('#00ff00').execute();
+          // } else {
+          //   await scene.clearAllHighlights().execute();
+          // }
+        });
+        viewer.config = {
+          network: {
+            apiHost: 'https://api.dev.vertexvis.io',
+            renderingHost: 'wss://rendering.dev.vertexvis.io',
+          },
+        };
+        // viewer.config = {
+        //   network: {
+        //     apiHost: 'https://api.staging.vertexvis.io',
+        //     renderingHost: 'wss://rendering.staging.vertexvis.io'
+        //   }
+        // }
+        // viewer.config = {
+        //   network: {
+        //     apiHost: 'http://localhost:8080',
+        //     renderingHost: 'ws://localhost:8081'
+        //   }
+        // }
+        // viewer.config = {
+        //   network: {
+        //     apiHost: 'https://api.vertex-sandbox-floating.us.e11.c01.johndeerecloud.com',
+        //     renderingHost: 'wss://api.vertex-sandbox-floating.us.e11.c01.johndeerecloud.com'
+        //   }
+        // }
+
+        // viewer.credentials = {
+        //   strategy: 'oauth2',
+        //   token: 'eeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ2ZXJ0ZXgtYXBpIiwiaWF0IjoxNTg0NzMyOTY3LCJleHAiOjE1ODQ3OTI5NjcsImlzcyI6ImFwaS5qb2huZGVlcmVwb2MudmVydGV4dmlzLmlvIiwic3ViIjoiQURBNjU2Mjc1OTU2OEY3RDM3QzA4NjBDQTVDRDkxQTlEOUVCQTQ1QUQ2M0ZEODI0MkI0QTA4NUEzQkEyNjZDMSIsImp0aSI6IjQ4ZDY4Nzg5LWZkOWUtNDYwZC04ZTgzLTlkZjY1MzUzNjM0NCIsIm9yZ0lkIjoiYjRmNTgxZDktYjQwYS00ZWIxLTk4Y2EtMDVjNWYzNmRkMjljIiwic2NvcGVzIjoiaW50ZXJuYWwuKiJ9.QqE7JgATdIPR1v1xnI1HGXx9oSZlkUgHg7g-hKQlkWo',
+        //   clientId: 'ADA6562759568F7D37C0860CA5CD91A9D9EBA45AD63FD8242B4A085A3BA266C1',
+        // }
+
+        // dev
+        viewer.credentials = {
+          strategy: 'oauth2',
+          token:
+            'eeyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ2ZXJ0ZXgtYXBpIiwiaWF0IjoxNTg0NzMyOTY3LCJleHAiOjE1ODQ3OTI5NjcsImlzcyI6ImFwaS5qb2huZGVlcmVwb2MudmVydGV4dmlzLmlvIiwic3ViIjoiQURBNjU2Mjc1OTU2OEY3RDM3QzA4NjBDQTVDRDkxQTlEOUVCQTQ1QUQ2M0ZEODI0MkI0QTA4NUEzQkEyNjZDMSIsImp0aSI6IjQ4ZDY4Nzg5LWZkOWUtNDYwZC04ZTgzLTlkZjY1MzUzNjM0NCIsIm9yZ0lkIjoiYjRmNTgxZDktYjQwYS00ZWIxLTk4Y2EtMDVjNWYzNmRkMjljIiwic2NvcGVzIjoiaW50ZXJuYWwuKiJ9.QqE7JgATdIPR1v1xnI1HGXx9oSZlkUgHg7g-hKQlkWo',
+          clientId:
+            'DD085FEBB4B9B8BFC42D575A58323364D236B358F5B5419105802B733308E85D',
+        };
+
+        // viewer.credentials = {
+        //   strategy: 'api-key',
+        //   token: 'pxyXUGnn4Du9agkDB4drT1Hnr0iy0oEiNqz9yp7w9Io='
+        // }
+
+        // viewer.credentials = {
+        //   strategy: 'api-key',
+        //   token: 'pGL6Iz1TEpPm9ntXq4ict51_SvtC_nzKi1x0-pBB4HM='
+        // }
+
+        viewer.addEventListener('tokenExpired', async () => {
+          console.log('token expired event');
+          trySetToken();
+        });
+        
+        await setToken();
+
+        const newScene = await viewer.newScene();
+        newScene
+          // .from('urn:vertexvis:eedc:file:f01eb873-bda9-46b3-af44-7791010b9e74')
+          // .hideAll()
+          // .show(selector => selector.withMetadata('Name', 'Crank Case'))
+          // .show(selector => selector.withItemId('cd8f7ab8-8405-3678-b15a-921f8ea9873f'))
+          // .from('urn:vertexvis:eedc:file:7ab06f59-a7dc-4024-975a-ea97cae7ed7b')
+          // .from('urn:vertexvis:eedc:file:3defe330-142d-48a7-a616-f00faa421d8f')
+          // .from('urn:vertexvis:eedc:file?externalId=test-toy-wagon')
+          .from('urn:vertexvis:eedc:file?externalId=some-external-id-2')
+          // .from('urn:vertexvis:eedc:file:ac953098-9e50-452f-8a05-5672e489a855')
+          // .from('urn:vertexvis:eedc:file:ec7f6ca8-0c57-4beb-97d9-2579b9b9017b')
+          // .from('urn:vertexvis:eedc:file:59a5e370-caf6-4c65-95bf-9dae934911bc')
+          // .hideAll()
+          // .show(selector => selector.withMetadata('A', 'B'))
+          // .show(selector => selector.withMetadata('A', 'B')).show(selector => selector.withMetadata('A', 'B')).show(selector => selector.withMetadata('A', 'B'))
+          // .show(selector => selector.withMetadata(undefined, 'Part\\ ID\\ Path\\=:\\/109\\/108\\/106\\/111\\/103'))
+          // .show(selector => selector.withMetadata(undefined, 'Part\\ ID\\ Path\\=:\\/109\\/108\\/106\\/111\\/107'))
+          // .show(selector => selector.withMetadata(undefined, 'Part\\ ID\\ Path\\=:\\/109\\/108\\/106\\/111\\/109'))
+          // .show(selector => selector.withMetadata(undefined, 'Part\\ ID\\ Path\\=:\\/109\\/108\\/106\\/111\\/110'))
+          // .show(selector => selector.withMetadata(undefined, 'Part\\ ID\\ Path\\=:\\/109\\/108\\/106\\/111\\/112'))
+          // .show(selector => selector.withMetadata(undefined, 'Part\\ ID\\ Path\\=:\\/109\\/108\\/106\\/111\\/113'))
+          // .show(selector => selector.withMetadata(undefined, 'Part\\ ID\\ Path\\=:\\/108\\/107\\/103\\/108'))
+          .execute()
+          .then((scene) => viewer.load(scene));
+
+        // document.querySelector('#test').addEventListener('click', async () => {
+        //   // viewer.credentials = {
+        //   //   strategy: 'oauth2',
+        //   //   token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ2ZXJ0ZXgtYXBpIiwiaWF0IjoxNTg0MDQ3NzY5LCJleHAiOjE1ODQwNDc3OTksImlzcyI6ImFwaS5kZXYudmVydGV4dmlzLmlvIiwic3ViIjoiREQwODVGRUJCNEI5QjhCRkM0MkQ1NzVBNTgzMjMzNjREMjM2QjM1OEY1QjU0MTkxMDU4MDJCNzMzMzA4RTg1RCIsImp0aSI6Ijk3YTBkNzE3LWFkNDAtNGI4Ni1iYzc3LTI5ZGYzYWMyZTQ2MSIsIm9yZ0lkIjoiMzg2OTEyMWMtN2EzYi00OTUwLThhZjEtZjllYTYwZDEyOGUwIiwic2NvcGVzIjoiaW50ZXJuYWwuKiJ9.vJAZQZpjd9zzbA8B13D_-8nqfAOAA1uoYX60N3MPrD0",
+        //   //   clientId: "DD085FEBB4B9B8BFC42D575A58323364D236B358F5B5419105802B733308E85D"
+        //   // }
+
+        //   viewer.credentials = JSON.parse('{"strategy":"oauth2","token":"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJ2ZXJ0ZXgtYXBpIiwiaWF0IjoxNTg0MDQ3NzY5LCJleHAiOjE1ODQwNDc3OTksImlzcyI6ImFwaS5kZXYudmVydGV4dmlzLmlvIiwic3ViIjoiREQwODVGRUJCNEI5QjhCRkM0MkQ1NzVBNTgzMjMzNjREMjM2QjM1OEY1QjU0MTkxMDU4MDJCNzMzMzA4RTg1RCIsImp0aSI6Ijk3YTBkNzE3LWFkNDAtNGI4Ni1iYzc3LTI5ZGYzYWMyZTQ2MSIsIm9yZ0lkIjoiMzg2OTEyMWMtN2EzYi00OTUwLThhZjEtZjllYTYwZDEyOGUwIiwic2NvcGVzIjoiaW50ZXJuYWwuKiJ9.vJAZQZpjd9zzbA8B13D_-8nqfAOAA1uoYX60N3MPrD0","clientId":"DD085FEBB4B9B8BFC42D575A58323364D236B358F5B5419105802B733308E85D"}')
+
+        //   await setToken();
+        //   const newScene = await viewer.newScene();
+        //   newScene
+        //     // .from('urn:vertexvis:eedc:file:f01eb873-bda9-46b3-af44-7791010b9e74')
+        //     // .hideAll()
+        //     // .show(selector => selector.withMetadata('Name', 'Crank Case'))
+        //     // .show(selector => selector.withItemId('cd8f7ab8-8405-3678-b15a-921f8ea9873f'))
+        //     // .from('urn:vertexvis:eedc:file:7ab06f59-a7dc-4024-975a-ea97cae7ed7b')
+        //     .from('urn:vertexvis:eedc:file?externalId=some-external-id-2')
+        //     .execute()
+        //     .then(scene => viewer.load(scene));
+        // })
+      }
+    </script>
+
+    <style>
+      .viewer-toolbar,
+      .viewer-toolbar viewer-toolbar-group,
+      .viewer-toolbar viewer-toolbar-item {
+        --vertex-viewer-toolbar-group-background-color: black;
+        --vertex-viewer-toolbar-item-color: white;
+        --vertex-viewer-toolbar-item-hovered-background-color: #555;
+        --vertex-viewer-toolbar-content-width: 32px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <vertex-viewer id="viewer" camera-controls="true">
+      <vertex-viewer-toolbar
+        class="viewer-toolbar"
+        data-viewer="viewer"
+      ></vertex-viewer-toolbar>
+      <vertex-viewer-view-cube data-viewer="viewer" />
+    </vertex-viewer>
+  </body>
+</html>

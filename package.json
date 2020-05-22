@@ -4,13 +4,15 @@
   "devDependencies": {
     "eslint": "^6.1.0",
     "lerna": "^3.21.0",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.4",
+    "rollup": "^1.19.4"
   },
   "scripts": {
     "build": "lerna run build",
     "change": "lerna version --no-push --no-git-tag-version --exact",
     "release": "./scripts/release.sh",
     "test": "lerna run test",
+    "test:coverage": "lerna run test:coverage",
     "lint": "lerna run lint",
     "format": "lerna run format",
     "clean": "lerna clean",

@@ -1,4 +1,3 @@
-import { Maybe } from '../../fp';
 import * as Vector3 from './vector3';
 
 /**
@@ -25,7 +24,7 @@ export const create = (
  */
 export const fromVectors = (
   vectors: Vector3.Vector3[]
-): Maybe.Maybe<BoundingBox> => {
+): BoundingBox | undefined => {
   return union(...vectors.map(v => create(v, v)));
 };
 
@@ -54,7 +53,7 @@ export function union(
   c: BoundingBox,
   d: BoundingBox
 ): BoundingBox;
-export function union(...boxes: BoundingBox[]): Maybe.Maybe<BoundingBox>;
+export function union(...boxes: BoundingBox[]): BoundingBox | undefined;
 export function union(box: BoundingBox, ...rest: BoundingBox[]): BoundingBox {
   const boxes = [box, ...rest];
   return boxes.reduce((a, b) => {
