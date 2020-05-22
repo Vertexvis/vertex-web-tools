@@ -27,7 +27,7 @@ local_branch=release-$timestamp
 git checkout -tb $local_branch
 
 yarn change
-message="Releasing Change\n"
+message="Releasing Changes\n"
 packages=`cat lerna.json | jq -r '.packages[]'`
 package_directories=($packages)
 
