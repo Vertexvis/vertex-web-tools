@@ -27,7 +27,7 @@ local_branch=release-$timestamp
 git checkout -tb $local_branch
 
 yarn change
-message="Releasing Changes\n"
+message="Release Changes\n"
 packages=`cat lerna.json | jq -r '.packages[]'`
 package_directories=($packages)
 
@@ -39,7 +39,7 @@ for package_path in "${package_directories[@]}"; do
 
   if ! test -n "$(grep $package_tag <<< $remote_tags)"
   then
-    message+="Release $package_name v$package_version\n"
+    message+="$package_name v$package_version\n"
   fi
 done
 
