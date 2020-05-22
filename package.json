@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "lerna run build",
-    "change": "lerna version --no-push --no-git-tag-version",
+    "change": "lerna version --no-push --no-git-tag-version --exact",
     "release": "./scripts/release.sh",
     "test": "lerna run test",
     "lint": "lerna run lint",
