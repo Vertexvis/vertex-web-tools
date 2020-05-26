@@ -13,6 +13,9 @@ jobs:
           fetch-depth: 2
       - name: "Publish changes"
         uses: Vertexvis/npm-publish-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
+          packages-config-file: "lerna.json"
           npm-registry: "npm.ops.vertexvis.io"
           npm-auth-token: ${{ secrets.PRIVATE_NPM_AUTH_TOKEN }}
