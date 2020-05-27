@@ -17,7 +17,7 @@
   "main": "./index.js",
   "scripts": {
     "format": "yarn lint --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore .",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../../.gitignore .",
     "build": "echo 0",
     "test": "echo 'No unit tests defined'",
     "test:coverage": "echo 'No unit tests defined'"

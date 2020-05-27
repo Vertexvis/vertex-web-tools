@@ -1,6 +1,6 @@
-import { RollupOptions, OutputOptions, ModuleFormat } from "rollup";
+import { RollupOptions, OutputOptions, ModuleFormat } from 'rollup';
 
-export type RollupConfig = Omit<RollupOptions, "output"> & {
+export type RollupConfig = Omit<RollupOptions, 'output'> & {
   output?: OutputOptions | OutputOptions[];
 };
 

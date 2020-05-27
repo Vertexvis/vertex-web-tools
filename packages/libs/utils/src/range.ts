@@ -69,10 +69,7 @@ export const contains = (numOrRange: number | Range, range: Range): boolean => {
  * @param other
  * @param range
  */
-export const intersection = (
-  other: Range,
-  range: Range
-): Range | undefined => {
+export const intersection = (other: Range, range: Range): Range | undefined => {
   if (intersects(other, range)) {
     return create(
       Math.max(other.start, range.start),

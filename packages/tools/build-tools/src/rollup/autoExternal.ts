@@ -1,5 +1,5 @@
-import autoExternalPlugin from "rollup-plugin-auto-external";
-import { RollupConfigBuilder } from "./types";
+import autoExternalPlugin from 'rollup-plugin-auto-external';
+import { RollupConfigBuilder } from './types';
 
 interface AutoExternalPluginConfig {
   builtins?: boolean;
@@ -23,14 +23,14 @@ export default (options?: AutoExternalPluginConfig): RollupConfigBuilder => {
         options != null
           ? autoExternalPlugin({
               ...options,
-              packagePath: options.packagePath || process.cwd()
+              packagePath: options.packagePath || process.cwd(),
             })
           : autoExternalPlugin({
               packagePath: process.cwd(),
               dependencies: false,
-              peerDependencies: true
-            })
-      ]
+              peerDependencies: true,
+            }),
+      ],
     };
   };
 };
