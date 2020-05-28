@@ -1,4 +1,4 @@
-import { ModuleFormat, RollupConfigBuilder } from "./types";
+import { ModuleFormat, RollupConfigBuilder } from './types';
 
 interface Options {
   bundleName?: string;
@@ -16,11 +16,11 @@ interface Options {
  * By default, this helper will include `cjs` and `esm` formats with sourcemaps.
  */
 export default ({
-  bundleName = "bundle",
-  formats = ["cjs", "esm"],
+  bundleName = 'bundle',
+  formats = ['cjs', 'esm'],
   sourcemaps = true,
   name,
-  globals
+  globals,
 }: Options = {}): RollupConfigBuilder => {
   return config => {
     return {
@@ -36,15 +36,15 @@ export default ({
                     format,
                     sourcemap: sourcemaps,
                     name,
-                    globals
-                  }
-                ]
+                    globals,
+                  },
+                ],
               }
             : partialConfig,
         {
-          output: []
+          output: [],
         }
-      )
+      ),
     };
   };
 };

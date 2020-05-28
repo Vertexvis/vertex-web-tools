@@ -1,5 +1,5 @@
-import autoExternal from "./autoExternal";
-import { RollupConfig, RollupConfigBuilder } from "./types";
+import autoExternal from './autoExternal';
+import { RollupConfig, RollupConfigBuilder } from './types';
 
 /**
  * The `config` helper performs a shallow merge on the result of each provided RollupConfigBuilder
@@ -45,11 +45,11 @@ const buildConfig = (...configBuilders: RollupConfigBuilder[]): RollupConfig =>
         ...(partialConfig.plugins && {
           plugins: config.plugins
             ? [...config.plugins, ...partialConfig.plugins]
-            : [...partialConfig.plugins]
+            : [...partialConfig.plugins],
         }),
         ...(partialConfig.external && {
-          external: partialConfig.external
-        })
+          external: partialConfig.external,
+        }),
       };
     },
     { plugins: [] }

@@ -12,7 +12,7 @@
 // };
 // ```
 
-const path = require("path");
+const path = require('path');
 
 let currentModule = module;
 while (
@@ -23,22 +23,22 @@ while (
   if (!currentModule.parent) {
     // This was tested with ESLint 6.1.0; other versions may not work
     throw new Error(
-      "Failed to patch ESLint because the calling module was not recognized"
+      'Failed to patch ESLint because the calling module was not recognized'
     );
   }
   currentModule = currentModule.parent;
 }
-const eslintFolder = path.join(path.dirname(currentModule.filename), "../..");
+const eslintFolder = path.join(path.dirname(currentModule.filename), '../..');
 
 const configArrayFactoryPath = path.join(
   eslintFolder,
-  "lib/cli-engine/config-array-factory"
+  'lib/cli-engine/config-array-factory'
 );
 const configArrayFactoryModule = require(configArrayFactoryPath);
 
 const moduleResolverPath = path.join(
   eslintFolder,
-  "lib/shared/relative-module-resolver"
+  'lib/shared/relative-module-resolver'
 );
 const ModuleResolver = require(moduleResolverPath);
 

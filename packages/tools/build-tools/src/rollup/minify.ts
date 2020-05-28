@@ -1,6 +1,6 @@
-import { terser, Options } from "rollup-plugin-terser";
-import { RollupConfigBuilder } from "./types";
-import * as path from "path";
+import { terser, Options } from 'rollup-plugin-terser';
+import { RollupConfigBuilder } from './types';
+import * as path from 'path';
 
 /**
  * Returns a new file path where the minified output should be written. Result
@@ -39,9 +39,9 @@ export default (
                   file:
                     entry.file != null
                       ? minifiedFilePath(entry.file)
-                      : undefined
+                      : undefined,
                 };
-              })
+              }),
             ]
           : [
               ...(onlyMinFiles ? [] : [config.output]),
@@ -50,18 +50,18 @@ export default (
                 file:
                   config.output != null && config.output.file != null
                     ? minifiedFilePath(config.output.file)
-                    : undefined
-              }
+                    : undefined,
+              },
             ];
 
       return {
         output,
-        plugins
+        plugins,
       };
     }
 
     return {
-      plugins
+      plugins,
     };
   };
 };

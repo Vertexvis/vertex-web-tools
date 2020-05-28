@@ -1,8 +1,8 @@
-import commonjs, { RollupCommonJSOptions } from "rollup-plugin-commonjs";
+import commonjs, { RollupCommonJSOptions } from 'rollup-plugin-commonjs';
 import resolve, {
-  Options as RollupNodeResolveOptions
-} from "rollup-plugin-node-resolve";
-import { RollupConfigBuilder } from "./types";
+  Options as RollupNodeResolveOptions,
+} from 'rollup-plugin-node-resolve';
+import { RollupConfigBuilder } from './types';
 
 interface Options {
   commonjs?: RollupCommonJSOptions;
@@ -31,6 +31,6 @@ interface Options {
  */
 export default (options: Options = {}): RollupConfigBuilder => {
   return config => ({
-    plugins: [commonjs(options.commonjs), resolve(options.nodeResolve)]
+    plugins: [commonjs(options.commonjs), resolve(options.nodeResolve)],
   });
 };

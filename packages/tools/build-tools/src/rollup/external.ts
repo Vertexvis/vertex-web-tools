@@ -1,4 +1,4 @@
-import { RollupConfigBuilder } from "./types";
+import { RollupConfigBuilder } from './types';
 
 /**
  * The `external` helper allows to explicitly define modules that should be
@@ -13,9 +13,9 @@ export default (...externalDependencies: string[]): RollupConfigBuilder => {
     ...externalDependencies.reduce(
       (partialConfig, dependency) => ({
         ...partialConfig,
-        external: [...partialConfig.external, dependency]
+        external: [...partialConfig.external, dependency],
       }),
       { external: [] }
-    )
+    ),
   });
 };

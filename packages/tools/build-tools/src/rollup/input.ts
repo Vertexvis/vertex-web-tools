@@ -1,4 +1,4 @@
-import { RollupConfigBuilder } from "./types";
+import { RollupConfigBuilder } from './types';
 
 /**
  * The `input` helper designates the entrypoint to Rollup.

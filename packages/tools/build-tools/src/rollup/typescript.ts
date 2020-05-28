@@ -1,5 +1,5 @@
-import typescript2 from "rollup-plugin-typescript2";
-import { RollupConfigBuilder } from "./types";
+import typescript2 from 'rollup-plugin-typescript2';
+import { RollupConfigBuilder } from './types';
 
 /**
  * The `typescript` helper is used to transpile TypeScript source files. This
@@ -10,6 +10,6 @@ import { RollupConfigBuilder } from "./types";
  */
 export default (): RollupConfigBuilder => {
   return config => ({
-    plugins: [typescript2()]
+    plugins: [typescript2()],
   });
 };
