@@ -21,6 +21,9 @@ then
   exit 1
 fi
 
+# Ensure remote tags are pulled before running `lerna version` 
+git pull
+
 remote_tags=`git ls-remote --tags`
 timestamp=$(date "+%s")
 local_branch=release-$timestamp
