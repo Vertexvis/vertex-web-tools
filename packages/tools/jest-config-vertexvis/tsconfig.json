@@ -1,0 +1,6 @@
+{
+  "extends": "@vertexvis/typescript-config-vertexvis/tsconfig-web",
+  "compilerOptions": {
+    "module": "commonjs"
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "name": "@vertexvis/jest-config-vertexvis",
+  "entries": [
+    {
+      "version": "0.4.0",
+      "tag": "@vertexvis/jest-config-vertexvis_v0.4.0",
+      "date": "Thu, 23 Jan 2020 06:20:16 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Ignore folders with double underscores from code coverage"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.3.1",
+      "tag": "@vertexvis/jest-config-vertexvis_v0.3.1",
+      "date": "Tue, 07 Jan 2020 00:00:40 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@vertexvis/eslint-config-vertexvis-typescript\" from `0.1.3` to `0.2.0`"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.3.0",
+      "tag": "@vertexvis/jest-config-vertexvis_v0.3.0",
+      "date": "Mon, 30 Dec 2019 20:50:39 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Default coverage tresholds to 75%",
+            "author": "Jeff Murray <jeff.murray@vertexvis.com>",
+            "commit": "be5463208e98f4baa90ed774195c8ffb072dc532"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@vertexvis/eslint-config-vertexvis-typescript\" from `0.1.2` to `0.1.3`"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.2.1",
+      "tag": "@vertexvis/jest-config-vertexvis_v0.2.1",
+      "date": "Mon, 30 Dec 2019 19:04:27 GMT",
+      "comments": {
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@vertexvis/typescript-config-vertexvis\" from `0.1.0` to `1.0.0`"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.2.0",
+      "tag": "@vertexvis/jest-config-vertexvis_v0.2.0",
+      "date": "Fri, 13 Sep 2019 03:14:01 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Disable compilation of JS with TypeScript",
+            "author": "Dan Schultz <dan.schultz@vertexvis.com>",
+            "commit": "1a123f925c91b82bff6b9cb33f1a9a2d6856f97c"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@vertexvis/eslint-config-vertexvis-typescript\" from `0.1.1` to `0.1.2`"
+          }
+        ]
+      }
+    },
+    {
+      "version": "0.1.0",
+      "tag": "@vertexvis/jest-config-vertexvis_v0.1.0",
+      "date": "Wed, 11 Sep 2019 22:29:36 GMT",
+      "comments": {
+        "minor": [
+          {
+            "comment": "Initial release of shared jest configs",
+            "author": "Dan Schultz <dan.schultz@vertexvis.com>",
+            "commit": "bf3a94f72223cb22a045604d7e7525af22115b7f"
+          }
+        ],
+        "dependency": [
+          {
+            "comment": "Updating dependency \"@vertexvis/eslint-config-vertexvis-typescript\" from `0.1.0` to `0.1.1`"
+          },
+          {
+            "comment": "Updating dependency \"@vertexvis/typescript-config-vertexvis\" from `0.0.0` to `0.1.0`"
+          }
+        ]
+      }
+    }
+  ]
+}
