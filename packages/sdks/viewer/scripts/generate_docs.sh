@@ -27,4 +27,3 @@ install_mo
 # Update readme with correct version.
 export version=`cat package.json | jq -r '.version'`
 cat ./README.template.md | ./.lib/mo > README.md
-git add readme.md
