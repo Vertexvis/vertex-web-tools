@@ -65,7 +65,7 @@ Additionally, the project exposes a top-level script to check code coverage (`ya
 Changes to packages are not automatically released based on the initial PR that introduces them.
 In order to release a set of changes, the `./scripts/release.sh` script can be used (from master)
 to update package versions. This script will run `yarn release`, which will use a CLI wizard provided
-through `lerna veresion` to allow you to perform the version updates to each changed package.
+through `lerna version` to allow you to perform the version updates to each changed package.
 
 Once the version changes have been configured, the script will push up a release branch. The branch
 will be named `release-{{ timestamp }}`, and contain a single "Release Changes" commit, which will
