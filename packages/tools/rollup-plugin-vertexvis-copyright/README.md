@@ -21,10 +21,10 @@ Import and add the plugin to your `rollup.config.js` file.
 
 ```js
 // rollup.config.js
-import { vertexCopyright } from '@vertexvis/rollup-plugin-vertex-copyright';
+import copyright from '@vertexvis/rollup-plugin-vertex-copyright';
 
 export default {
-  plugins: [vertexCopyright()],
+  plugins: [copyright()],
 };
 ```
 
@@ -33,23 +33,11 @@ your own.
 
 ```js
 // rollup.config.js
-import { vertexCopyright } from '@vertexvis/rollup-plugin-vertex-copyright';
+import copyright from '@vertexvis/rollup-plugin-vertex-copyright';
 
 export default {
-  plugins: [vertexCopyright('My copyright.')],
+  plugins: [copyright('My copyright.')],
 };
-```
-
-A helper method for generating a rollup config is also provided, which can be used in
-combination with the `config` method provided by `@vertexvis/build-tools` to add a copyright
-to generated bundles.
-
-```js
-// rollup.config.js
-import { config } from '@vertexvis/build-tools';
-import { copyright } from '@vertexvis/rollup-plugin-vertex-copyright';
-
-export default config(input("src/index.js"), output(), minify(), copyright());
 ```
 
 [rollup]: https://rollupjs.org
