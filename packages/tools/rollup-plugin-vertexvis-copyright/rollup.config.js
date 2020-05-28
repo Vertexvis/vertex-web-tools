@@ -2,10 +2,7 @@ import { terser } from 'rollup-plugin-terser';
 import typescript2 from 'rollup-plugin-typescript2';
 
 const config = {
-  plugins: [
-    typescript2(),
-    terser({ include: /^.+\.min\.js$/ })
-  ],
+  plugins: [typescript2(), terser({ include: /^.+\.min\.js$/ })],
   input: 'src/index.ts',
   output: [
     {
@@ -13,31 +10,31 @@ const config = {
       format: 'cjs',
       sourcemap: true,
       name: undefined,
-      globals: undefined
+      globals: undefined,
     },
     {
       file: 'dist/bundle.esm.js',
       format: 'esm',
       sourcemap: true,
       name: undefined,
-      globals: undefined
+      globals: undefined,
     },
     {
       file: 'dist/bundle.cjs.min.js',
       format: 'cjs',
       sourcemap: true,
       name: undefined,
-      globals: undefined
+      globals: undefined,
     },
     {
       file: 'dist/bundle.esm.min.js',
       format: 'esm',
       sourcemap: true,
       name: undefined,
-      globals: undefined
-    }
-  ]
-}
+      globals: undefined,
+    },
+  ],
+};
 
 export default config;
 
@@ -55,5 +52,3 @@ export default config;
 // } from '@vertexvis/build-tools';
 
 // export default config(input('src/index.ts'), typescript(), output(), minify());
-
-
