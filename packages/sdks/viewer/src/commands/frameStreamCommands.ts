@@ -4,7 +4,6 @@ import { Disposable } from '../utils';
 import { Dimensions } from '@vertexvis/geometry';
 import { FrameResponse } from '../image-streaming-client';
 import { CommandRegistry } from './commandRegistry';
-import { Camera } from '@vertexvis/graphics3d';
 import { vertexvis } from '@vertexvis/frame-stream-protos';
 import { UrlDescriptor } from '../websocket-client';
 import { FrameStreamingClient } from '../frame-streaming-client';

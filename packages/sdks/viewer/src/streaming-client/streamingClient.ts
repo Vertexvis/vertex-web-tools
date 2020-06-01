@@ -48,15 +48,21 @@ export class StreamingClient<ReqT = any, RespT = any> {
   }
 
   public beginInteraction(): Promise<RespT> {
-    throw new NoImplementationFoundError(`No implementation found for 'beginInteraction'.`);
+    throw new NoImplementationFoundError(
+      `No implementation found for 'beginInteraction'.`
+    );
   }
 
   public endInteraction(): Promise<RespT> {
-    throw new NoImplementationFoundError(`No implementation found for 'endInteraction'.`);
+    throw new NoImplementationFoundError(
+      `No implementation found for 'endInteraction'.`
+    );
   }
 
   public replaceCamera(camera: Camera.Camera): Promise<RespT> {
-    throw new NoImplementationFoundError(`No implementation found for 'replaceCamera'.`);
+    throw new NoImplementationFoundError(
+      `No implementation found for 'replaceCamera'.`
+    );
   }
 
   protected send(request: any): Promise<RespT> {
