@@ -60,19 +60,7 @@ export function startStream(
   };
 }
 
-export function replaceCamera(
-  camera: Camera.Camera
-): Command<
-  Promise<vertexvis.protobuf.stream.IStreamResponse>,
-  FrameStreamingClient
-> {
-  return ({ stream }: CommandContext<FrameStreamingClient>) => {
-    return stream.replaceCamera(camera);
-  };
-}
-
 export function registerCommands(commands: CommandRegistry): void {
   commands.register('stream.connect', connect);
   commands.register('stream.start', startStream);
-  commands.register('stream.replace-camera', replaceCamera);
 }

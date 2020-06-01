@@ -5,6 +5,7 @@ import {
 } from '../websocket-client';
 import { Disposable, EventDispatcher } from '../utils';
 import { Camera } from '@vertexvis/graphics3d';
+import { NoImplementationFoundError } from '../errors';
 
 type ResponseHandler<T> = (response: T) => void;
 type RequestEncoder<T> = (request: T) => WebSocketSendData;
@@ -24,6 +25,7 @@ export class StreamingClient<ReqT = any, RespT = any> {
     protected messageParser: MessageParser<RespT>,
     protected websocket: WebSocketClient = new WebSocketClient()
   ) {
+    this.endInteraction = this.endInteraction.bind(this);
     this.initializeInteractive = this.initializeInteractive.bind(this);
     this.resetInteractive = this.resetInteractive.bind(this);
   }
@@ -46,24 +48,28 @@ export class StreamingClient<ReqT = any, RespT = any> {
   }
 
   public beginInteraction(): Promise<RespT> {
-    clearTimeout(this.isInteractiveTimeout);
-    this.initializeInteractive();
-
-    return this.send(null);
+    throw new NoImplementationFoundError(`No implementation found for 'beginInteraction'.`);
   }
 
   public endInteraction(): Promise<RespT> {
-    this.isInteractiveTimeout = setTimeout(this.resetInteractive, 2000);
-
-    return this.send(null);
+    throw new NoImplementationFoundError(`No implementation found for 'endInteraction'.`);
   }
 
   public replaceCamera(camera: Camera.Camera): Promise<RespT> {
-    return this.send(null);
+    throw new NoImplementationFoundError(`No implementation found for 'replaceCamera'.`);
   }
 
   protected send(request: any): Promise<RespT> {
     return new Promise(resolve => resolve());
+  }
+
+  protected startInteractionTimer(): void {
+    clearTimeout(this.isInteractiveTimeout);
+    this.initializeInteractive();
+  }
+
+  protected stopInteractionTimer(): void {
+    this.isInteractiveTimeout = setTimeout(this.resetInteractive, 2000);
   }
 
   private handleMessage(message: MessageEvent): void {

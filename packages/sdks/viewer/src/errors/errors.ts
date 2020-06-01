@@ -21,3 +21,5 @@ export class InteractionHandlerError extends CustomError {}
 export class ImageLoadError extends CustomError {}
 
 export class IllegalStateError extends CustomError {}
+
+export class NoImplementationFoundError extends CustomError {}

@@ -31,13 +31,9 @@ export function parseUrnComponents(urn: string): UrnComponents {
 }
 
 export function isEedcUrn(urn: string): boolean {
-  const components = parseUrnComponents(urn);
-
-  return components.vertexScheme === 'eedc';
+  return parseUrnComponents(urn).vertexScheme === 'eedc';
 }
 
 export function isPlatformUrn(urn: string): boolean {
-  const components = parseUrnComponents(urn);
-
-  return components.vertexScheme === 'platform';
+  return parseUrnComponents(urn).vertexScheme === 'platform';
 }

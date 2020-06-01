@@ -194,30 +194,12 @@ describe('vertex-viewer', () => {
     });
   });
 
-  describe(Viewer.prototype.load, () => {
-    it('loads a scene', async () => {
-      const viewer = await createViewerSpec(`<vertex-viewer></vertex-viewer`);
-      await viewer.load('urn:vertexvis:eedc:file:file-id');
-      const scene = await viewer.scene();
-      expect(scene).toBeDefined();
-    });
-
-    it('throws exception if scene cannot be loaded', async () => {
-      const viewer = await createViewerSpec(`<vertex-viewer></vertex-viewer`);
-      viewer.registerCommand('stream.connect', () => () => {
-        throw 'oops';
-      });
-      expect(viewer.load('urn:vertexvis:eedc:file:file-id')).rejects.toThrow();
-    });
-  });
-
   describe('resize', () => {
     it('calls the resize-stream command', async () => {
       const viewerPage = await createViewerPage(
         `<vertex-viewer></vertex-viewer`
       );
       const viewer = await createViewerSpec(viewerPage);
-      await viewer.load('urn:vertexvis:eedc:file:file-id');
       const commandPromise = new Promise(resolve => {
         viewer.registerCommand('stream.resize-stream', dimensions => {
           return ({ stream }) => {
@@ -225,6 +207,7 @@ describe('vertex-viewer', () => {
           };
         });
       });
+      await viewer.load('urn:vertexvis:eedc:file:file-id');
 
       window.dispatchEvent(new Event('resize'));
 
@@ -236,6 +219,24 @@ describe('vertex-viewer', () => {
           height: 0,
         },
       });
+    });
+  });
+
+  describe(Viewer.prototype.load, () => {
+    it('loads a scene', async () => {
+      const viewer = await createViewerSpec(`<vertex-viewer></vertex-viewer`);
+      await viewer.load('urn:vertexvis:eedc:file:file-id');
+      const scene = await viewer.scene();
+      expect(scene).toBeDefined();
+    });
+
+    it('throws exception if scene cannot be loaded', async () => {
+      const viewer = await createViewerSpec(`<vertex-viewer></vertex-viewer`);
+      const command = await viewer.registerCommand('stream.connect', () => () => {
+        throw 'oops';
+      });
+      expect(viewer.load('urn:vertexvis:eedc:file:file-id')).rejects.toThrow();
+      command.dispose();
     });
   });
 });

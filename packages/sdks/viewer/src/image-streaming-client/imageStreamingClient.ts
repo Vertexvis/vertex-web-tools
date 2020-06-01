@@ -60,7 +60,7 @@ export class ImageStreamingClient extends StreamingClient<Operation, Response> {
       operationId: UUID.create(),
     };
 
-    super.beginInteraction();
+    super.startInteractionTimer();
 
     return this.send(op);
   }
@@ -68,7 +68,7 @@ export class ImageStreamingClient extends StreamingClient<Operation, Response> {
   public endInteraction(): Promise<FrameResponse> {
     const op = { type: 'EndInteractionOperation', operationId: UUID.create() };
 
-    super.endInteraction();
+    super.stopInteractionTimer();
 
     return this.send(op);
   }

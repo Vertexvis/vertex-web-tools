@@ -602,7 +602,7 @@ export class Viewer {
     const frameWasDrawn = await this.drawFrame(
       {
         imageAttributes: {
-          frameDimensions: response.frame.frameAttributes.imageSize,
+          frameDimensions: response.frame.frameAttributes.scene.viewport,
           imageRect: {
             x: response.frame.frameAttributes.renderedBoundingBox.min.x,
             y: response.frame.frameAttributes.renderedBoundingBox.min.y,
@@ -613,7 +613,7 @@ export class Viewer {
     );
 
     if (frameWasDrawn) {
-      this.frameAttributes = this.frameAttributes;
+      this.frameAttributes = response.frame.frameAttributes;
       this.frameDrawn?.emit(this.frameAttributes);
     }
   }
