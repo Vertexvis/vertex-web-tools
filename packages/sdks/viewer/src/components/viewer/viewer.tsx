@@ -59,7 +59,7 @@ import {
   httpBulkBomOperationExecutor,
   httpPickExecutor,
 } from '../../scenes/scene';
-import { CommandFactory, StreamingClients } from '../../commands/command';
+import { CommandFactory } from '../../commands/command';
 import { Environment } from '../../config/environment';
 import {
   ExpiredCredentialsError,
@@ -73,6 +73,7 @@ import {
   IllegalStateError,
 } from '../../errors';
 import { vertexvis } from '@vertexvis/frame-stream-protos';
+import { StreamingClient } from '../../streaming-client';
 
 interface LoadedImage extends Disposable {
   image: HTMLImageElement | ImageBitmap;
@@ -182,8 +183,7 @@ export class Viewer {
   private canvasElement?: HTMLCanvasElement;
 
   private commands!: CommandRegistry;
-  private platformCommands!: CommandRegistry;
-  private stream!: ImageStreamingClient | FrameStreamingClient;
+  private stream!: StreamingClient;
   private loadedSceneStateId?: Promise<UUID.UUID>;
   private loadedSceneId?: Promise<UUID.UUID>;
   private activeCredentials: Credentials = AuthToken.unauthorized();
@@ -218,20 +218,20 @@ export class Viewer {
 
     const config = this.getConfig();
     let registerCommands: (commands: CommandRegistry) => CommandRegistry;
-    if (config.network.streamingClient === 'iss') {
-      this.stream = new ImageStreamingClient(new WebSocketClient());
-      this.stream.onResponse(response => this.handleStreamResponse(response));
-      registerCommands = commands => {
-        registerStreamCommands(commands);
+    if (config.network.streamingClient === 'platform') {
+      this.stream = new FrameStreamingClient(new WebSocketClient());
+      this.stream.onResponse((response) =>
+        this.handleFrameStreamResponse(response)
+      );
+      registerCommands = (commands) => {
+        registerFrameStreamCommands(commands);
         return commands;
       };
     } else {
-      this.stream = new FrameStreamingClient(new WebSocketClient());
-      this.stream.onResponse(response =>
-        this.handleFrameStreamResponse(response)
-      );
-      registerCommands = commands => {
-        registerFrameStreamCommands(commands);
+      this.stream = new ImageStreamingClient(new WebSocketClient());
+      this.stream.onResponse((response) => this.handleStreamResponse(response));
+      registerCommands = (commands) => {
+        registerStreamCommands(commands);
         return commands;
       };
     }
@@ -283,15 +283,15 @@ export class Viewer {
       <Host>
         <div class="viewer-container">
           <div
-            ref={ref => (this.containerElement = ref)}
+            ref={(ref) => (this.containerElement = ref)}
             class="canvas-container"
           >
             <canvas
-              ref={ref => (this.canvasElement = ref)}
+              ref={(ref) => (this.canvasElement = ref)}
               class="canvas"
               width={this.dimensions != null ? this.dimensions.width : 0}
               height={this.dimensions != null ? this.dimensions.height : 0}
-              onContextMenu={event => event.preventDefault()}
+              onContextMenu={(event) => event.preventDefault()}
             ></canvas>
             {this.errorMessage != null ? (
               <div class="error-message">{this.errorMessage}</div>
@@ -317,11 +317,7 @@ export class Viewer {
    * @private
    */
   @Method()
-  public async registerCommand<
-    R,
-    T,
-    S extends StreamingClients = ImageStreamingClient
-  >(
+  public async registerCommand<R, T, S extends StreamingClient>(
     id: string,
     factory: CommandFactory<R, S>,
     thisArg?: T
@@ -584,7 +580,7 @@ export class Viewer {
   private injectViewerApi(): void {
     document
       .querySelectorAll(`[data-viewer="${this.hostElement.id}"]`)
-      .forEach(result => {
+      .forEach((result) => {
         (result as any).viewer = this.hostElement;
       });
   }
@@ -603,24 +599,42 @@ export class Viewer {
     response: vertexvis.protobuf.stream.IStreamResponse
   ): void {
     if (response.frame != null) {
-      this.drawPlatformFrame(response.frame);
+      this.drawFrame(response.frame);
     }
   }
 
-  private handleFrameResponse(response: FrameResponse): void {
+  private async handleFrameResponse(response: FrameResponse): Promise<void> {
     this.frameReceived?.emit(response.frame.frameAttributes);
 
-    this.drawFrame(response.frame);
+    const frameWasDrawn = await this.drawFrame(
+      {
+        imageAttributes: {
+          frameDimensions: response.frame.frameAttributes.imageSize,
+          imageRect: {
+            x: response.frame.frameAttributes.renderedBoundingBox.min.x,
+            y: response.frame.frameAttributes.renderedBoundingBox.min.y,
+          },
+        },
+      },
+      response.frame.imageBytes
+    );
+
+    if (frameWasDrawn) {
+      this.frameAttributes = this.frameAttributes;
+      this.frameDrawn?.emit(this.frameAttributes);
+    }
   }
 
-  private async drawPlatformFrame(
-    frame: vertexvis.protobuf.stream.IFrameResult
-  ): Promise<void> {
+  private async drawFrame(
+    frame: vertexvis.protobuf.stream.IFrameResult,
+    bytes?: Uint8Array | Int8Array
+  ): Promise<boolean> {
     const frameNumber = this.lastFrameNumber + 1;
 
-    const image = await this.loadImageBytes(frame.image);
+    const image = await this.loadImageBytes(bytes || frame.image);
 
-    if (frameNumber > this.lastFrameNumber) {
+    const isNewerFrame = frameNumber > this.lastFrameNumber;
+    if (isNewerFrame) {
       this.lastFrameNumber = frameNumber;
       this.imageAttributes = frame.imageAttributes;
 
@@ -629,31 +643,11 @@ export class Viewer {
         frame.imageAttributes.frameDimensions,
         frame.imageAttributes.imageRect
       );
-
-      this.frameDrawn?.emit(this.frameAttributes);
     }
 
     image.dispose();
-  }
 
-  private async drawFrame(frame: Frame): Promise<void> {
-    const frameNumber = this.lastFrameNumber + 1;
-
-    const image = await this.loadImageBytes(frame.imageBytes);
-
-    if (frameNumber > this.lastFrameNumber) {
-      this.lastFrameNumber = frameNumber;
-      this.frameAttributes = frame.frameAttributes;
-
-      this.drawImage(image, frame.frameAttributes.scene.viewport, {
-        x: this.frameAttributes.renderedBoundingBox.min.x,
-        y: this.frameAttributes.renderedBoundingBox.min.y,
-      });
-
-      this.frameDrawn?.emit(this.frameAttributes);
-    }
-
-    image.dispose();
+    return isNewerFrame;
   }
 
   private drawImage(

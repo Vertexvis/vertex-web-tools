@@ -79,7 +79,7 @@ Type: `Promise<SceneBuilder>`
 
 
 
-### `registerCommand<R, T, S extends StreamingClients = ImageStreamingClient>(id: string, factory: CommandFactory<R, S>, thisArg?: T) => Promise<Disposable>`
+### `registerCommand<R, T, S extends StreamingClient<any, any>>(id: string, factory: CommandFactory<R, S>, thisArg?: T) => Promise<Disposable>`
 
 Internal API.
 

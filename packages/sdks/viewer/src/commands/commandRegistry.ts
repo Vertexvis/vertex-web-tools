@@ -1,11 +1,11 @@
 import { Disposable } from '../utils';
-import { CommandFactory, StreamingClients } from './command';
+import { CommandFactory } from './command';
 import { ConfigProvider } from '../config/config';
 import { CredentialsProvider } from '../credentials/credentials';
 import { HttpClientProvider } from '../api-client/httpClient';
 import { StreamingClient } from '../streaming-client';
 
-interface CommandDefinition<R, S extends StreamingClients> {
+interface CommandDefinition<R, S extends StreamingClient> {
   factory: CommandFactory<R, S>;
   thisArg: any | undefined;
 }
@@ -20,7 +20,7 @@ export class CommandRegistry {
     private credentialsProvider: CredentialsProvider
   ) {}
 
-  public register<R, S extends StreamingClients, T>(
+  public register<R, T, S extends StreamingClient>(
     id: string,
     factory: CommandFactory<R, S>,
     thisArg?: T
@@ -50,7 +50,7 @@ export class CommandRegistry {
     }
   }
 
-  private getCommandDefinition<R, S extends StreamingClients>(
+  private getCommandDefinition<R, S extends StreamingClient>(
     id: string
   ): CommandDefinition<R, S> | undefined {
     return this.commands[id];

@@ -10,9 +10,10 @@ import { Environment, } from "./config/environment";
 import { HttpClient, } from "@vertexvis/network";
 import { Credentials, } from "./credentials/credentials";
 import { TapEventDetails, } from "./interactions/tapEventDetails";
-import { FrameAttributes, ImageStreamingClient, } from "./image-streaming-client";
+import { FrameAttributes, } from "./image-streaming-client";
 import { Disposable, } from "./utils";
-import { CommandFactory, StreamingClients, } from "./commands/command";
+import { StreamingClient, } from "./streaming-client";
+import { CommandFactory, } from "./commands/command";
 import { InteractionHandler, } from "./interactions/interactionHandler";
 import { SceneBuilder, } from "./scenes/sceneBuilder";
 import { Scene, } from "./scenes/scene";
@@ -74,7 +75,7 @@ export namespace Components {
           * Internal API.
           * @private
          */
-        "registerCommand": <R, T, S extends StreamingClients = ImageStreamingClient>(id: string, factory: CommandFactory<R, S>, thisArg?: T) => Promise<Disposable>;
+        "registerCommand": <R, T, S extends StreamingClient<any, any>>(id: string, factory: CommandFactory<R, S>, thisArg?: T) => Promise<Disposable>;
         /**
           * Registers and initializes an interaction handler with the viewer. Returns a `Disposable` that should be used to deregister the interaction handler.  `InteractionHandler`s are used to build custom mouse and touch interactions for the viewer. Use `<vertex-viewer camera-controls="false" />` to disable the default camera controls provided by the viewer.
           * @example class CustomInteractionHandler extends InteractionHandler {   private element: HTMLElement;   private api: InteractionApi;    public dispose(): void {     this.element.removeEventListener('click', this.handleElementClick);   }    public initialize(element: HTMLElement, api: InteractionApi): void {     this.api = api;     this.element = element;     this.element.addEventListener('click', this.handleElementClick);   }    private handleElementClick = (event: MouseEvent) => {     api.tap({ x: event.clientX, y: event.clientY });   } }  const viewer = document.querySelector("vertex-viewer"); viewer.registerInteractionHandler(new CustomInteractionHandler);
