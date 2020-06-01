@@ -33,17 +33,17 @@ const stagingConfig: Config = {
 
 const platdevConfig: Config = {
   network: {
-    apiHost: 'https://api.staging.vertexvis.io',
-    renderingHost: 'wss://rendering.staging.vertexvis.io',
-    streamingClient: 'iss',
+    apiHost: 'https://platform.platdev.vertexvis.io',
+    renderingHost: 'wss://stream.platdev.vertexvis.io',
+    streamingClient: 'fss',
   },
 };
 
 const prodConfig: Config = {
   network: {
-    apiHost: 'https://platform.platdev.vertexvis.io',
-    renderingHost: 'wss://stream.platdev.vertexvis.io',
-    streamingClient: 'fss',
+    apiHost: 'https://api.prod.vertexvis.io',
+    renderingHost: 'wss://rendering.prod.vertexvis.io',
+    streamingClient: 'iss',
   },
 };
 
