@@ -4,6 +4,8 @@ export class ExpiredCredentialsError extends CustomError {}
 
 export class InvalidCredentialsError extends CustomError {}
 
+export class InvalidResourceUrnError extends CustomError {}
+
 export class ViewerInitializationError extends CustomError {}
 
 export class ComponentInitializationError extends CustomError {}

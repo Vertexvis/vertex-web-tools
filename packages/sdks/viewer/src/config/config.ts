@@ -9,7 +9,6 @@ interface NetworkConfig {
   streamingClient: StreamingClient;
 }
 
-
 export interface Config {
   network: NetworkConfig;
 }

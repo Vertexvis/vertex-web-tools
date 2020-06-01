@@ -15,7 +15,6 @@ import { Dimensions, Rectangle } from '@vertexvis/geometry';
 import {
   Response,
   FrameResponse,
-  Frame,
 } from '../../image-streaming-client/responses';
 import { Disposable } from '../../utils';
 import {
@@ -30,7 +29,7 @@ import {
   registerCommands as registerStreamCommands,
   LoadModelResponse,
 } from '../../commands/streamCommands';
-import { Scene as SceneResource } from '../../types';
+import { Scene as SceneResource, Resource } from '../../types';
 import { registerCommands as registerFrameStreamCommands } from '../../commands/frameStreamCommands';
 import { HttpClient, httpWebClient } from '@vertexvis/network';
 import {
@@ -71,6 +70,7 @@ import {
   ComponentInitializationError,
   ImageLoadError,
   IllegalStateError,
+  InvalidResourceUrnError,
 } from '../../errors';
 import { vertexvis } from '@vertexvis/frame-stream-protos';
 import { StreamingClient } from '../../streaming-client';
@@ -220,17 +220,17 @@ export class Viewer {
     let registerCommands: (commands: CommandRegistry) => CommandRegistry;
     if (config.network.streamingClient === 'platform') {
       this.stream = new FrameStreamingClient(new WebSocketClient());
-      this.stream.onResponse((response) =>
+      this.stream.onResponse(response =>
         this.handleFrameStreamResponse(response)
       );
-      registerCommands = (commands) => {
+      registerCommands = commands => {
         registerFrameStreamCommands(commands);
         return commands;
       };
     } else {
       this.stream = new ImageStreamingClient(new WebSocketClient());
-      this.stream.onResponse((response) => this.handleStreamResponse(response));
-      registerCommands = (commands) => {
+      this.stream.onResponse(response => this.handleStreamResponse(response));
+      registerCommands = commands => {
         registerStreamCommands(commands);
         return commands;
       };
@@ -283,15 +283,15 @@ export class Viewer {
       <Host>
         <div class="viewer-container">
           <div
-            ref={(ref) => (this.containerElement = ref)}
+            ref={ref => (this.containerElement = ref)}
             class="canvas-container"
           >
             <canvas
-              ref={(ref) => (this.canvasElement = ref)}
+              ref={ref => (this.canvasElement = ref)}
               class="canvas"
               width={this.dimensions != null ? this.dimensions.width : 0}
               height={this.dimensions != null ? this.dimensions.height : 0}
-              onContextMenu={(event) => event.preventDefault()}
+              onContextMenu={event => event.preventDefault()}
             ></canvas>
             {this.errorMessage != null ? (
               <div class="error-message">{this.errorMessage}</div>
@@ -461,87 +461,18 @@ export class Viewer {
   @Method()
   public async load(resource: string): Promise<void> {
     if (this.commands != null && this.dimensions != null) {
-      const backgroundColor = this.getBackgroundColor();
-
-      if (resource.includes('eedc')) {
-        this.loadedSceneStateId = new Promise(async (resolve, reject) => {
-          try {
-            await this.commands.execute('stream.connect', { backgroundColor });
-          } catch (e) {
-            if (credentialsAreExpired(this.activeCredentials)) {
-              this.errorMessage =
-                'Error loading model. Could not open websocket due to the provided credentials being expired.';
-              reject(
-                new ExpiredCredentialsError(
-                  'Error loading model. Could not open websocket due to the provided credentials being expired.',
-                  e
-                )
-              );
-            } else {
-              this.errorMessage =
-                'Error loading model. Could not open websocket.';
-              reject(
-                new WebsocketConnectionError(
-                  'Error loading model. Could not open websocket.',
-                  e
-                )
-              );
-            }
-          }
-
-          try {
-            const response = await this.commands.execute<LoadModelResponse>(
-              'stream.load-model',
-              resource,
-              this.dimensions
-            );
-            resolve(response.sceneStateId);
-          } catch (e) {
-            reject(
-              new SceneRenderError(
-                'Error loading model. Could not load or render scene.',
-                e
-              )
-            );
-          }
-        });
+      if (Resource.isEedcUrn(resource)) {
+        this.loadedSceneStateId = this.connectToEedcClient(resource);
 
         await this.loadedSceneStateId;
+      } else if (Resource.isPlatformUrn(resource)) {
+        this.loadedSceneId = this.connectToPlatformClient(resource);
+
+        await this.loadedSceneId;
       } else {
-        this.loadedSceneId = new Promise(async (resolve, reject) => {
-          const scene = SceneResource.fromPlatformUrn(resource);
-          try {
-            await this.commands.execute('stream.connect', {
-              sceneId: scene.id,
-            });
-          } catch (e) {
-            this.errorMessage =
-              'Error loading model. Could not open websocket.';
-            reject(
-              new WebsocketConnectionError(
-                'Error loading model. Could not open websocket.',
-                e
-              )
-            );
-          }
-
-          try {
-            await this.commands.execute<LoadModelResponse>(
-              'stream.start',
-              this.dimensions
-            );
-            resolve(scene.id);
-          } catch (e) {
-            reject(
-              new SceneRenderError(
-                'Error loading model. Could not load or render scene.',
-                e
-              )
-            );
-          }
-
-          await this.loadedSceneStateId;
-        });
+        throw new InvalidResourceUrnError(
+          `Provided URN must contain either the 'eedc' or 'platform' vertex scheme.`
+        );
       }
     } else {
       throw new ViewerInitializationError(
@@ -569,6 +500,68 @@ export class Viewer {
     return this.activeCredentials;
   }
 
+  private connectToEedcClient(resource: string): Promise<string> {
+    const backgroundColor = this.getBackgroundColor();
+
+    return new Promise(async (resolve, reject) => {
+      await this.connectToStreamingClient({ backgroundColor });
+
+      try {
+        const response = await this.commands.execute<LoadModelResponse>(
+          'stream.load-model',
+          resource,
+          this.dimensions
+        );
+        resolve(response.sceneStateId);
+      } catch (e) {
+        reject(
+          new SceneRenderError(
+            'Error loading model. Could not load or render scene.',
+            e
+          )
+        );
+      }
+    });
+  }
+
+  private connectToPlatformClient(resource: string): Promise<string> {
+    const scene = SceneResource.fromPlatformUrn(resource);
+
+    return new Promise(async resolve => {
+      await this.connectToStreamingClient({ sceneId: scene.id });
+
+      await this.commands.execute<vertexvis.protobuf.stream.IStreamResponse>(
+        'stream.start',
+        this.dimensions
+      );
+      resolve(scene.id);
+    });
+  }
+
+  private async connectToStreamingClient(
+    options: Record<string, any>
+  ): Promise<void> {
+    try {
+      await this.commands.execute('stream.connect', options);
+    } catch (e) {
+      if (credentialsAreExpired(this.activeCredentials)) {
+        this.errorMessage =
+          'Error loading model. Could not open websocket due to the provided credentials being expired.';
+
+        throw new ExpiredCredentialsError(
+          'Error loading model. Could not open websocket due to the provided credentials being expired.',
+          e
+        );
+      } else {
+        this.errorMessage = 'Error loading model. Could not open websocket.';
+        throw new WebsocketConnectionError(
+          'Error loading model. Could not open websocket.',
+          e
+        );
+      }
+    }
+  }
+
   private handleWindowResize(event: UIEvent): void {
     if (!this.isResizing) {
       this.isResizing = true;
@@ -580,7 +573,7 @@ export class Viewer {
   private injectViewerApi(): void {
     document
       .querySelectorAll(`[data-viewer="${this.hostElement.id}"]`)
-      .forEach((result) => {
+      .forEach(result => {
         (result as any).viewer = this.hostElement;
       });
   }

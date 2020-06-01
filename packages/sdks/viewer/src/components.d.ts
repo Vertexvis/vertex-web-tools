@@ -17,7 +17,6 @@ import { CommandFactory, } from "./commands/command";
 import { InteractionHandler, } from "./interactions/interactionHandler";
 import { SceneBuilder, } from "./scenes/sceneBuilder";
 import { Scene, } from "./scenes/scene";
-import { LoadModelResponse, } from "./commands/streamCommands";
 export namespace Components {
     interface SvgIcon {
     }

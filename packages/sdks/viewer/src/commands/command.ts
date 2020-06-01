@@ -1,8 +1,6 @@
-import { ImageStreamingClient } from '../image-streaming-client';
 import { Config } from '../config/config';
 import { CredentialsProvider } from '../credentials/credentials';
 import { HttpClient } from '@vertexvis/network';
-import { FrameStreamingClient } from '../frame-streaming-client';
 import { StreamingClient } from '../streaming-client';
 
 export interface CommandContext<T extends StreamingClient> {
