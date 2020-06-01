@@ -67,18 +67,14 @@ export class StreamingClient<ReqT = any, RespT = any> {
   }
 
   private handleMessage(message: MessageEvent): void {
-    console.log(message);
-
     const response = this.messageParser(message);
-
-    console.log(response);
 
     this.onResponseDispatcher.emit(response);
   }
 
   private initializeInteractive(): void {
     if (this.isInteractiveResolve == null) {
-      this.isInteractive = new Promise((resolve) => {
+      this.isInteractive = new Promise(resolve => {
         this.isInteractiveResolve = resolve;
       });
     }

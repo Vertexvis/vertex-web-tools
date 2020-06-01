@@ -13,6 +13,10 @@ export interface CommandContext<T extends StreamingClients> {
   credentialsProvider: CredentialsProvider;
 }
 
-export type CommandFactory<T, S extends StreamingClients> = (...args: any[]) => Command<T, S>;
+export type CommandFactory<T, S extends StreamingClients> = (
+  ...args: any[]
+) => Command<T, S>;
 
-export type Command<T, S extends StreamingClients> = (context: CommandContext<S>) => T | Promise<T>;
+export type Command<T, S extends StreamingClients> = (
+  context: CommandContext<S>
+) => T | Promise<T>;

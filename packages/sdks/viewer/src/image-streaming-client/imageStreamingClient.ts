@@ -27,8 +27,8 @@ export type AnimationEasing =
 export class ImageStreamingClient extends StreamingClient<Operation, Response> {
   public constructor(websocket: WebSocketClient = new WebSocketClient()) {
     super(
-      (request) => JSON.stringify(request),
-      (message) => {
+      request => JSON.stringify(request),
+      message => {
         const response = parseResponse(message);
 
         if (isReconnectMessage(response)) {
@@ -61,7 +61,7 @@ export class ImageStreamingClient extends StreamingClient<Operation, Response> {
     };
 
     super.beginInteraction();
-    
+
     return this.send(op);
   }
 
@@ -125,14 +125,14 @@ export class ImageStreamingClient extends StreamingClient<Operation, Response> {
       startTime || Date.parse(message.reconnectWindowStartTime);
     const endTimeUtcMs = endTime || Date.parse(message.reconnectWindowEndTime);
 
-    await new Promise((resolve) =>
+    await new Promise(resolve =>
       setTimeout(resolve, startTimeUtcMs - currentTimeUtcMs)
     );
 
     if (this.isInteractive != null) {
       await Promise.race([
         this.isInteractive,
-        new Promise((resolve) =>
+        new Promise(resolve =>
           setTimeout(resolve, endTimeUtcMs - currentTimeUtcMs)
         ),
       ]);

@@ -1,9 +1,5 @@
-import { WebSocketClient, UrlProvider } from '../websocket-client';
-import { UUID } from '@vertexvis/utils';
-import { Camera } from '@vertexvis/graphics3d';
-import { BoundingBox, Dimensions } from '@vertexvis/geometry';
+import { WebSocketClient } from '../websocket-client';
 import { parseResponse } from './responses';
-import { Disposable, EventDispatcher } from '../utils';
 import { vertexvis } from '@vertexvis/frame-stream-protos';
 import { StreamingClient } from '../streaming-client';
 
@@ -21,9 +17,9 @@ export class FrameStreamingClient extends StreamingClient<
 > {
   public constructor(websocket: WebSocketClient = new WebSocketClient()) {
     super(
-      (request) =>
+      request =>
         vertexvis.protobuf.stream.StreamRequest.encode(request).finish(),
-      (message) => parseResponse(message.data),
+      message => parseResponse(message.data),
       websocket
     );
   }
@@ -41,8 +37,8 @@ export class FrameStreamingClient extends StreamingClient<
   protected send(
     request: vertexvis.protobuf.stream.IStreamRequest
   ): Promise<vertexvis.protobuf.stream.IStreamResponse> {
-    return new Promise((resolve) => {
-      const subscription = this.onResponse((response) => {
+    return new Promise(resolve => {
+      const subscription = this.onResponse(response => {
         if (response.frame != null) {
           resolve(response);
           subscription.dispose();

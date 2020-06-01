@@ -1,4 +1,4 @@
-import { Objects, DeepPartial, UUID } from '@vertexvis/utils';
+import { Objects, DeepPartial } from '@vertexvis/utils';
 import { Environment } from './environment';
 
 interface NetworkConfig {
@@ -43,7 +43,7 @@ const prodConfig: Config = {
   network: {
     apiHost: 'https://platform.platdev.vertexvis.io',
     renderingHost: 'wss://stream.platdev.vertexvis.io',
-    streamingClient: 'fss'
+    streamingClient: 'fss',
   },
 };
 
@@ -53,7 +53,7 @@ function getEnvironmentConfig(environment: Environment): Config {
   } else if (environment === 'staging') {
     return stagingConfig;
   } else if (environment === 'platdev') {
-    return platdevConfig
+    return platdevConfig;
   } else {
     return prodConfig;
   }

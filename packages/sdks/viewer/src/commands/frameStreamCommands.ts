@@ -1,12 +1,10 @@
-import { UUID, Uri, Color } from '@vertexvis/utils';
+import { UUID, Uri } from '@vertexvis/utils';
 import { CommandContext, Command } from './command';
 import { Disposable } from '../utils';
-import { Dimensions, BoundingBox } from '@vertexvis/geometry';
-import { FrameResponse, AnimationEasing } from '../image-streaming-client';
+import { Dimensions } from '@vertexvis/geometry';
+import { FrameResponse } from '../image-streaming-client';
 import { CommandRegistry } from './commandRegistry';
 import { Camera } from '@vertexvis/graphics3d';
-import { Scene } from '../types';
-import { Files, SceneStates } from '@vertexvis/vertex-api';
 import { vertexvis } from '@vertexvis/frame-stream-protos';
 import { UrlDescriptor } from '../websocket-client';
 import { FrameStreamingClient } from '../frame-streaming-client';
@@ -48,14 +46,16 @@ export function connect({ sceneId }: ConnectOptions = {}): Command<
   };
 }
 
-export function startStream(dimensions: Dimensions.Dimensions): Command<
+export function startStream(
+  dimensions: Dimensions.Dimensions
+): Command<
   Promise<vertexvis.protobuf.stream.IStreamResponse>,
   FrameStreamingClient
 > {
   return ({ stream }: CommandContext<FrameStreamingClient>) => {
     return stream.startStream({
       width: dimensions.width,
-      height: dimensions.height
+      height: dimensions.height,
     });
   };
 }

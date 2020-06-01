@@ -2,7 +2,11 @@ import { UUID, Uri, Color } from '@vertexvis/utils';
 import { CommandContext, Command } from './command';
 import { Disposable } from '../utils';
 import { Dimensions, BoundingBox } from '@vertexvis/geometry';
-import { FrameResponse, AnimationEasing, ImageStreamingClient } from '../image-streaming-client';
+import {
+  FrameResponse,
+  AnimationEasing,
+  ImageStreamingClient,
+} from '../image-streaming-client';
 import { CommandRegistry } from './commandRegistry';
 import { Camera } from '@vertexvis/graphics3d';
 import { Model } from '../types';
@@ -66,7 +70,10 @@ export function loadModel(
   urn: string,
   dimensions: Dimensions.Dimensions
 ): Command<Promise<LoadModelResponse>, ImageStreamingClient> {
-  return async ({ stream, httpClient }: CommandContext<ImageStreamingClient>) => {
+  return async ({
+    stream,
+    httpClient,
+  }: CommandContext<ImageStreamingClient>) => {
     let model = Model.fromEedcUrn(urn);
 
     if (model.type === 'file') {

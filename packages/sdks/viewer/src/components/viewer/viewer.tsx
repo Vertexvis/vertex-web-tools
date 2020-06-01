@@ -11,7 +11,7 @@ import {
   EventEmitter,
 } from '@stencil/core';
 import { Config, parseConfig } from '../../config/config';
-import { Dimensions, Rectangle, BoundingBox } from '@vertexvis/geometry';
+import { Dimensions, Rectangle } from '@vertexvis/geometry';
 import {
   Response,
   FrameResponse,
@@ -220,17 +220,17 @@ export class Viewer {
     let registerCommands: (commands: CommandRegistry) => CommandRegistry;
     if (config.network.streamingClient === 'iss') {
       this.stream = new ImageStreamingClient(new WebSocketClient());
-      this.stream.onResponse((response) => this.handleStreamResponse(response));
-      registerCommands = (commands) => {
+      this.stream.onResponse(response => this.handleStreamResponse(response));
+      registerCommands = commands => {
         registerStreamCommands(commands);
         return commands;
       };
     } else {
       this.stream = new FrameStreamingClient(new WebSocketClient());
-      this.stream.onResponse((response) =>
+      this.stream.onResponse(response =>
         this.handleFrameStreamResponse(response)
       );
-      registerCommands = (commands) => {
+      registerCommands = commands => {
         registerFrameStreamCommands(commands);
         return commands;
       };
@@ -283,15 +283,15 @@ export class Viewer {
       <Host>
         <div class="viewer-container">
           <div
-            ref={(ref) => (this.containerElement = ref)}
+            ref={ref => (this.containerElement = ref)}
             class="canvas-container"
           >
             <canvas
-              ref={(ref) => (this.canvasElement = ref)}
+              ref={ref => (this.canvasElement = ref)}
               class="canvas"
               width={this.dimensions != null ? this.dimensions.width : 0}
               height={this.dimensions != null ? this.dimensions.height : 0}
-              onContextMenu={(event) => event.preventDefault()}
+              onContextMenu={event => event.preventDefault()}
             ></canvas>
             {this.errorMessage != null ? (
               <div class="error-message">{this.errorMessage}</div>
@@ -467,7 +467,6 @@ export class Viewer {
     if (this.commands != null && this.dimensions != null) {
       const backgroundColor = this.getBackgroundColor();
 
-      console.log(resource);
       if (resource.includes('eedc')) {
         this.loadedSceneStateId = new Promise(async (resolve, reject) => {
           try {
@@ -585,7 +584,7 @@ export class Viewer {
   private injectViewerApi(): void {
     document
       .querySelectorAll(`[data-viewer="${this.hostElement.id}"]`)
-      .forEach((result) => {
+      .forEach(result => {
         (result as any).viewer = this.hostElement;
       });
   }
@@ -603,7 +602,6 @@ export class Viewer {
   private handleFrameStreamResponse(
     response: vertexvis.protobuf.stream.IStreamResponse
   ): void {
-    console.log(response);
     if (response.frame != null) {
       this.drawPlatformFrame(response.frame);
     }
@@ -647,14 +645,10 @@ export class Viewer {
       this.lastFrameNumber = frameNumber;
       this.frameAttributes = frame.frameAttributes;
 
-      this.drawImage(
-        image,
-        frame.frameAttributes.scene.viewport,
-        {
-          x: this.frameAttributes.renderedBoundingBox.min.x,
-          y: this.frameAttributes.renderedBoundingBox.min.y
-        }
-      );
+      this.drawImage(image, frame.frameAttributes.scene.viewport, {
+        x: this.frameAttributes.renderedBoundingBox.min.x,
+        y: this.frameAttributes.renderedBoundingBox.min.y,
+      });
 
       this.frameDrawn?.emit(this.frameAttributes);
     }
@@ -665,7 +659,7 @@ export class Viewer {
   private drawImage(
     image: LoadedImage,
     sceneViewport: vertexvis.protobuf.stream.IDimensions,
-    imagePosition: vertexvis.protobuf.stream.IRectangle,
+    imagePosition: vertexvis.protobuf.stream.IRectangle
   ): void {
     if (this.canvasElement != null) {
       const context = this.canvasElement.getContext('2d');
