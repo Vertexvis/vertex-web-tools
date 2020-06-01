@@ -1,4 +1,4 @@
-import { WebSocketClient } from '../webSocketClient';
+import { WebSocketClient } from '../../websocket-client/webSocketClient';
 import * as AttemptReconnect from '../reconnect';
 import { ImageStreamingClient } from '../imageStreamingClient';
 import { WebSocketMock } from '../__mocks__/webSocketMock';

@@ -13,7 +13,7 @@ interface SceneStateModel {
 
 export type Model = SceneStateModel | FileModel;
 
-export function fromUrn(urn: string): Model {
+export function fromEedcUrn(urn: string): Model {
   const uri = Uri.parse(urn);
 
   if (uri.scheme !== 'urn') {
