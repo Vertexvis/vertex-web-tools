@@ -26,8 +26,8 @@ This repository contains a script to generate a VS Code workspace file. With VS
 Code workspaces, extensions are run within the context of sub-projects, so
 features like Jest debugging still work.
 
-The workspace file will be created automatically when running `rush install`.
-Otherwise you can generate the file manually by running `rush generate:vscode-workspace`.
+The workspace file will be created automatically when running `yarn install`.
+Otherwise you can generate the file manually by running `yarn generate:vscode-workspace`.
 
 Running `code ./vertex-web-tools.code-workspace` will open VS Code workspace.
 
