@@ -13,7 +13,8 @@
   ],
   "license": "UNLICENSED",
   "publishConfig": {
-    "registry": "https://npm.ops.vertexvis.io/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "scripts": {
     "build": "exit 0",

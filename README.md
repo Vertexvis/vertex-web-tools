@@ -1,17 +1,12 @@
 # Vertex Web Monorepo
 
 Welcome to the Vertex Web repo. This is a monorepo that contains our front-end
-projects at Vertex.
+tooling at Vertex.
 
 ## Structure
 
 - `./packages`: The packages to be made available on NPM. This directory contains
   subdirectories that represent different categories of packages:
-  - `./libs`: The libs directory contains libraries that are intended to be
-    reusable across other applications and/or libraries. These are normally
-    published to our private NPM repository.
-  - `./sdks`: The sdks directory contains NPM packages for Vertex's public facing
-    SDKs.
   - `./tools`: The tools directory contains tooling libraries. Examples of these
     would be sharable tools to compile projects to JS or sharable linting
     configuration.
@@ -31,8 +26,8 @@ This repository contains a script to generate a VS Code workspace file. With VS
 Code workspaces, extensions are run within the context of sub-projects, so
 features like Jest debugging still work.
 
-The workspace file will be created automatically when running `rush install`.
-Otherwise you can generate the file manually by running `rush generate:vscode-workspace`.
+The workspace file will be created automatically when running `yarn install`.
+Otherwise you can generate the file manually by running `yarn generate:vscode-workspace`.
 
 Running `code ./vertex-web-tools.code-workspace` will open VS Code workspace.
 
