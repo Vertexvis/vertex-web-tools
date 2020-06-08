@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/eslint-config-vertexvis",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "The Vertex sharable ESLint config",
   "author": "Dan Schultz (https://github.com/danschultz)",
   "contributors": [

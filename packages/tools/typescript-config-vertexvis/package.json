@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/typescript-config-vertexvis",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sharable TypeScript configs for Vertex",
   "author": "Dan Schultz (https://github.com/danschultz)",
   "publishConfig": {

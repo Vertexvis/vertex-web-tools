@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/build-tools",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "description": "Build tools for web development",
   "main": "./dist/bundle.cjs.js",
   "module": "./dist/bundle.esm.js",
@@ -31,17 +31,17 @@
   },
   "dependencies": {
     "rollup": "^1.19.4",
-    "rollup-plugin-typescript2": "^0.22.1",
-    "rollup-plugin-terser": "^5.1.1",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-commonjs": "^10.0.2",
+    "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-node-resolve": "^5.2.0",
-    "rollup-plugin-json": "^4.0.0"
+    "rollup-plugin-terser": "^5.1.1",
+    "rollup-plugin-typescript2": "^0.22.1"
   },
   "devDependencies": {
     "@types/node": "^12.6.8",
-    "@vertexvis/eslint-config-vertexvis-typescript": "0.2.0",
-    "@vertexvis/rollup-plugin-vertexvis-copyright": "0.1.0",
+    "@vertexvis/eslint-config-vertexvis-typescript": "0.2.1",
+    "@vertexvis/rollup-plugin-vertexvis-copyright": "0.1.1",
     "eslint": "^6.1.0",
     "tslib": "^1.10.0",
     "typescript": "^3.7.4"
