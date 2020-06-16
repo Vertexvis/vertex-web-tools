@@ -7,7 +7,7 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "files": [
     "tsconfig.json",
     "tsconfig-web.json"

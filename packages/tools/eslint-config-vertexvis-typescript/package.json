@@ -14,7 +14,7 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "./index.js",
   "scripts": {
     "format": "yarn lint --fix",

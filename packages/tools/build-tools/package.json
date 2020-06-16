@@ -9,7 +9,7 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "sideEffects": false,
   "files": [
     "bin/*",
