@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/jest-config-vertexvis",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "The shared Vertex configs for Jest",
   "main": "index.js",
   "author": "Dan Schultz (https://github.com/danschultz)",
@@ -22,8 +22,8 @@
     "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../../.gitignore ."
   },
   "devDependencies": {
-    "@vertexvis/eslint-config-vertexvis-typescript": "0.2.1",
-    "@vertexvis/typescript-config-vertexvis": "1.0.1",
+    "@vertexvis/eslint-config-vertexvis-typescript": "0.2.2",
+    "@vertexvis/typescript-config-vertexvis": "1.0.2",
     "eslint": "^6.1.0"
   }
 }
