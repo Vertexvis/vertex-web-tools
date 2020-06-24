@@ -19,7 +19,7 @@
   "scripts": {
     "build": "exit 0",
     "format": "yarn lint --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../../.gitignore ."
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore ."
   },
   "devDependencies": {
     "@vertexvis/eslint-config-vertexvis-typescript": "0.2.2",

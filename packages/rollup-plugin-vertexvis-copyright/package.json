@@ -19,7 +19,7 @@
   "scripts": {
     "clean": "rm -fr ./dist && mkdir ./dist",
     "format": "yarn lint --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../../.gitignore .",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore .",
     "prebuild": "yarn clean",
     "build": "./scripts/build-web.sh",
     "test": "echo 'No unit tests defined'",
