@@ -1,9 +1,9 @@
 {
   "name": "@vertexvis/rollup-plugin-vertexvis-copyright",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Rollup plugin that prepends a Vertex copyright to JS bundles.",
   "author": "Dan Schultz (https://github.com/danschultz)",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "./dist/bundle.cjs.js",
   "module": "./dist/bundle.esm.js",
   "typings": "./dist/index.d.ts",
@@ -14,12 +14,13 @@
   "sideEffects": false,
   "files": [
     "dist/*",
-    "!dist/**/__tests__"
+    "!dist/**/__tests__",
+    "LICENSE"
   ],
   "scripts": {
     "clean": "rm -fr ./dist && mkdir ./dist",
     "format": "yarn lint --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../../.gitignore .",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore .",
     "prebuild": "yarn clean",
     "build": "./scripts/build-web.sh",
     "test": "echo 'No unit tests defined'",
@@ -29,8 +30,8 @@
     "rollup": "^1.19.4"
   },
   "devDependencies": {
-    "@vertexvis/eslint-config-vertexvis-typescript": "0.2.1",
-    "@vertexvis/typescript-config-vertexvis": "1.0.1",
+    "@vertexvis/eslint-config-vertexvis-typescript": "0.2.2",
+    "@vertexvis/typescript-config-vertexvis": "1.0.2",
     "rollup-plugin-terser": "^5.1.1",
     "rollup-plugin-typescript2": "^0.22.1"
   },

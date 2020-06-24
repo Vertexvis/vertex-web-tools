@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/build-tools",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "Build tools for web development",
   "main": "./dist/bundle.cjs.js",
   "module": "./dist/bundle.esm.js",
@@ -9,12 +9,13 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "sideEffects": false,
   "files": [
     "bin/*",
     "dist/*",
-    "!dist/**/__tests__"
+    "!dist/**/__tests__",
+    "LICENSE"
   ],
   "bin": {
     "build-web": "./bin/build-web.js",
@@ -23,7 +24,7 @@
   "scripts": {
     "clean": "rm -fr ./dist && mkdir ./dist",
     "format": "yarn lint --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../../.gitignore .",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore .",
     "prebuild": "yarn clean",
     "build": "./bin/build-web.sh",
     "test": "echo 'No unit tests defined'",
@@ -40,8 +41,8 @@
   },
   "devDependencies": {
     "@types/node": "^12.6.8",
-    "@vertexvis/eslint-config-vertexvis-typescript": "0.2.1",
-    "@vertexvis/rollup-plugin-vertexvis-copyright": "0.1.1",
+    "@vertexvis/eslint-config-vertexvis-typescript": "0.2.2",
+    "@vertexvis/rollup-plugin-vertexvis-copyright": "0.1.2",
     "eslint": "^6.1.0",
     "tslib": "^1.10.0",
     "typescript": "^3.7.4"

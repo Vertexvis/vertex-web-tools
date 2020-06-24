@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/eslint-config-vertexvis-typescript",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "The Vertex sharable ESLint config for TypeScript.",
   "author": "Dan Schultz (https://github.com/danschultz)",
   "contributors": [
@@ -14,11 +14,11 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "main": "./index.js",
   "scripts": {
     "format": "yarn lint --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../../.gitignore .",
+    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore .",
     "build": "echo 0",
     "test": "echo 'No unit tests defined'",
     "test:coverage": "echo 'No unit tests defined'"
@@ -26,7 +26,7 @@
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^2.1.0",
     "@typescript-eslint/parser": "^2.1.0",
-    "@vertexvis/eslint-config-vertexvis": "0.4.1",
+    "@vertexvis/eslint-config-vertexvis": "0.4.2",
     "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.1.0"
   },
