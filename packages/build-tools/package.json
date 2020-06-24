@@ -14,7 +14,8 @@
   "files": [
     "bin/*",
     "dist/*",
-    "!dist/**/__tests__"
+    "!dist/**/__tests__",
+    "LICENSE"
   ],
   "bin": {
     "build-web": "./bin/build-web.js",

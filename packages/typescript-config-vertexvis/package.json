@@ -10,7 +10,8 @@
   "license": "MIT",
   "files": [
     "tsconfig.json",
-    "tsconfig-web.json"
+    "tsconfig-web.json",
+    "LICENSE"
   ],
   "scripts": {
     "build": "exit 0",
