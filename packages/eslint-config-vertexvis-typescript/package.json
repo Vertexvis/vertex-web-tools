@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/eslint-config-vertexvis-typescript",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "The Vertex sharable ESLint config for TypeScript.",
   "author": "Dan Schultz (https://github.com/danschultz)",
   "contributors": [
