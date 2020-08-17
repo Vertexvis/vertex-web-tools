@@ -21,9 +21,11 @@
     "format": "yarn lint --fix",
     "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore ."
   },
+  "dependencies": {
+    "@vertexvis/typescript-config-vertexvis": "1.0.2"
+  },
   "devDependencies": {
     "@vertexvis/eslint-config-vertexvis-typescript": "0.2.3",
-    "@vertexvis/typescript-config-vertexvis": "1.0.2",
     "eslint": "^6.1.0"
   }
 }
