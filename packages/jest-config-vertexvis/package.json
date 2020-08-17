@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/jest-config-vertexvis",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "The shared Vertex configs for Jest",
   "main": "index.js",
   "author": "Dan Schultz (https://github.com/danschultz)",
