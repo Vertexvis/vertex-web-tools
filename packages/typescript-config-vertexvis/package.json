@@ -2,12 +2,20 @@
   "name": "@vertexvis/typescript-config-vertexvis",
   "version": "1.0.2",
   "description": "Sharable TypeScript configs for Vertex",
-  "author": "Dan Schultz (https://github.com/danschultz)",
+  "license": "MIT",
+  "author": "Vertex Developers <support@vertexvis.com> (https://developer.vertexvis.com)",
+  "homepage": "https://github.com/Vertexvis/vertex-web-tools#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vertexvis/vertex-web-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vertexvis/vertex-web-tools/issues"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
-  "license": "MIT",
   "files": [
     "tsconfig.json",
     "tsconfig-web.json",
