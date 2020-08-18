@@ -2,16 +2,17 @@
   "name": "@vertexvis/jest-config-vertexvis",
   "version": "0.4.4",
   "description": "The shared Vertex configs for Jest",
-  "main": "index.js",
-  "author": "Dan Schultz (https://github.com/danschultz)",
-  "contributors": [
-    {
-      "name": "Dan Schultz",
-      "email": "dan.schultz@vertexvis.com",
-      "url": "https://github.com/danschultz"
-    }
-  ],
   "license": "MIT",
+  "author": "Vertex Developers <support@vertexvis.com> (https://developer.vertexvis.com)",
+  "homepage": "https://github.com/Vertexvis/vertex-web-tools#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vertexvis/vertex-web-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vertexvis/vertex-web-tools/issues"
+  },
+  "main": "index.js",
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
