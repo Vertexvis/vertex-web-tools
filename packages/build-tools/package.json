@@ -54,6 +54,6 @@
     "@vertexvis/eslint-config-vertexvis-typescript": "0.2.3",
     "eslint": "^6.1.0",
     "tslib": "^1.10.0",
-    "typescript": "^3.7.4"
+    "typescript": "^4.0.2"
   }
 }
