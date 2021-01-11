@@ -1,4 +1,5 @@
 import autoExternal from './autoExternal';
+import { merge } from './utils';
 import { RollupConfig, RollupConfigBuilder } from './types';
 
 /**
@@ -31,13 +32,15 @@ import { RollupConfig, RollupConfigBuilder } from './types';
  * export default config(() => ({ plugins: [babel()] }));
  * ```
  */
-export default (...configBuilders: RollupConfigBuilder[]): RollupConfig =>
+export default (...configBuilders: RollupConfigBuilder<any>[]): RollupConfig =>
   buildConfig(autoExternal(), ...configBuilders);
 
-const buildConfig = (...configBuilders: RollupConfigBuilder[]): RollupConfig =>
-  configBuilders.reduce(
+const buildConfig = (
+  ...configBuilders: RollupConfigBuilder<any>[]
+): RollupConfig =>
+  merge(configBuilders).reduce(
     (config: RollupConfig, builder) => {
-      const partialConfig = builder(config);
+      const partialConfig = builder.fn(config, builder.options);
       return {
         ...config,
         ...(partialConfig.input && { input: partialConfig.input }),

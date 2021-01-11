@@ -22,29 +22,32 @@ export default ({
   name,
   globals,
 }: Options = {}): RollupConfigBuilder => {
-  return config => {
-    return {
-      ...formats.reduce(
-        (partialConfig, format) =>
-          format
-            ? {
-                ...partialConfig,
-                output: [
-                  ...(partialConfig.output || []),
-                  {
-                    file: `dist/${bundleName}.${format}.js`,
-                    format,
-                    sourcemap: sourcemaps,
-                    name,
-                    globals,
-                  },
-                ],
-              }
-            : partialConfig,
-        {
-          output: [],
-        }
-      ),
-    };
+  return {
+    name: 'output',
+    fn: config => {
+      return {
+        ...formats.reduce(
+          (partialConfig, format) =>
+            format
+              ? {
+                  ...partialConfig,
+                  output: [
+                    ...(partialConfig.output || []),
+                    {
+                      file: `dist/${bundleName}.${format}.js`,
+                      format,
+                      sourcemap: sourcemaps,
+                      name,
+                      globals,
+                    },
+                  ],
+                }
+              : partialConfig,
+          {
+            output: [],
+          }
+        ),
+      };
+    },
   };
 };

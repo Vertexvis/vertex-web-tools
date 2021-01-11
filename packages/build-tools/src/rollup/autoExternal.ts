@@ -16,21 +16,27 @@ interface AutoExternalPluginConfig {
  * Consuming projects are expected to include any packages marked as peer
  * dependencies.
  */
-export default (options?: AutoExternalPluginConfig): RollupConfigBuilder => {
-  return config => {
-    return {
-      plugins: [
-        options != null
-          ? autoExternalPlugin({
-              ...options,
-              packagePath: options.packagePath || process.cwd(),
-            })
-          : autoExternalPlugin({
-              packagePath: process.cwd(),
-              dependencies: false,
-              peerDependencies: true,
-            }),
-      ],
-    };
+export default (
+  options?: AutoExternalPluginConfig
+): RollupConfigBuilder<AutoExternalPluginConfig> => {
+  return {
+    name: 'autoExternal',
+    options,
+    fn: config => {
+      return {
+        plugins: [
+          options != null
+            ? autoExternalPlugin({
+                ...options,
+                packagePath: options.packagePath || process.cwd(),
+              })
+            : autoExternalPlugin({
+                packagePath: process.cwd(),
+                dependencies: false,
+                peerDependencies: true,
+              }),
+        ],
+      };
+    },
   };
 };

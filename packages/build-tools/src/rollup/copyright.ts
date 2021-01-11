@@ -9,9 +9,12 @@ import { copyright } from '@vertexvis/rollup-plugin-vertexvis-copyright';
  * `© Copyright <Current Year> Vertex Software LLC. All rights reserved.` will be added.
  */
 export default (copyrightString?: string): RollupConfigBuilder => {
-  return config => {
-    return {
-      plugins: [copyright(copyrightString)],
-    };
+  return {
+    name: 'copyright',
+    fn: config => {
+      return {
+        plugins: [copyright(copyrightString)],
+      };
+    },
   };
 };

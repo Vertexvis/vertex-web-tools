@@ -9,7 +9,10 @@ import { RollupConfigBuilder } from './types';
  * @see https://github.com/ezolenko/rollup-plugin-typescript2
  */
 export default (): RollupConfigBuilder => {
-  return config => ({
-    plugins: [typescript2()],
-  });
+  return {
+    name: 'typescript',
+    fn: config => ({
+      plugins: [typescript2()],
+    }),
+  };
 };

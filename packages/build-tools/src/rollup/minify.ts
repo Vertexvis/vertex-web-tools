@@ -24,44 +24,48 @@ function minifiedFilePath(filePath: string): string {
 export default (
   options?: Options,
   onlyMinFiles?: boolean
-): RollupConfigBuilder => {
-  return config => {
-    const plugins = [terser({ include: /^.+\.min\.js$/, ...options })];
+): RollupConfigBuilder<Options | undefined> => {
+  return {
+    name: 'minify',
+    options,
+    fn: config => {
+      const plugins = [terser({ include: /^.+\.min\.js$/, ...options })];
 
-    if (config.output != null) {
-      const output =
-        config.output instanceof Array
-          ? [
-              ...(onlyMinFiles ? [] : config.output),
-              ...config.output.map(entry => {
-                return {
-                  ...entry,
+      if (config.output != null) {
+        const output =
+          config.output instanceof Array
+            ? [
+                ...(onlyMinFiles ? [] : config.output),
+                ...config.output.map(entry => {
+                  return {
+                    ...entry,
+                    file:
+                      entry.file != null
+                        ? minifiedFilePath(entry.file)
+                        : undefined,
+                  };
+                }),
+              ]
+            : [
+                ...(onlyMinFiles ? [] : [config.output]),
+                {
+                  ...config.output,
                   file:
-                    entry.file != null
-                      ? minifiedFilePath(entry.file)
+                    config.output != null && config.output.file != null
+                      ? minifiedFilePath(config.output.file)
                       : undefined,
-                };
-              }),
-            ]
-          : [
-              ...(onlyMinFiles ? [] : [config.output]),
-              {
-                ...config.output,
-                file:
-                  config.output != null && config.output.file != null
-                    ? minifiedFilePath(config.output.file)
-                    : undefined,
-              },
-            ];
+                },
+              ];
+
+        return {
+          output,
+          plugins,
+        };
+      }
 
       return {
-        output,
         plugins,
       };
-    }
-
-    return {
-      plugins,
-    };
+    },
   };
 };

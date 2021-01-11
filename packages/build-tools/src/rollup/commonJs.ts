@@ -29,8 +29,12 @@ interface Options {
  *
  * @see https://github.com/rollup/rollup-plugin-commonjs
  */
-export default (options: Options = {}): RollupConfigBuilder => {
-  return config => ({
-    plugins: [commonjs(options.commonjs), resolve(options.nodeResolve)],
-  });
+export default (options: Options = {}): RollupConfigBuilder<Options> => {
+  return {
+    name: 'commonJs',
+    options,
+    fn: config => ({
+      plugins: [commonjs(options.commonjs), resolve(options.nodeResolve)],
+    }),
+  };
 };

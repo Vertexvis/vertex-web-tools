@@ -4,6 +4,10 @@ export type RollupConfig = Omit<RollupOptions, 'output'> & {
   output?: OutputOptions | OutputOptions[];
 };
 
-export type RollupConfigBuilder = (config: RollupConfig) => RollupConfig;
+export interface RollupConfigBuilder<T = Record<string, any>> {
+  name: string;
+  options?: T;
+  fn: (config: RollupConfig, options?: T) => RollupConfig;
+}
 
 export { OutputOptions, ModuleFormat };

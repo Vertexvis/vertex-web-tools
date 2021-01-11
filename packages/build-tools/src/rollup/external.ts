@@ -9,13 +9,16 @@ import { RollupConfigBuilder } from './types';
  * @see https://rollupjs.org/guide/en/#external
  */
 export default (...externalDependencies: string[]): RollupConfigBuilder => {
-  return config => ({
-    ...externalDependencies.reduce(
-      (partialConfig, dependency) => ({
-        ...partialConfig,
-        external: [...partialConfig.external, dependency],
-      }),
-      { external: [] }
-    ),
-  });
+  return {
+    name: 'external',
+    fn: config => ({
+      ...externalDependencies.reduce(
+        (partialConfig, dependency) => ({
+          ...partialConfig,
+          external: [...partialConfig.external, dependency],
+        }),
+        { external: [] }
+      ),
+    }),
+  };
 };

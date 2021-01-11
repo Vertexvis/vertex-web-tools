@@ -6,5 +6,10 @@ import { RollupConfigBuilder } from './types';
  * @see https://rollupjs.org/guide/en/#input
  */
 export default (input: string): RollupConfigBuilder => {
-  return config => ({ input });
+  return {
+    name: 'input',
+    fn: config => ({
+      input,
+    }),
+  };
 };
