@@ -4,7 +4,10 @@ import config from '../config';
 describe(config, () => {
   it('should prevent plugin duplication', () => {
     expect(
-      config(autoExternal({ peerDependencies: false })).plugins?.length
+      config(
+        autoExternal({ peerDependencies: false }),
+        autoExternal({ dependencies: true })
+      ).plugins?.length
     ).toBe(1);
   });
 
