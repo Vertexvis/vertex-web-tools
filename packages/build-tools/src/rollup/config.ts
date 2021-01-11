@@ -32,7 +32,7 @@ import { RollupConfig, RollupConfigBuilder } from './types';
  * ```
  */
 export default (...configBuilders: RollupConfigBuilder[]): RollupConfig =>
-  buildConfig(...configBuilders, autoExternal());
+  buildConfig(autoExternal(), ...configBuilders);
 
 const buildConfig = (...configBuilders: RollupConfigBuilder[]): RollupConfig =>
   configBuilders.reduce(
