@@ -1,5 +1,6 @@
-import autoExternal from './autoExternal';
-import { RollupConfig, RollupConfigBuilder } from './types';
+import * as AutoExternal from './autoExternal';
+import { rollup } from './rollup';
+import { PreRollupConfig, RollupConfig } from './types';
 
 /**
  * The `config` helper performs a shallow merge on the result of each provided RollupConfigBuilder
@@ -31,26 +32,48 @@ import { RollupConfig, RollupConfigBuilder } from './types';
  * export default config(() => ({ plugins: [babel()] }));
  * ```
  */
-export default (...configBuilders: RollupConfigBuilder[]): RollupConfig =>
-  buildConfig(autoExternal(), ...configBuilders);
+export const config = (
+  ...preConfigDefinitions: Array<Partial<PreRollupConfig>>
+): RollupConfig => rollup(defineConfig(...preConfigDefinitions));
 
-const buildConfig = (...configBuilders: RollupConfigBuilder[]): RollupConfig =>
-  configBuilders.reduce(
-    (config: RollupConfig, builder) => {
-      const partialConfig = builder(config);
+export const defineConfig = (
+  ...preConfigDefinitions: Array<Partial<PreRollupConfig>>
+): PreRollupConfig =>
+  buildPreConfig(AutoExternal.autoExternal(), ...preConfigDefinitions);
+
+const buildPreConfig = (
+  ...preConfigDefinitions: Array<Partial<PreRollupConfig>>
+): PreRollupConfig =>
+  preConfigDefinitions.reduce(
+    (config: PreRollupConfig, partial) => {
       return {
         ...config,
-        ...(partialConfig.input && { input: partialConfig.input }),
-        ...(partialConfig.output && { output: partialConfig.output }),
-        ...(partialConfig.plugins && {
-          plugins: config.plugins
-            ? [...config.plugins, ...partialConfig.plugins]
-            : [...partialConfig.plugins],
+        ...(partial.input && { input: partial.input }),
+        ...(partial.output && { output: partial.output }),
+        ...(partial.plugins && {
+          plugins: mergePlugins(config.plugins!, partial.plugins),
         }),
-        ...(partialConfig.external && {
-          external: partialConfig.external,
+        ...(partial.external && {
+          external: partial.external,
         }),
       };
     },
-    { plugins: [] }
+    { plugins: {} }
   );
+
+const mergePlugins = (
+  existing: Record<string, any>,
+  added: Record<string, any>
+): Record<string, any> =>
+  Object.keys(existing)
+    .concat(Object.keys(added).filter(key => existing[key] == null))
+    .reduce(
+      (plugins, key) => ({
+        ...plugins,
+        [key]:
+          plugins[key] != null
+            ? { ...plugins[key], ...added[key] }
+            : added[key],
+      }),
+      existing
+    );

@@ -1,5 +1,5 @@
 import { terser, Options } from 'rollup-plugin-terser';
-import { RollupConfigBuilder } from './types';
+import { PreRollupConfig, RollupConfigBuilder } from './types';
 import * as path from 'path';
 
 /**
@@ -21,47 +21,61 @@ function minifiedFilePath(filePath: string): string {
  *
  * @see https://github.com/TrySound/rollup-plugin-terser
  */
-export default (
+export function minify(
   options?: Options,
-  onlyMinFiles?: boolean
-): RollupConfigBuilder => {
-  return config => {
-    const plugins = [terser({ include: /^.+\.min\.js$/, ...options })];
+  onlyMinFiles = false
+): Partial<PreRollupConfig> {
+  return {
+    plugins: {
+      minify: {
+        options,
+        onlyMinFiles,
+      },
+    },
+  };
+}
 
-    if (config.output != null) {
-      const output =
-        config.output instanceof Array
-          ? [
-              ...(onlyMinFiles ? [] : config.output),
-              ...config.output.map(entry => {
-                return {
-                  ...entry,
-                  file:
-                    entry.file != null
-                      ? minifiedFilePath(entry.file)
-                      : undefined,
-                };
-              }),
-            ]
-          : [
-              ...(onlyMinFiles ? [] : [config.output]),
-              {
-                ...config.output,
+export const builder = (
+  preConfig: PreRollupConfig
+): RollupConfigBuilder => config => {
+  if (preConfig.plugins?.minify == null) {
+    return {};
+  }
+
+  const { options, onlyMinFiles } = preConfig.plugins.minify;
+  const plugins = [terser({ include: /^.+\.min\.js$/, ...options })];
+
+  if (config.output != null) {
+    const output =
+      config.output instanceof Array
+        ? [
+            ...(onlyMinFiles ? [] : config.output),
+            ...config.output.map(entry => {
+              return {
+                ...entry,
                 file:
-                  config.output != null && config.output.file != null
-                    ? minifiedFilePath(config.output.file)
-                    : undefined,
-              },
-            ];
-
-      return {
-        output,
-        plugins,
-      };
-    }
+                  entry.file != null ? minifiedFilePath(entry.file) : undefined,
+              };
+            }),
+          ]
+        : [
+            ...(onlyMinFiles ? [] : [config.output]),
+            {
+              ...config.output,
+              file:
+                config.output != null && config.output.file != null
+                  ? minifiedFilePath(config.output.file)
+                  : undefined,
+            },
+          ];
 
     return {
+      output,
       plugins,
     };
+  }
+
+  return {
+    plugins,
   };
 };

@@ -36,8 +36,8 @@
     "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore .",
     "prebuild": "yarn clean",
     "build": "./bin/build-web.sh",
-    "test": "echo 'No unit tests defined'",
-    "test:coverage": "echo 'No unit tests defined'"
+    "test": "jest",
+    "test:coverage": "yarn test --coverage"
   },
   "dependencies": {
     "@vertexvis/rollup-plugin-vertexvis-copyright": "0.2.0",
@@ -50,9 +50,13 @@
     "rollup-plugin-typescript2": "^0.22.1"
   },
   "devDependencies": {
+    "@types/jest": "^26.0.20",
     "@types/node": "^12.6.8",
     "@vertexvis/eslint-config-vertexvis-typescript": "0.3.0",
+    "@vertexvis/jest-config-vertexvis": "^0.5.0",
     "eslint": "^6.1.0",
+    "jest": "^26.0.20",
+    "ts-jest": "^26.0.20",
     "tslib": "^1.10.0",
     "typescript": "^4.0.2"
   }

@@ -1,4 +1,4 @@
-import { ModuleFormat, RollupConfigBuilder } from './types';
+import { ModuleFormat, PreRollupConfig, RollupConfigBuilder } from './types';
 
 interface Options {
   bundleName?: string;
@@ -15,36 +15,39 @@ interface Options {
  *
  * By default, this helper will include `cjs` and `esm` formats with sourcemaps.
  */
-export default ({
+export function output({
   bundleName = 'bundle',
   formats = ['cjs', 'esm'],
   sourcemaps = true,
   name,
   globals,
-}: Options = {}): RollupConfigBuilder => {
-  return config => {
-    return {
-      ...formats.reduce(
-        (partialConfig, format) =>
-          format
-            ? {
-                ...partialConfig,
-                output: [
-                  ...(partialConfig.output || []),
-                  {
-                    file: `dist/${bundleName}.${format}.js`,
-                    format,
-                    sourcemap: sourcemaps,
-                    name,
-                    globals,
-                  },
-                ],
-              }
-            : partialConfig,
-        {
-          output: [],
-        }
-      ),
-    };
+}: Options = {}): Partial<PreRollupConfig> {
+  return {
+    ...formats.reduce(
+      (partialConfig, format) =>
+        format
+          ? {
+              ...partialConfig,
+              output: [
+                ...(partialConfig.output || []),
+                {
+                  file: `dist/${bundleName}.${format}.js`,
+                  format,
+                  sourcemap: sourcemaps,
+                  name,
+                  globals,
+                },
+              ],
+            }
+          : partialConfig,
+      {
+        output: [],
+      }
+    ),
   };
-};
+}
+
+export const builder = (
+  preConfig: PreRollupConfig
+): RollupConfigBuilder => config =>
+  preConfig.output != null ? { output: preConfig.output } : {};

@@ -2,7 +2,7 @@ import commonjs, { RollupCommonJSOptions } from 'rollup-plugin-commonjs';
 import resolve, {
   Options as RollupNodeResolveOptions,
 } from 'rollup-plugin-node-resolve';
-import { RollupConfigBuilder } from './types';
+import { PreRollupConfig, RollupConfigBuilder } from './types';
 
 interface Options {
   commonjs?: RollupCommonJSOptions;
@@ -29,8 +29,22 @@ interface Options {
  *
  * @see https://github.com/rollup/rollup-plugin-commonjs
  */
-export default (options: Options = {}): RollupConfigBuilder => {
-  return config => ({
-    plugins: [commonjs(options.commonjs), resolve(options.nodeResolve)],
-  });
-};
+export function commonJs(options: Options = {}): Partial<PreRollupConfig> {
+  return {
+    plugins: {
+      commonJs: options,
+    },
+  };
+}
+
+export const builder = (
+  preConfig: PreRollupConfig
+): RollupConfigBuilder => config =>
+  preConfig.plugins?.commonJs != null
+    ? {
+        plugins: [
+          commonjs(preConfig.plugins.commonJs.commonjs),
+          resolve(preConfig.plugins.commonJs.nodeResolve),
+        ],
+      }
+    : {};

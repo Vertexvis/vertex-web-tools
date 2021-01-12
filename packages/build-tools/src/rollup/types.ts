@@ -6,4 +6,11 @@ export type RollupConfig = Omit<RollupOptions, 'output'> & {
 
 export type RollupConfigBuilder = (config: RollupConfig) => RollupConfig;
 
+export interface PreRollupConfig {
+  external?: string[];
+  input?: string | string[];
+  output?: OutputOptions | OutputOptions[];
+  plugins?: Record<string, any>;
+}
+
 export { OutputOptions, ModuleFormat };

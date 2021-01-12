@@ -1,5 +1,5 @@
 import typescript2 from 'rollup-plugin-typescript2';
-import { RollupConfigBuilder } from './types';
+import { PreRollupConfig, RollupConfigBuilder } from './types';
 
 /**
  * The `typescript` helper is used to transpile TypeScript source files. This
@@ -8,8 +8,15 @@ import { RollupConfigBuilder } from './types';
  *
  * @see https://github.com/ezolenko/rollup-plugin-typescript2
  */
-export default (): RollupConfigBuilder => {
-  return config => ({
-    plugins: [typescript2()],
-  });
-};
+export function typescript(): Partial<PreRollupConfig> {
+  return {
+    plugins: {
+      typescript: {},
+    },
+  };
+}
+
+export const builder = (
+  preConfig: PreRollupConfig
+): RollupConfigBuilder => config =>
+  preConfig.plugins?.typescript != null ? { plugins: [typescript2()] } : {};

@@ -1,5 +1,5 @@
 import autoExternalPlugin from 'rollup-plugin-auto-external';
-import { RollupConfigBuilder } from './types';
+import { PreRollupConfig, RollupConfigBuilder } from './types';
 
 interface AutoExternalPluginConfig {
   builtins?: boolean;
@@ -16,21 +16,31 @@ interface AutoExternalPluginConfig {
  * Consuming projects are expected to include any packages marked as peer
  * dependencies.
  */
-export default (options?: AutoExternalPluginConfig): RollupConfigBuilder => {
-  return config => {
-    return {
-      plugins: [
+export function autoExternal(
+  options?: AutoExternalPluginConfig
+): Partial<PreRollupConfig> {
+  return {
+    plugins: {
+      autoExternal:
         options != null
-          ? autoExternalPlugin({
+          ? {
+              packagePath: process.cwd(),
               ...options,
-              packagePath: options.packagePath || process.cwd(),
-            })
-          : autoExternalPlugin({
+            }
+          : {
               packagePath: process.cwd(),
               dependencies: false,
               peerDependencies: true,
-            }),
-      ],
-    };
+            },
+    },
   };
-};
+}
+
+export const builder = (
+  preConfig: PreRollupConfig
+): RollupConfigBuilder => config =>
+  preConfig.plugins?.autoExternal != null
+    ? {
+        plugins: [autoExternalPlugin(preConfig.plugins.autoExternal)],
+      }
+    : {};
