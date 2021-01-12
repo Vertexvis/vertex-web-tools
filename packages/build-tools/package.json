@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/build-tools",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Build tools for web development",
   "license": "MIT",
   "author": "Vertex Developers <support@vertexvis.com> (https://developer.vertexvis.com)",
