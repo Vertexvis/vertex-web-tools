@@ -21,10 +21,19 @@ function minifiedFilePath(filePath: string): string {
  *
  * @see https://github.com/TrySound/rollup-plugin-terser
  */
-// export const minify = (
-//   options?: Options,
-//   onlyMinFiles?: boolean
-// ): RollupConfigBuilder => builder(minifyConfig(options, onlyMinFiles));
+export function minify(
+  options?: Options,
+  onlyMinFiles = false
+): Partial<PreRollupConfig> {
+  return {
+    plugins: {
+      minify: {
+        options,
+        onlyMinFiles,
+      },
+    },
+  };
+}
 
 export const builder = (
   preConfig: PreRollupConfig
@@ -70,17 +79,3 @@ export const builder = (
     plugins,
   };
 };
-
-export function minify(
-  options?: Options,
-  onlyMinFiles = false
-): Partial<PreRollupConfig> {
-  return {
-    plugins: {
-      minify: {
-        options,
-        onlyMinFiles,
-      },
-    },
-  };
-}

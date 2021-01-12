@@ -8,9 +8,13 @@ import { PreRollupConfig, RollupConfigBuilder } from './types';
  * @see autoExternal
  * @see https://rollupjs.org/guide/en/#external
  */
-// export const external = (
-//   ...externalDependencies: string[]
-// ): RollupConfigBuilder => builder(externalConfig(...externalDependencies));
+export function external(
+  ...externalDependencies: string[]
+): Partial<PreRollupConfig> {
+  return {
+    external: externalDependencies,
+  };
+}
 
 export const builder = (
   preConfig: PreRollupConfig
@@ -26,11 +30,3 @@ export const builder = (
         ),
       }
     : {};
-
-export function external(
-  ...externalDependencies: string[]
-): Partial<PreRollupConfig> {
-  return {
-    external: externalDependencies,
-  };
-}

@@ -29,8 +29,13 @@ interface Options {
  *
  * @see https://github.com/rollup/rollup-plugin-commonjs
  */
-// export const commonJs = (options: Options = {}): RollupConfigBuilder =>
-//   builder(commonJsConfig(options));
+export function commonJs(options: Options = {}): Partial<PreRollupConfig> {
+  return {
+    plugins: {
+      commonJs: options,
+    },
+  };
+}
 
 export const builder = (
   preConfig: PreRollupConfig
@@ -43,11 +48,3 @@ export const builder = (
         ],
       }
     : {};
-
-export function commonJs(options: Options = {}): Partial<PreRollupConfig> {
-  return {
-    plugins: {
-      commonJs: options,
-    },
-  };
-}

@@ -8,14 +8,6 @@ import { PreRollupConfig, RollupConfigBuilder } from './types';
  *
  * @see https://github.com/ezolenko/rollup-plugin-typescript2
  */
-// export const typescript = (): RollupConfigBuilder =>
-//   builder(typescriptConfig());
-
-export const builder = (
-  preConfig: PreRollupConfig
-): RollupConfigBuilder => config =>
-  preConfig.plugins?.typescript != null ? { plugins: [typescript2()] } : {};
-
 export function typescript(): Partial<PreRollupConfig> {
   return {
     plugins: {
@@ -23,3 +15,8 @@ export function typescript(): Partial<PreRollupConfig> {
     },
   };
 }
+
+export const builder = (
+  preConfig: PreRollupConfig
+): RollupConfigBuilder => config =>
+  preConfig.plugins?.typescript != null ? { plugins: [typescript2()] } : {};

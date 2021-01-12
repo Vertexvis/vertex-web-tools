@@ -16,21 +16,6 @@ interface AutoExternalPluginConfig {
  * Consuming projects are expected to include any packages marked as peer
  * dependencies.
  */
-// export const autoExternal = (
-//   options?: AutoExternalPluginConfig
-// ): RollupConfigBuilder => {
-//   return builder(autoExternalConfig(options));
-// };
-
-export const builder = (
-  preConfig: PreRollupConfig
-): RollupConfigBuilder => config =>
-  preConfig.plugins?.autoExternal != null
-    ? {
-        plugins: [autoExternalPlugin(preConfig.plugins.autoExternal)],
-      }
-    : {};
-
 export function autoExternal(
   options?: AutoExternalPluginConfig
 ): Partial<PreRollupConfig> {
@@ -50,3 +35,12 @@ export function autoExternal(
     },
   };
 }
+
+export const builder = (
+  preConfig: PreRollupConfig
+): RollupConfigBuilder => config =>
+  preConfig.plugins?.autoExternal != null
+    ? {
+        plugins: [autoExternalPlugin(preConfig.plugins.autoExternal)],
+      }
+    : {};

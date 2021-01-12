@@ -15,14 +15,6 @@ interface Options {
  *
  * By default, this helper will include `cjs` and `esm` formats with sourcemaps.
  */
-// export const output = (options: Options = {}): RollupConfigBuilder =>
-//   builder(outputConfig(options));
-
-export const builder = (
-  preConfig: PreRollupConfig
-): RollupConfigBuilder => config =>
-  preConfig.output != null ? { output: preConfig.output } : {};
-
 export function output({
   bundleName = 'bundle',
   formats = ['cjs', 'esm'],
@@ -54,3 +46,8 @@ export function output({
     ),
   };
 }
+
+export const builder = (
+  preConfig: PreRollupConfig
+): RollupConfigBuilder => config =>
+  preConfig.output != null ? { output: preConfig.output } : {};
