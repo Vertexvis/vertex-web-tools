@@ -15,7 +15,7 @@
     "moduleResolution": "node",
     "target": "es6",
     "esModuleInterop": true,
-    "lib": ["es5", "es2015.collection", "es2015.iterable", "es2015.promise"],
+    "lib": ["ES2018"]
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules", "lib"]
