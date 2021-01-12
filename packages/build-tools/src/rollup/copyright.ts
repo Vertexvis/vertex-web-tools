@@ -1,5 +1,5 @@
-import { RollupConfigBuilder } from './types';
-import { copyright } from '@vertexvis/rollup-plugin-vertexvis-copyright';
+import { PreRollupConfig, RollupConfigBuilder } from './types';
+import { copyright as copyrightPlugin } from '@vertexvis/rollup-plugin-vertexvis-copyright';
 
 /**
  * Adds the provided `copyrightString` to the bundle after minification.
@@ -8,13 +8,20 @@ import { copyright } from '@vertexvis/rollup-plugin-vertexvis-copyright';
  * If no `copyrightString` is provided, a default copyright of
  * `© Copyright <Current Year> Vertex Software LLC. All rights reserved.` will be added.
  */
-export default (copyrightString?: string): RollupConfigBuilder => {
+// export const copyright = (copyrightString?: string): RollupConfigBuilder =>
+//   builder(copyrightConfig(copyrightString));
+
+export const builder = (
+  preConfig: PreRollupConfig
+): RollupConfigBuilder => config =>
+  preConfig.plugins?.copyright != null
+    ? { plugins: [copyrightPlugin(preConfig.plugins.copyright)] }
+    : {};
+
+export function copyright(copyrightString?: string): Partial<PreRollupConfig> {
   return {
-    name: 'copyright',
-    fn: config => {
-      return {
-        plugins: [copyright(copyrightString)],
-      };
+    plugins: {
+      copyright: copyrightString,
     },
   };
-};
+}

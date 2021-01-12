@@ -1,34 +1,57 @@
-import autoExternal from '../autoExternal';
-import config from '../config';
+import { autoExternal } from '../autoExternal';
+import { config, defineConfig } from '../config';
+import { input } from '../input';
+import { minify } from '../minify';
+import { output } from '../output';
+import { typescript } from '../typescript';
+
+describe(defineConfig, () => {
+  it('should consolidate plugin configuration', () => {
+    expect(
+      defineConfig(
+        autoExternal({ peerDependencies: false }),
+        autoExternal({ dependencies: true })
+      ).plugins?.autoExternal
+    ).toMatchObject({
+      peerDependencies: false,
+      dependencies: true,
+    });
+  });
+});
 
 describe(config, () => {
   it('should prevent plugin duplication', () => {
-    expect(
-      config(
-        autoExternal({ peerDependencies: false }),
-        autoExternal({ dependencies: true })
-      ).plugins?.length
-    ).toBe(1);
+    const rollupConfig = config(
+      autoExternal({ peerDependencies: false }),
+      autoExternal({ dependencies: true })
+    );
+
+    expect(rollupConfig.plugins).toHaveLength(1);
   });
 
-  it('should merge configuration for plugins', () => {
-    const builder = jest.fn(() => ({}));
-    const fakePlugin1 = {
-      name: 'test',
-      options: { first: true },
-      fn: builder,
-    };
-    const fakePlugin2 = {
-      name: 'test',
-      options: { second: true },
-      fn: builder,
-    };
+  it('should generate a valid rollup config', () => {
+    const rollupConfig = config(
+      input('src/index.ts'),
+      output({ formats: ['esm'] }),
+      typescript(),
+      minify()
+    );
 
-    config(fakePlugin1, fakePlugin2);
-
-    expect(builder).toHaveBeenCalledWith(expect.anything(), {
-      first: true,
-      second: true,
-    });
+    expect(rollupConfig.plugins).toHaveLength(3);
+    expect(rollupConfig).toMatchObject(
+      expect.objectContaining({
+        input: 'src/index.ts',
+        output: [
+          expect.objectContaining({
+            file: 'dist/bundle.esm.js',
+            format: 'esm',
+          }),
+          expect.objectContaining({
+            file: 'dist/bundle.esm.min.js',
+            format: 'esm',
+          }),
+        ],
+      })
+    );
   });
 });
