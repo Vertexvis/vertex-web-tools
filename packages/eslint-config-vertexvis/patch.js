@@ -44,14 +44,14 @@ const ModuleResolver = require(moduleResolverPath);
 
 const originalLoadPlugin =
   configArrayFactoryModule.ConfigArrayFactory.prototype._loadPlugin;
-configArrayFactoryModule.ConfigArrayFactory.prototype._loadPlugin = function(
+configArrayFactoryModule.ConfigArrayFactory.prototype._loadPlugin = function (
   name,
   importerPath,
   importerName
 ) {
   const originalResolve = ModuleResolver.resolve;
   try {
-    ModuleResolver.resolve = function(moduleName, relativeToPath) {
+    ModuleResolver.resolve = function (moduleName, relativeToPath) {
       // resolve using importerPath instead of relativeToPath
       return originalResolve.call(this, moduleName, importerPath);
     };

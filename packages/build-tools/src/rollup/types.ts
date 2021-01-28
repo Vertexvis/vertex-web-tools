@@ -10,6 +10,7 @@ export interface PreRollupConfig {
   external?: string[];
   input?: string | string[];
   output?: OutputOptions | OutputOptions[];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   plugins?: Record<string, any>;
 }
 

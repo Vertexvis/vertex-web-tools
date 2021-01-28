@@ -16,9 +16,9 @@ export function external(
   };
 }
 
-export const builder = (
-  preConfig: PreRollupConfig
-): RollupConfigBuilder => config =>
+export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => (
+  config
+) =>
   preConfig.external != null
     ? {
         ...preConfig.external.reduce(

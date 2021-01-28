@@ -36,9 +36,9 @@ export function autoExternal(
   };
 }
 
-export const builder = (
-  preConfig: PreRollupConfig
-): RollupConfigBuilder => config =>
+export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => (
+  config
+) =>
   preConfig.plugins?.autoExternal != null
     ? {
         plugins: [autoExternalPlugin(preConfig.plugins.autoExternal)],

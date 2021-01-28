@@ -35,9 +35,9 @@ export function minify(
   };
 }
 
-export const builder = (
-  preConfig: PreRollupConfig
-): RollupConfigBuilder => config => {
+export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => (
+  config
+) => {
   if (preConfig.plugins?.minify == null) {
     return {};
   }
@@ -50,7 +50,7 @@ export const builder = (
       config.output instanceof Array
         ? [
             ...(onlyMinFiles ? [] : config.output),
-            ...config.output.map(entry => {
+            ...config.output.map((entry) => {
               return {
                 ...entry,
                 file:

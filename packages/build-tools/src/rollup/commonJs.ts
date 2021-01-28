@@ -37,9 +37,9 @@ export function commonJs(options: Options = {}): Partial<PreRollupConfig> {
   };
 }
 
-export const builder = (
-  preConfig: PreRollupConfig
-): RollupConfigBuilder => config =>
+export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => (
+  config
+) =>
   preConfig.plugins?.commonJs != null
     ? {
         plugins: [

@@ -54,7 +54,7 @@
     "@types/node": "^12.6.8",
     "@vertexvis/eslint-config-vertexvis-typescript": "0.3.0",
     "@vertexvis/jest-config-vertexvis": "^0.5.0",
-    "eslint": "^6.1.0",
+    "eslint": "^7.18.0",
     "jest": "^26.0.20",
     "ts-jest": "^26.0.20",
     "tslib": "^1.10.0",
