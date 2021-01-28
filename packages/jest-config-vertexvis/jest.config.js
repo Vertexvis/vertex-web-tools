@@ -39,7 +39,7 @@ module.exports = {
   ],
   globals: {
     'ts-jest': {
-      tsConfig: resolveTsConfigForJest(),
+      tsconfig: resolveTsConfigForJest(),
     },
   },
 };
