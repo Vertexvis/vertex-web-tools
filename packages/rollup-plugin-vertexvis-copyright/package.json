@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/rollup-plugin-vertexvis-copyright",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Rollup plugin that prepends a Vertex copyright to JS bundles.",
   "license": "MIT",
   "author": "Vertex Developers <support@vertexvis.com> (https://developer.vertexvis.com)",
@@ -38,7 +38,7 @@
     "rollup": "^1.19.4"
   },
   "devDependencies": {
-    "@vertexvis/eslint-config-vertexvis-typescript": "0.3.0",
+    "@vertexvis/eslint-config-vertexvis-typescript": "0.4.0",
     "@vertexvis/typescript-config-vertexvis": "1.1.0",
     "rollup-plugin-terser": "^5.1.1",
     "rollup-plugin-typescript2": "^0.22.1"

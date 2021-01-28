@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/build-tools",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "Build tools for web development",
   "license": "MIT",
   "author": "Vertex Developers <support@vertexvis.com> (https://developer.vertexvis.com)",
@@ -40,7 +40,7 @@
     "test:coverage": "yarn test --coverage"
   },
   "dependencies": {
-    "@vertexvis/rollup-plugin-vertexvis-copyright": "0.2.0",
+    "@vertexvis/rollup-plugin-vertexvis-copyright": "0.3.0",
     "rollup": "^1.19.4",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-commonjs": "^10.0.2",
@@ -52,8 +52,8 @@
   "devDependencies": {
     "@types/jest": "^26.0.20",
     "@types/node": "^12.6.8",
-    "@vertexvis/eslint-config-vertexvis-typescript": "0.3.0",
-    "@vertexvis/jest-config-vertexvis": "^0.5.0",
+    "@vertexvis/eslint-config-vertexvis-typescript": "0.4.0",
+    "@vertexvis/jest-config-vertexvis": "0.5.1",
     "eslint": "^7.18.0",
     "jest": "^26.6.3",
     "ts-jest": "^26.4.4",
