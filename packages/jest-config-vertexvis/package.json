@@ -27,6 +27,6 @@
   },
   "devDependencies": {
     "@vertexvis/eslint-config-vertexvis-typescript": "0.3.0",
-    "eslint": "^6.1.0"
+    "eslint": "^7.18.0"
   }
 }

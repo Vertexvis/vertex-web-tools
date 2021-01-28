@@ -47,7 +47,6 @@ export function output({
   };
 }
 
-export const builder = (
-  preConfig: PreRollupConfig
-): RollupConfigBuilder => config =>
-  preConfig.output != null ? { output: preConfig.output } : {};
+export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => (
+  config
+) => (preConfig.output != null ? { output: preConfig.output } : {});

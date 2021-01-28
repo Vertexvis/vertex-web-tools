@@ -51,7 +51,7 @@ const buildPreConfig = (
         ...(partial.input && { input: partial.input }),
         ...(partial.output && { output: partial.output }),
         ...(partial.plugins && {
-          plugins: mergePlugins(config.plugins!, partial.plugins),
+          plugins: mergePlugins(config.plugins || [], partial.plugins),
         }),
         ...(partial.external && {
           external: partial.external,
@@ -61,12 +61,13 @@ const buildPreConfig = (
     { plugins: {} }
   );
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const mergePlugins = (
   existing: Record<string, any>,
   added: Record<string, any>
 ): Record<string, any> =>
   Object.keys(existing)
-    .concat(Object.keys(added).filter(key => existing[key] == null))
+    .concat(Object.keys(added).filter((key) => existing[key] == null))
     .reduce(
       (plugins, key) => ({
         ...plugins,
@@ -77,3 +78,4 @@ const mergePlugins = (
       }),
       existing
     );
+/* eslint-enable @typescript-eslint/no-explicit-any */

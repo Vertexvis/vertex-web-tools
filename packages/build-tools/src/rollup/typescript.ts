@@ -16,7 +16,7 @@ export function typescript(): Partial<PreRollupConfig> {
   };
 }
 
-export const builder = (
-  preConfig: PreRollupConfig
-): RollupConfigBuilder => config =>
+export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => (
+  config
+) =>
   preConfig.plugins?.typescript != null ? { plugins: [typescript2()] } : {};
