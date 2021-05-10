@@ -21,7 +21,7 @@ then
   exit 1
 fi
 
-# Ensure remote tags are pulled before running `lerna version` 
+# Ensure remote tags are pulled before running `lerna version`
 git pull
 
 remote_tags=`git ls-remote --tags`
@@ -31,10 +31,10 @@ git checkout -tb $local_branch
 
 yarn change
 message="Release Changes\n"
-packages=`cat lerna.json | jq -r '.packages[]'`
+packages=`cat package.json | jq -r '.workspaces[]'`
 package_directories=($packages)
 
-for package_path in "${package_directories[@]}"; do 
+for package_path in "${package_directories[@]}"; do
   package_json="$package_path/package.json"
   package_name=`jq '.name' -r $package_json`
   package_version=`jq '.version' -r $package_json`
