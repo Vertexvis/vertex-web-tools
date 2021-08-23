@@ -6,7 +6,7 @@ import { copyright as copyrightPlugin } from '@vertexvis/rollup-plugin-vertexvis
  * See the {@link banner} plugin for how this gets added.
  *
  * If no `copyrightString` is provided, a default copyright of
- * `© Copyright <Current Year> Vertex Software LLC. All rights reserved.` will be added.
+ * `© Copyright <Current Year> Vertex Software, Inc. All rights reserved.` will be added.
  */
 export function copyright(copyrightString?: string): Partial<PreRollupConfig> {
   return {
@@ -16,9 +16,9 @@ export function copyright(copyrightString?: string): Partial<PreRollupConfig> {
   };
 }
 
-export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => (
-  config
-) =>
-  preConfig.plugins?.copyright != null
-    ? { plugins: [copyrightPlugin(preConfig.plugins.copyright)] }
-    : {};
+export const builder =
+  (preConfig: PreRollupConfig): RollupConfigBuilder =>
+  (config) =>
+    preConfig.plugins?.copyright != null
+      ? { plugins: [copyrightPlugin(preConfig.plugins.copyright)] }
+      : {};
