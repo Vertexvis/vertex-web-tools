@@ -25,14 +25,14 @@
     "test:coverage": "echo 'No unit tests defined'"
   },
   "dependencies": {
-    "eslint-config-prettier": "^7.2.0",
-    "eslint-plugin-prettier": "^3.3.1",
-    "prettier": "^2.2.1"
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.4.1"
   },
   "peerDependencies": {
     "eslint": ">=7.0.0"
   },
   "devDependencies": {
-    "eslint": "^7.18.0"
+    "eslint": "^7.32.0"
   }
 }
