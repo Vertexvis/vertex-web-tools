@@ -16,17 +16,17 @@ export function external(
   };
 }
 
-export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => (
-  config
-) =>
-  preConfig.external != null
-    ? {
-        ...preConfig.external.reduce(
-          (partialConfig, dependency) => ({
-            ...partialConfig,
-            external: [...partialConfig.external, dependency],
-          }),
-          { external: [] }
-        ),
-      }
-    : {};
+export const builder =
+  (preConfig: PreRollupConfig): RollupConfigBuilder =>
+  (config) =>
+    preConfig.external != null
+      ? {
+          ...preConfig.external.reduce(
+            (partialConfig, dependency) => ({
+              ...partialConfig,
+              external: [...partialConfig.external, dependency],
+            }),
+            { external: [] }
+          ),
+        }
+      : {};

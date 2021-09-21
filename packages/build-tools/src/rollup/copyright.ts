@@ -16,9 +16,9 @@ export function copyright(copyrightString?: string): Partial<PreRollupConfig> {
   };
 }
 
-export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => (
-  config
-) =>
-  preConfig.plugins?.copyright != null
-    ? { plugins: [copyrightPlugin(preConfig.plugins.copyright)] }
-    : {};
+export const builder =
+  (preConfig: PreRollupConfig): RollupConfigBuilder =>
+  (config) =>
+    preConfig.plugins?.copyright != null
+      ? { plugins: [copyrightPlugin(preConfig.plugins.copyright)] }
+      : {};
