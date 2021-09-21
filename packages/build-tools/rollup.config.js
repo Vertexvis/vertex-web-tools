@@ -1,7 +1,7 @@
 import typescript2 from 'rollup-plugin-typescript2';
-import commonjs from 'rollup-plugin-commonjs';
+import commonjs from '@rollup/plugin-commonjs';
 import autoExternal from 'rollup-plugin-auto-external';
-import json from 'rollup-plugin-json';
+import json from '@rollup/plugin-json';
 
 const config = {
   input: 'src/index.ts',

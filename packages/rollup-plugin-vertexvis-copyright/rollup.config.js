@@ -1,8 +1,7 @@
-import { terser } from 'rollup-plugin-terser';
 import typescript2 from 'rollup-plugin-typescript2';
 
 const config = {
-  plugins: [typescript2(), terser({ include: /^.+\.min\.js$/ })],
+  plugins: [typescript2()],
   input: 'src/index.ts',
   output: [
     {
@@ -14,20 +13,6 @@ const config = {
     },
     {
       file: 'dist/bundle.esm.js',
-      format: 'esm',
-      sourcemap: true,
-      name: undefined,
-      globals: undefined,
-    },
-    {
-      file: 'dist/bundle.cjs.min.js',
-      format: 'cjs',
-      sourcemap: true,
-      name: undefined,
-      globals: undefined,
-    },
-    {
-      file: 'dist/bundle.esm.min.js',
       format: 'esm',
       sourcemap: true,
       name: undefined,
