@@ -5,7 +5,6 @@ module.exports = {
     '@vertexvis/eslint-config-vertexvis',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    'prettier/@typescript-eslint',
   ],
   rules: {
     '@typescript-eslint/indent': 'off',

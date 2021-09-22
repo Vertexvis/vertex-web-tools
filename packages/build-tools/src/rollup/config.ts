@@ -68,14 +68,13 @@ const mergePlugins = (
 ): Record<string, any> =>
   Object.keys(existing)
     .concat(Object.keys(added).filter((key) => existing[key] == null))
-    .reduce(
-      (plugins, key) => ({
+    .reduce((plugins, key) => {
+      return {
         ...plugins,
         [key]:
           plugins[key] != null
             ? { ...plugins[key], ...added[key] }
             : added[key],
-      }),
-      existing
-    );
+      };
+    }, existing);
 /* eslint-enable @typescript-eslint/no-explicit-any */
