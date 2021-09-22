@@ -46,5 +46,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          packages-config-file: "lerna.json"
+          packages-config-file: "package.json"
           npm-auth-token: ${{ secrets.NPMJS_ACCESS_TOKEN }}
