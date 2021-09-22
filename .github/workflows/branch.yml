@@ -42,9 +42,8 @@ jobs:
       - name: "Prepare build artifacts"
         run: "./scripts/post_download_artifacts.sh"
       - name: "Publish changes"
-        uses: Vertexvis/npm-publish-action@v1
+        uses: Vertexvis/npm-publish-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          packages-config-file: "package.json"
           npm-auth-token: ${{ secrets.NPMJS_ACCESS_TOKEN }}
