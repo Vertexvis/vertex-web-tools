@@ -9,7 +9,7 @@ interface Options {
 
 /**
  * The `commonJs` helper converts CommonJS modules to ES6, so they can be used
- * by Rollup. Internally this helper uses `@rollup//plugin-commonjs`.
+ * by Rollup. Internally this helper uses `@rollup/plugin-commonjs`.
  *
  * There are situations where Rollup is not able to infer named exports from a
  * CommonJS module. When this happens, Rollup will exit with an error and you'll

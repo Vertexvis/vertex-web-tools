@@ -4,7 +4,6 @@ import * as CommonJs from './commonJs';
 import * as Copyright from './copyright';
 import * as External from './external';
 import * as Input from './input';
-import * as Minify from './minify';
 import * as Output from './output';
 import * as Typescript from './typescript';
 
@@ -20,7 +19,6 @@ export const rollup = (preConfig: PreRollupConfig): RollupConfig =>
     Input.builder(preConfig),
     Output.builder(preConfig),
     Typescript.builder(preConfig),
-    Minify.builder(preConfig),
   ].reduce(
     (config: RollupConfig, builder) => {
       const partialConfig = builder(config);

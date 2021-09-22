@@ -4,7 +4,7 @@ import { PreRollupConfig, RollupConfigBuilder } from './types';
 
 interface AutoExternalPluginConfig {
   /**
-   * Path to a package.json file or directory. Defaults to `process.cwd()`.
+   * Path to a package.json file or directory.
    */
   packagePath?: string;
 
