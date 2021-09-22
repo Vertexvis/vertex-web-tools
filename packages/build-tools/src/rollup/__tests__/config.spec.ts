@@ -1,58 +1,70 @@
-import { autoExternal } from '../autoExternal';
-import { commonJs } from '../commonJs';
+import path from 'path';
+import { resolve } from '../resolve';
 import { config, defineConfig } from '../config';
 import { input } from '../input';
 import { output } from '../output';
 import { typescript } from '../typescript';
+import { external } from '../external';
 
 describe(defineConfig, () => {
   it('should consolidate plugin configuration', () => {
     const config = defineConfig(
-      commonJs({ commonjs: { ignoreGlobal: true } }),
-      commonJs({ nodeResolve: { browser: true } })
+      resolve({ commonjs: { ignoreGlobal: true } }),
+      resolve({ resolve: { browser: true } })
     );
 
     expect(config.plugins).toMatchObject({
-      commonJs: {
+      resolve: {
         commonjs: { ignoreGlobal: true },
-        nodeResolve: { browser: true },
+        resolve: { browser: true },
       },
     });
   });
 });
 
 describe(config, () => {
-  it('should not include peer dependencies by default', () => {
-    const rollup = config();
+  const packageJsonPath = path.resolve(__dirname, 'package.json');
 
-    expect(rollup.plugins).toEqual([
-      expect.objectContaining({ name: 'peer-deps-external' }),
-    ]);
+  it('should not externalize peer dependencies if peer deps disabled', () => {
+    const rollup = config(
+      external({ peerDependencies: false, packageJsonPath })
+    );
+
+    expect(rollup.external).toEqual([]);
   });
 
-  it('should include peer dependencies if peer deps disabled', () => {
-    const rollup = config(autoExternal({ peerDependencies: false }));
+  it('should externalize modules if peer deps enabled', () => {
+    const rollup = config(
+      external({
+        dependencies: true,
+        peerDependencies: true,
+        modules: ['foo'],
+        packageJsonPath,
+      })
+    );
 
-    expect(rollup.plugins).toEqual([]);
-  });
-
-  it('should not include peer dependencies if peer deps enabled', () => {
-    const rollup = config(autoExternal({ peerDependencies: true }));
-
-    expect(rollup.plugins).toEqual([
-      expect.objectContaining({ name: 'peer-deps-external' }),
-    ]);
+    expect(rollup.external).toEqual(
+      expect.arrayContaining(['foo', 'foo-dep', 'foo-peer-dep'])
+    );
   });
 
   it('should prevent plugin duplication', () => {
-    const rollup = config(
-      autoExternal({ peerDependencies: true }),
-      autoExternal({ peerDependencies: true })
-    );
+    const rollup = config(typescript(), typescript());
 
-    expect(rollup.plugins).toEqual([
-      expect.objectContaining({ name: 'peer-deps-external' }),
-    ]);
+    expect(rollup.plugins).toEqual([expect.objectContaining({ name: 'rpt2' })]);
+  });
+
+  it('should include resolve and commonjs plugins', () => {
+    const rollup = config(resolve());
+
+    console.log(rollup.plugins);
+
+    expect(rollup.plugins).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ name: 'commonjs' }),
+        expect.objectContaining({ name: 'node-resolve' }),
+      ])
+    );
   });
 
   it('should generate a valid rollup config', () => {
@@ -78,10 +90,7 @@ describe(config, () => {
             ]),
           }),
         ],
-        plugins: [
-          expect.objectContaining({ name: 'peer-deps-external' }),
-          expect.objectContaining({ name: 'rpt2' }),
-        ],
+        plugins: [expect.objectContaining({ name: 'rpt2' })],
       })
     );
   });
