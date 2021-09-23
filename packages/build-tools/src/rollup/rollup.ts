@@ -1,10 +1,8 @@
 import { PreRollupConfig, RollupConfig } from './types';
-import * as AutoExternal from './autoExternal';
-import * as CommonJs from './commonJs';
+import * as CommonJs from './resolve';
 import * as Copyright from './copyright';
 import * as External from './external';
 import * as Input from './input';
-import * as Minify from './minify';
 import * as Output from './output';
 import * as Typescript from './typescript';
 
@@ -13,14 +11,12 @@ export const rollup = (preConfig: PreRollupConfig): RollupConfig =>
   // appear in the Rollup config plugin list. Plugins that need to be at
   // the end of that list should appear at the end of this list (e.g. minify)
   [
-    AutoExternal.builder(preConfig),
     CommonJs.builder(preConfig),
     Copyright.builder(preConfig),
     External.builder(preConfig),
     Input.builder(preConfig),
     Output.builder(preConfig),
     Typescript.builder(preConfig),
-    Minify.builder(preConfig),
   ].reduce(
     (config: RollupConfig, builder) => {
       const partialConfig = builder(config);

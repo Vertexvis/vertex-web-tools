@@ -1,0 +1,12 @@
+{
+  "name": "test",
+  "version": "0.0.0",
+  "description": "For testing",
+  "private": true,
+  "dependencies": {
+    "foo-dep": "0.0.0"
+  },
+  "peerDependencies": {
+    "foo-peer-dep": "0.0.0"
+  }
+}

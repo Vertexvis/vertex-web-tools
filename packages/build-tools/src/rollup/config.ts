@@ -1,4 +1,4 @@
-import * as AutoExternal from './autoExternal';
+import { external } from './external';
 import { rollup } from './rollup';
 import { PreRollupConfig, RollupConfig } from './types';
 
@@ -38,8 +38,7 @@ export const config = (
 
 export const defineConfig = (
   ...preConfigDefinitions: Array<Partial<PreRollupConfig>>
-): PreRollupConfig =>
-  buildPreConfig(AutoExternal.autoExternal(), ...preConfigDefinitions);
+): PreRollupConfig => buildPreConfig(external(), ...preConfigDefinitions);
 
 const buildPreConfig = (
   ...preConfigDefinitions: Array<Partial<PreRollupConfig>>

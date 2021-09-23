@@ -1,70 +1,80 @@
-import { autoExternal } from '../autoExternal';
-import { commonJs } from '../commonJs';
+import path from 'path';
+import { resolve } from '../resolve';
 import { config, defineConfig } from '../config';
 import { input } from '../input';
-import { minify } from '../minify';
 import { output } from '../output';
 import { typescript } from '../typescript';
+import { external } from '../external';
 
 describe(defineConfig, () => {
   it('should consolidate plugin configuration', () => {
     const config = defineConfig(
-      commonJs({ commonjs: { ignoreGlobal: true } }),
-      commonJs({ nodeResolve: { browser: true } })
+      resolve({ commonjs: { ignoreGlobal: true } }),
+      resolve({ resolve: { browser: true } })
     );
 
     expect(config.plugins).toMatchObject({
-      commonJs: {
+      resolve: {
         commonjs: { ignoreGlobal: true },
-        nodeResolve: { browser: true },
+        resolve: { browser: true },
       },
-    });
-  });
-
-  it('should not include peer dependencies by default', () => {
-    const rollupConfig = defineConfig();
-    expect(rollupConfig.plugins?.autoExternal).toMatchObject({
-      peerDependencies: true,
-    });
-  });
-
-  it('should not include peer dependencies when external peer dependencies enabled', () => {
-    const rollupConfig = defineConfig(autoExternal({ peerDependencies: true }));
-    expect(rollupConfig.plugins?.autoExternal).toMatchObject({
-      peerDependencies: true,
-    });
-  });
-
-  it('should include peer dependencies when external peer dependencies disabled', () => {
-    const rollupConfig = defineConfig(
-      autoExternal({ peerDependencies: false })
-    );
-    expect(rollupConfig.plugins?.autoExternal).toMatchObject({
-      peerDependencies: false,
     });
   });
 });
 
 describe(config, () => {
-  it('should prevent plugin duplication', () => {
-    const rollupConfig = config(
-      autoExternal({ peerDependencies: false }),
-      autoExternal({ peerDependencies: true })
+  const packageJsonPath = path.resolve(__dirname, 'package.json');
+
+  it('should not externalize peer dependencies if peer deps disabled', () => {
+    const rollup = config(
+      external({ peerDependencies: false, packageJsonPath })
     );
 
-    expect(rollupConfig.plugins).toHaveLength(1);
+    expect(rollup.external).toEqual([]);
+  });
+
+  it('should externalize modules if peer deps enabled', () => {
+    const rollup = config(
+      external({
+        dependencies: true,
+        peerDependencies: true,
+        modules: ['foo'],
+        packageJsonPath,
+      })
+    );
+
+    expect(rollup.external).toEqual(
+      expect.arrayContaining(['foo', 'foo-dep', 'foo-peer-dep'])
+    );
+  });
+
+  it('should prevent plugin duplication', () => {
+    const rollup = config(typescript(), typescript());
+
+    expect(rollup.plugins).toEqual([expect.objectContaining({ name: 'rpt2' })]);
+  });
+
+  it('should include resolve and commonjs plugins', () => {
+    const rollup = config(resolve());
+
+    console.log(rollup.plugins);
+
+    expect(rollup.plugins).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ name: 'commonjs' }),
+        expect.objectContaining({ name: 'node-resolve' }),
+      ])
+    );
   });
 
   it('should generate a valid rollup config', () => {
-    const rollupConfig = config(
+    const rollup = config(
       input('src/index.ts'),
-      output({ formats: ['esm'] }),
-      typescript(),
-      minify()
+      output({ formats: ['esm'], minify: true }),
+      typescript()
     );
 
-    expect(rollupConfig.plugins).toHaveLength(3);
-    expect(rollupConfig).toMatchObject(
+    expect(rollup).toEqual(
       expect.objectContaining({
         input: 'src/index.ts',
         output: [
@@ -75,8 +85,12 @@ describe(config, () => {
           expect.objectContaining({
             file: 'dist/bundle.esm.min.js',
             format: 'esm',
+            plugins: expect.arrayContaining([
+              expect.objectContaining({ name: 'terser' }),
+            ]),
           }),
         ],
+        plugins: [expect.objectContaining({ name: 'rpt2' })],
       })
     );
   });
