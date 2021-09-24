@@ -42,7 +42,7 @@ jobs:
       - name: "Prepare build artifacts"
         run: "./scripts/post_download_artifacts.sh"
       - name: "Publish changes"
-        uses: Vertexvis/npm-publish-action@v2
+        uses: Vertexvis/npm-publish-action@v2.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
