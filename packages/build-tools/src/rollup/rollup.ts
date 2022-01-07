@@ -1,9 +1,9 @@
-import { PreRollupConfig, RollupConfig } from './types';
-import * as CommonJs from './resolve';
 import * as Copyright from './copyright';
 import * as External from './external';
 import * as Input from './input';
 import * as Output from './output';
+import * as CommonJs from './resolve';
+import { PreRollupConfig, RollupConfig } from './types';
 import * as Typescript from './typescript';
 
 export const rollup = (preConfig: PreRollupConfig): RollupConfig =>

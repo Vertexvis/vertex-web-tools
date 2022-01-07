@@ -2,7 +2,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 6,
   },
-  plugins: ['prettier'],
+  plugins: ['prettier', 'simple-import-sort'],
   extends: ['plugin:prettier/recommended'],
   rules: {
     eqeqeq: [2, 'smart'],
@@ -17,7 +17,6 @@ module.exports = {
       'error',
       { blankLine: 'always', prev: 'function', next: 'function' },
       { blankLine: 'always', prev: 'class', next: 'class' },
-      { blankLine: 'always', prev: 'export', next: '*' },
       {
         blankLine: 'always',
         prev: 'import',
@@ -25,6 +24,8 @@ module.exports = {
       },
     ],
     'prettier/prettier': 'error',
+    'simple-import-sort/imports': 'error',
+    'simple-import-sort/exports': 'error',
     yoda: 2,
   },
 };

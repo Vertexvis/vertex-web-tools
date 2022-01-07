@@ -1,4 +1,5 @@
 import typescript2 from 'rollup-plugin-typescript2';
+
 import { PreRollupConfig, RollupConfigBuilder } from './types';
 
 /**

@@ -1,10 +1,11 @@
 import path from 'path';
-import { resolve } from '../resolve';
+
 import { config, defineConfig } from '../config';
+import { external } from '../external';
 import { input } from '../input';
 import { output } from '../output';
+import { resolve } from '../resolve';
 import { typescript } from '../typescript';
-import { external } from '../external';
 
 describe(defineConfig, () => {
   it('should consolidate plugin configuration', () => {
