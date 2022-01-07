@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/eslint-config-vertexvis",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "The Vertex sharable ESLint config",
   "license": "MIT",
   "author": "Vertex Developers <support@vertexvis.com> (https://developer.vertexvis.com)",
