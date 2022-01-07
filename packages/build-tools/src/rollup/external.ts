@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+
 import { PreRollupConfig, RollupConfig, RollupConfigBuilder } from './types';
 
 interface ExternalOptions {

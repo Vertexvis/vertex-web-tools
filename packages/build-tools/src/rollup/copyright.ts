@@ -1,5 +1,6 @@
-import { PreRollupConfig, RollupConfigBuilder } from './types';
 import { copyright as copyrightPlugin } from '@vertexvis/rollup-plugin-vertexvis-copyright';
+
+import { PreRollupConfig, RollupConfigBuilder } from './types';
 
 /**
  * Adds the provided `copyrightString` to the bundle after minification.

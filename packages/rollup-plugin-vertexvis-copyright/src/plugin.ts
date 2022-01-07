@@ -1,4 +1,5 @@
 import { Plugin } from 'rollup';
+
 import { copyrightText } from './copyright';
 
 export function copyright(copyright: string = copyrightText): Plugin {

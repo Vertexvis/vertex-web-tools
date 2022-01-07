@@ -17,7 +17,6 @@ module.exports = {
       'error',
       { blankLine: 'always', prev: 'function', next: 'function' },
       { blankLine: 'always', prev: 'class', next: 'class' },
-      { blankLine: 'always', prev: 'export', next: '*' },
       {
         blankLine: 'always',
         prev: 'import',
