@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout changes"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: "Install"
         run: "yarn install"
       - name: "Bootstrap"
@@ -31,7 +31,7 @@ jobs:
     needs: [build-and-analyze]
     steps:
       - name: "Checkout changes"
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           fetch-depth: 2
       - name: "Pull build artifacts"
@@ -42,7 +42,7 @@ jobs:
       - name: "Prepare build artifacts"
         run: "./scripts/post_download_artifacts.sh"
       - name: "Publish changes"
-        uses: Vertexvis/npm-publish-action@v2.2
+        uses: Vertexvis/npm-publish-action@v2.3.1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
