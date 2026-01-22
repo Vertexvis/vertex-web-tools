@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Checkout changes"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: "Install"
         run: "yarn install"
       - name: "Bootstrap"
@@ -21,7 +21,7 @@ jobs:
       - name: "Prepare build artifacts"
         run: "./scripts/pre_upload_artifacts.sh"
       - name: "Upload build artifacts"
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist
@@ -31,11 +31,11 @@ jobs:
     needs: [build-and-analyze]
     steps:
       - name: "Checkout changes"
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 2
       - name: "Pull build artifacts"
-        uses: actions/download-artifact@v1
+        uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
