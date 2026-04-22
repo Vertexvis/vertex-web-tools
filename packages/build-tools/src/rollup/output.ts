@@ -41,6 +41,13 @@ interface Options {
    * @see https://rollupjs.org/guide/en/#outputglobals
    */
   globals?: Record<string, string>;
+
+  /**
+   * Indicates if inlineDynamicImports should be enabled
+   *
+   * @see https://rollupjs.org/configuration-options/#output-inlinedynamicimports
+   */
+  inlineDynamicImports?: boolean;
 }
 
 /**
@@ -59,6 +66,7 @@ export function output({
   minify = false,
   name,
   globals,
+  inlineDynamicImports = false,
 }: Options = {}): Partial<PreRollupConfig> {
   function getOutput(format: ModuleFormat, minified: boolean): OutputOptions {
     return {
@@ -68,6 +76,7 @@ export function output({
       name,
       globals,
       plugins: minified ? [terser()] : [],
+      inlineDynamicImports,
     };
   }
 
