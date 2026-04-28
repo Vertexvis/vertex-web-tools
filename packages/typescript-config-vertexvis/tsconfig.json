@@ -2,16 +2,16 @@
   "$schema": "http://json.schemastore.org/tsconfig",
 
   "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
+    "target": "ES2019",
+    "module": "ESNext",
     "moduleResolution": "node",
     "esModuleInterop": true,
     "declaration": true,
+    "declarationMap": true,
     "sourceMap": true,
     "inlineSources": true,
-    "jsx": "react",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "lib": ["es6"]
-  }
+    "lib": ["ES2020"],
+  },
 }

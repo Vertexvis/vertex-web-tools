@@ -34,7 +34,7 @@ configuration settings.
 
   "extends": "@vertexvis/typescript-config-vertexvis/tsconfig",
   "compilerOptions": {
-    "lib": ["es6", "ES2016.Array.Include"]
+    "lib": ["ES2022"]
   }
 }
 ```
