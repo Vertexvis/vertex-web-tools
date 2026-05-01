@@ -41,6 +41,7 @@
     "@vertexvis/eslint-config-vertexvis-typescript": "0.5.2",
     "@vertexvis/typescript-config-vertexvis": "1.1.0",
     "rollup-plugin-terser": "^7.0.2",
-    "rollup-plugin-typescript2": "^0.32.1"
+    "rollup-plugin-typescript2": "^0.37.0",
+    "typescript": "^5.2.0"
   }
 }
