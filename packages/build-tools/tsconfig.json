@@ -13,10 +13,10 @@
 
     "module": "esnext",
     "moduleResolution": "node",
-    "target": "es6",
+    "target": "es2019",
     "esModuleInterop": true,
-    "lib": ["ES2018"]
+    "lib": ["ES2020"],
   },
   "include": ["**/*.ts"],
-  "exclude": ["node_modules", "lib"]
+  "exclude": ["node_modules", "lib"],
 }

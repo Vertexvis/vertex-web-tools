@@ -4,7 +4,7 @@ This project contains Vertex's sharable TypeScript configs.
 
 It contains a base `tsconfig.json` that includes our base TypeScript settings.
 The base config contains settings that should be used across Vertex projects. By
-default, this includes supporting ES6 language features.
+default, this includes supporting ES2019 language features.
 
 The project contains an additional `tsconfig-web.json` for web-based projects.
 This extends the base configuration, but also includes library definitions for
@@ -34,7 +34,7 @@ configuration settings.
 
   "extends": "@vertexvis/typescript-config-vertexvis/tsconfig",
   "compilerOptions": {
-    "lib": ["es6", "ES2016.Array.Include"]
+    "lib": ["ES2022"]
   }
 }
 ```
