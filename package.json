@@ -2,7 +2,7 @@
   "name": "root",
   "private": true,
   "scripts": {
-    "postinstall": "yarn generate:vscode-workspace && lerna bootstrap",
+    "postinstall": "yarn generate:vscode-workspace",
     "generate:vscode-workspace": "./scripts/generate_vscode_workspace.sh",
     "build": "lerna run build",
     "change": "lerna version --no-push --no-git-tag-version --exact",
@@ -10,12 +10,11 @@
     "test": "lerna run test",
     "lint": "lerna run lint",
     "format": "lerna run format",
-    "clean": "lerna clean",
-    "bootstrap": "lerna bootstrap",
+    "clean": "yarn workspaces foreach -A run clean || rm -rf node_modules packages/*/node_modules",
     "validate": "yarn build && yarn test && yarn lint"
   },
   "devDependencies": {
-    "lerna": "^4.0.0"
+    "lerna": "^6.6.2"
   },
   "workspaces": [
     "packages/*"

@@ -18,7 +18,6 @@ tooling at Vertex.
 
 1. Clone the repo. `git clone git@github.com:Vertexvis/vertex-web-tools.git`
 2. Install top-level dependencies. `yarn install`
-3. Bootstrap the project. `yarn bootstrap`
 
 ### VS Code Workspaces
 
