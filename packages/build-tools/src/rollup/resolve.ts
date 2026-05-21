@@ -22,13 +22,16 @@ export function resolve(options: Options = {}): Partial<PreRollupConfig> {
   };
 }
 
-export const builder =
-  (preConfig: PreRollupConfig): RollupConfigBuilder =>
-  () => {
+export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => {
+  return () => {
     const opts = preConfig.plugins?.resolve;
-    return opts != null
-      ? {
-          plugins: [commonjs(opts.commonjs), nodeResolve(opts.resolve)],
-        }
-      : {};
+
+    if (opts != null) {
+      return {
+        plugins: [commonjs(opts.commonjs), nodeResolve(opts.resolve)],
+      };
+    }
+
+    return {};
   };
+};

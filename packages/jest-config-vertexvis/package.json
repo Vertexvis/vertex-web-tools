@@ -13,18 +13,11 @@
     "url": "https://github.com/Vertexvis/vertex-web-tools/issues"
   },
   "type": "module",
-  "main": "./jest.config.cjs",
+  "main": "./jest.config.js",
   "exports": {
-    ".": {
-      "import": "./jest.config.js",
-      "require": "./jest.config.cjs"
-    },
-    "./jest.config": {
-      "import": "./jest.config.js",
-      "require": "./jest.config.cjs"
-    },
+    ".": "./jest.config.js",
+    "./jest.config": "./jest.config.js",
     "./jest.config.js": "./jest.config.js",
-    "./jest.config.cjs": "./jest.config.cjs",
     "./tsconfig": "./tsconfig.json",
     "./tsconfig.json": "./tsconfig.json",
     "./package.json": "./package.json"
@@ -36,7 +29,7 @@
   "scripts": {
     "build": "exit 0",
     "format": "yarn lint --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore ."
+    "lint": "eslint ."
   },
   "dependencies": {
     "@vertexvis/typescript-config-vertexvis": "1.1.0"

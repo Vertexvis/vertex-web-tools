@@ -13,14 +13,12 @@
     "url": "https://github.com/Vertexvis/vertex-web-tools/issues"
   },
   "type": "module",
-  "main": "./dist/bundle.cjs",
-  "module": "./dist/bundle.esm.js",
+  "main": "./dist/bundle.js",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "import": "./dist/bundle.esm.js",
-      "require": "./dist/bundle.cjs"
+      "default": "./dist/bundle.js"
     },
     "./package.json": "./package.json"
   },
@@ -42,7 +40,7 @@
   "scripts": {
     "clean": "rm -fr ./dist && mkdir ./dist",
     "format": "yarn lint --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore .",
+    "lint": "eslint .",
     "prebuild": "yarn clean",
     "build": "./bin/build-web.sh",
     "test": "jest",

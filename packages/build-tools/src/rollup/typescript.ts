@@ -17,7 +17,12 @@ export function typescript(): Partial<PreRollupConfig> {
   };
 }
 
-export const builder =
-  (preConfig: PreRollupConfig): RollupConfigBuilder =>
-  (config) =>
-    preConfig.plugins?.typescript != null ? { plugins: [typescript2()] } : {};
+export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => {
+  return (config) => {
+    if (preConfig.plugins?.typescript != null) {
+      return { plugins: [typescript2()] };
+    }
+
+    return {};
+  };
+};

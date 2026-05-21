@@ -7,11 +7,7 @@ const config = {
   input: 'src/index.ts',
   output: [
     {
-      file: './dist/bundle.cjs',
-      format: 'cjs',
-    },
-    {
-      file: './dist/bundle.esm.js',
+      file: './dist/bundle.js',
       format: 'esm',
     },
   ],

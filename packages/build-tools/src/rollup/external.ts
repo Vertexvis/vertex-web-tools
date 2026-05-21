@@ -58,17 +58,20 @@ export function external({
   };
 }
 
-export const builder =
-  (preConfig: PreRollupConfig): RollupConfigBuilder =>
-  () =>
-    preConfig.external != null
-      ? {
-          ...preConfig.external.reduce(
-            (partialConfig, dependency) => ({
-              ...partialConfig,
-              external: [...partialConfig.external, dependency],
-            }),
-            { external: [] }
-          ),
-        }
-      : {};
+export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => {
+  return () => {
+    if (preConfig.external == null) {
+      return {};
+    }
+
+    return {
+      ...preConfig.external.reduce(
+        (partialConfig, dependency) => ({
+          ...partialConfig,
+          external: [...partialConfig.external, dependency],
+        }),
+        { external: [] }
+      ),
+    };
+  };
+};

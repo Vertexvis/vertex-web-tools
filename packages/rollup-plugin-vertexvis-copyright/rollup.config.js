@@ -5,14 +5,7 @@ const config = {
   input: 'src/index.ts',
   output: [
     {
-      file: 'dist/bundle.cjs',
-      format: 'cjs',
-      sourcemap: true,
-      name: undefined,
-      globals: undefined,
-    },
-    {
-      file: 'dist/bundle.esm.js',
+      file: 'dist/bundle.js',
       format: 'esm',
       sourcemap: true,
       name: undefined,
