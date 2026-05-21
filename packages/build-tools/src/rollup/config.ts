@@ -12,7 +12,7 @@ import type { PreRollupConfig, RollupConfig } from './types.js';
  * export default config(
  *   input('src/index.ts'),
  *   typescript(),
- *   output('cjs', 'esm'),
+ *   output('esm'),
  *   minify()
  * )
  * ```

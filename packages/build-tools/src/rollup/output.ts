@@ -65,7 +65,7 @@ interface Options {
  */
 export function output({
   bundleName = 'bundle',
-  formats = ['cjs', 'esm'],
+  formats = ['esm'],
   sourcemaps = true,
   minify = false,
   name,
