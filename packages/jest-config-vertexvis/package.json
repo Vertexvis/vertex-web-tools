@@ -12,7 +12,16 @@
   "bugs": {
     "url": "https://github.com/Vertexvis/vertex-web-tools/issues"
   },
-  "main": "index.js",
+  "type": "module",
+  "main": "./jest.config.js",
+  "exports": {
+    ".": "./jest.config.js",
+    "./jest.config": "./jest.config.js",
+    "./jest.config.js": "./jest.config.js",
+    "./tsconfig": "./tsconfig.json",
+    "./tsconfig.json": "./tsconfig.json",
+    "./package.json": "./package.json"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"

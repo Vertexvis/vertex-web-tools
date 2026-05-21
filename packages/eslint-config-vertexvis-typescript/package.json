@@ -16,6 +16,7 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
+  "type": "module",
   "main": "./index.js",
   "scripts": {
     "format": "yarn lint --fix",

@@ -12,6 +12,7 @@
   "bugs": {
     "url": "https://github.com/Vertexvis/vertex-web-tools/issues"
   },
+  "type": "module",
   "main": "./dist/bundle.cjs.js",
   "module": "./dist/bundle.esm.js",
   "typings": "./dist/index.d.ts",
