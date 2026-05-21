@@ -1,3 +1,3 @@
-const patch = require('@vertexvis/eslint-config-vertexvis/patch');
+import patch from '@vertexvis/eslint-config-vertexvis/patch';
 
-module.exports = patch;
+export default patch;
