@@ -1,11 +1,11 @@
 import path from 'path';
 
-import { config, defineConfig } from '../config';
-import { external } from '../external';
-import { input } from '../input';
-import { output } from '../output';
-import { resolve } from '../resolve';
-import { typescript } from '../typescript';
+import { config, defineConfig } from '../config.js';
+import { external } from '../external.js';
+import { input } from '../input.js';
+import { output } from '../output.js';
+import { resolve } from '../resolve.js';
+import { typescript } from '../typescript.js';
 
 describe(defineConfig, () => {
   it('should consolidate plugin configuration', () => {
@@ -57,8 +57,6 @@ describe(config, () => {
 
   it('should include resolve and commonjs plugins', () => {
     const rollup = config(resolve());
-
-    console.log(rollup.plugins);
 
     expect(rollup.plugins).toEqual(
       expect.arrayContaining([

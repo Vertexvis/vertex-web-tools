@@ -13,11 +13,18 @@
     "url": "https://github.com/Vertexvis/vertex-web-tools/issues"
   },
   "type": "module",
-  "main": "./jest.config.js",
+  "main": "./jest.config.cjs",
   "exports": {
-    ".": "./jest.config.js",
-    "./jest.config": "./jest.config.js",
+    ".": {
+      "import": "./jest.config.js",
+      "require": "./jest.config.cjs"
+    },
+    "./jest.config": {
+      "import": "./jest.config.js",
+      "require": "./jest.config.cjs"
+    },
     "./jest.config.js": "./jest.config.js",
+    "./jest.config.cjs": "./jest.config.cjs",
     "./tsconfig": "./tsconfig.json",
     "./tsconfig.json": "./tsconfig.json",
     "./package.json": "./package.json"

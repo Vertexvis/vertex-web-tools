@@ -13,9 +13,17 @@
     "url": "https://github.com/Vertexvis/vertex-web-tools/issues"
   },
   "type": "module",
-  "main": "./dist/bundle.cjs.js",
+  "main": "./dist/bundle.cjs",
   "module": "./dist/bundle.esm.js",
-  "typings": "./dist/index.d.ts",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/bundle.esm.js",
+      "require": "./dist/bundle.cjs"
+    },
+    "./package.json": "./package.json"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
@@ -28,8 +36,8 @@
     "LICENSE"
   ],
   "bin": {
-    "build-web": "./bin/build-web.js",
-    "vertex-web-lint": "./bin/vertex-web-lint.js"
+    "build-web": "./bin/build-web.sh",
+    "vertex-web-lint": "./bin/lint-eslint.sh"
   },
   "scripts": {
     "clean": "rm -fr ./dist && mkdir ./dist",

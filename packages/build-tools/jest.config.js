@@ -1,7 +1,16 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 import jestConfig from '@vertexvis/jest-config-vertexvis/jest.config';
+
+const rootDir = path.dirname(fileURLToPath(import.meta.url));
 
 export default {
   ...jestConfig,
+  rootDir,
+  moduleNameMapper: {
+    '^(\\.{1,2}/.*)\\.js$': '$1',
+  },
   coverageThreshold: {
     global: {
       branches: 60,
@@ -12,7 +21,7 @@ export default {
   },
   globals: {
     'ts-jest': {
-      tsconfig: 'tsconfig.json',
+      tsconfig: path.join(rootDir, 'tsconfig.jest.json'),
     },
   },
 };

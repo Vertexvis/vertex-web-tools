@@ -3,7 +3,7 @@ import nodeResolve, {
   RollupNodeResolveOptions,
 } from '@rollup/plugin-node-resolve';
 
-import { PreRollupConfig, RollupConfigBuilder } from './types';
+import type { PreRollupConfig, RollupConfigBuilder } from './types.js';
 
 interface Options {
   commonjs?: RollupCommonJSOptions;

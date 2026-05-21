@@ -21,6 +21,13 @@
     "tsconfig-web.json",
     "LICENSE"
   ],
+  "exports": {
+    "./tsconfig": "./tsconfig.json",
+    "./tsconfig.json": "./tsconfig.json",
+    "./tsconfig-web": "./tsconfig-web.json",
+    "./tsconfig-web.json": "./tsconfig-web.json",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "build": "exit 0",
     "format": "exit 0",

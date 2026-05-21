@@ -2,10 +2,10 @@
 // config's NPM package. This allows a consuming package to use a sharable
 // config's plugins without having to add the plugins as NPM dependencies.
 //
-// To use, require this patch from your .eslintrc.js file.
+// To use, require this patch from your .eslintrc.cjs file.
 //
-// ```ts
-// require('@vertexvis/eslint-config-vertexvis');
+// ```js
+// require('@vertexvis/eslint-config-vertexvis/patch');
 //
 // module.exports = {
 //   extends: '@vertexvis/vertexvis'
@@ -21,7 +21,7 @@ while (
   )
 ) {
   if (!currentModule.parent) {
-    // This was tested with ESLint 6.1.0; other versions may not work
+    // This was tested with ESLint 6.1.0; other versions may not work.
     throw new Error(
       'Failed to patch ESLint because the calling module was not recognized'
     );
@@ -52,7 +52,7 @@ configArrayFactoryModule.ConfigArrayFactory.prototype._loadPlugin = function (
   const originalResolve = ModuleResolver.resolve;
   try {
     ModuleResolver.resolve = function (moduleName, relativeToPath) {
-      // resolve using importerPath instead of relativeToPath
+      // Resolve using importerPath instead of relativeToPath.
       return originalResolve.call(this, moduleName, importerPath);
     };
     return originalLoadPlugin.apply(this, arguments);

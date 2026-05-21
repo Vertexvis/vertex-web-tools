@@ -1,7 +1,11 @@
 import { OutputOptions } from 'rollup';
 import { terser } from 'rollup-plugin-terser';
 
-import { ModuleFormat, PreRollupConfig, RollupConfigBuilder } from './types';
+import type {
+  ModuleFormat,
+  PreRollupConfig,
+  RollupConfigBuilder,
+} from './types.js';
 
 interface Options {
   /**

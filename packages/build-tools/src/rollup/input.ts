@@ -1,4 +1,4 @@
-import { PreRollupConfig, RollupConfigBuilder } from './types';
+import type { PreRollupConfig, RollupConfigBuilder } from './types.js';
 
 /**
  * The `input` helper designates the entrypoint to Rollup.

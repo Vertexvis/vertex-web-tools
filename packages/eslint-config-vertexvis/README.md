@@ -17,7 +17,7 @@ Add this package and ESLint as `devDependencies` to your `package.json`.
 }
 ```
 
-Add a `.eslintrc.js` file to the root of your project that extends this config.
+Add a `.eslintrc.cjs` file to the root of your project that extends this config.
 
 This package also includes an optional patch file which monkey patches ESLint's
 module resolution for plugins. ESLint resolves plugins relative to the consuming
@@ -28,7 +28,7 @@ discussion to change this behavior to resolve plugins relative to the imported
 config's `node_modules` folder. This shim mimics this behavior.
 
 ```js
-// .eslintrc.js
+// .eslintrc.cjs
 
 // Include the optional patch which resolves ESLint plugins relative to the
 // sharable config package.

@@ -1,2 +1,2 @@
-export * from './copyright';
-export * from './plugin';
+export * from './copyright.js';
+export * from './plugin.js';

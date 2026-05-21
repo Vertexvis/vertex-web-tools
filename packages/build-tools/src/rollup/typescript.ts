@@ -1,6 +1,6 @@
 import typescript2 from 'rollup-plugin-typescript2';
 
-import { PreRollupConfig, RollupConfigBuilder } from './types';
+import type { PreRollupConfig, RollupConfigBuilder } from './types.js';
 
 /**
  * The `typescript` helper is used to transpile TypeScript source files. This

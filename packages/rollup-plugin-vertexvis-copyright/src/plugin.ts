@@ -1,6 +1,6 @@
 import { Plugin } from 'rollup';
 
-import { copyrightText } from './copyright';
+import { copyrightText } from './copyright.js';
 
 export function copyright(copyright: string = copyrightText): Plugin {
   return {
