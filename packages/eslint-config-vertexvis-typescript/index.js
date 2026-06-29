@@ -1,6 +1,7 @@
 import typescriptPlugin from '@typescript-eslint/eslint-plugin';
 import typescriptParser from '@typescript-eslint/parser';
 import vertexvis from '@vertexvis/eslint-config-vertexvis';
+import eslintConfigPrettier from 'eslint-config-prettier';
 
 export default [
   ...vertexvis,
@@ -38,4 +39,5 @@ export default [
       '@typescript-eslint/explicit-member-accessibility': 'off',
     },
   },
+  eslintConfigPrettier,
 ];

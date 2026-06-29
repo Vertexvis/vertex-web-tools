@@ -1,11 +1,10 @@
-import prettierRecommended from 'eslint-plugin-prettier/recommended';
+import eslintConfigPrettier from 'eslint-config-prettier';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 
 export default [
-  prettierRecommended,
   {
     languageOptions: {
-      ecmaVersion: 2015,
+      ecmaVersion: 2019,
       sourceType: 'module',
     },
     plugins: {
@@ -30,10 +29,10 @@ export default [
           next: ['export', 'class', 'function', 'const', 'let', 'var'],
         },
       ],
-      'prettier/prettier': 'error',
       'simple-import-sort/imports': 'error',
       'simple-import-sort/exports': 'error',
       yoda: 2,
     },
   },
+  eslintConfigPrettier,
 ];
