@@ -58,8 +58,6 @@ describe(config, () => {
   it('should include resolve and commonjs plugins', () => {
     const rollup = config(resolve());
 
-    console.log(rollup.plugins);
-
     expect(rollup.plugins).toEqual(
       expect.arrayContaining([
         expect.objectContaining({ name: 'commonjs' }),

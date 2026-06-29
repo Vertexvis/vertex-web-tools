@@ -29,13 +29,12 @@ configuration for a TypeScript project will look like the following:
 // rollup.config.js
 import {
   config,
-  typescript,
-  output,
-  minify,
   input,
+  output,
+  typescript,
 } from '@vertexvis/build-tools';
 
-export default config(input('src/index.ts'), typescript(), output(), minify());
+export default config(input('src/index.ts'), typescript(), output());
 ```
 
 By default, the returned Rollup configuration will include any packages marked

@@ -1,7 +1,11 @@
 import { OutputOptions } from 'rollup';
 import { terser } from 'rollup-plugin-terser';
 
-import { ModuleFormat, PreRollupConfig, RollupConfigBuilder } from './types';
+import type {
+  ModuleFormat,
+  PreRollupConfig,
+  RollupConfigBuilder,
+} from './types.js';
 
 interface Options {
   /**
@@ -61,7 +65,7 @@ interface Options {
  */
 export function output({
   bundleName = 'bundle',
-  formats = ['cjs', 'esm'],
+  formats = ['esm'],
   sourcemaps = true,
   minify = false,
   name,
@@ -89,12 +93,14 @@ export function output({
           output.push(getOutput(format, true));
         }
 
-        return format
-          ? {
-              ...partialConfig,
-              output: [...(partialConfig.output || []), ...output],
-            }
-          : partialConfig;
+        if (format) {
+          return {
+            ...partialConfig,
+            output: [...(partialConfig.output || []), ...output],
+          };
+        }
+
+        return partialConfig;
       },
       {
         output: [],
@@ -113,7 +119,12 @@ function getFilename(
     : `dist/${bundleName}.${format}.js`;
 }
 
-export const builder =
-  (preConfig: PreRollupConfig): RollupConfigBuilder =>
-  (config) =>
-    preConfig.output != null ? { output: preConfig.output } : {};
+export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => {
+  return (config) => {
+    if (preConfig.output != null) {
+      return { output: preConfig.output };
+    }
+
+    return {};
+  };
+};

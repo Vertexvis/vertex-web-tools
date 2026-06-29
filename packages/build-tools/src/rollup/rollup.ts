@@ -1,10 +1,10 @@
-import * as Copyright from './copyright';
-import * as External from './external';
-import * as Input from './input';
-import * as Output from './output';
-import * as CommonJs from './resolve';
-import { PreRollupConfig, RollupConfig } from './types';
-import * as Typescript from './typescript';
+import * as Copyright from './copyright.js';
+import * as External from './external.js';
+import * as Input from './input.js';
+import * as Output from './output.js';
+import * as CommonJs from './resolve.js';
+import type { PreRollupConfig, RollupConfig } from './types.js';
+import * as Typescript from './typescript.js';
 
 export const rollup = (preConfig: PreRollupConfig): RollupConfig =>
   // The order of the builders in this list will be the order that they

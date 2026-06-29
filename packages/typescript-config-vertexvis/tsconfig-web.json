@@ -3,6 +3,7 @@
 
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "lib": ["es6", "dom"]
-  }
+    "jsx": "react-jsx",
+    "lib": ["ES2020", "DOM"],
+  },
 }

@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/typescript-config-vertexvis",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Sharable TypeScript configs for Vertex",
   "license": "MIT",
   "author": "Vertex Developers <support@vertexvis.com> (https://developer.vertexvis.com)",
@@ -21,6 +21,13 @@
     "tsconfig-web.json",
     "LICENSE"
   ],
+  "exports": {
+    "./tsconfig": "./tsconfig.json",
+    "./tsconfig.json": "./tsconfig.json",
+    "./tsconfig-web": "./tsconfig-web.json",
+    "./tsconfig-web.json": "./tsconfig-web.json",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "build": "exit 0",
     "format": "exit 0",

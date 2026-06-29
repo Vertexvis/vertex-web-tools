@@ -1,4 +1,4 @@
-import { PreRollupConfig, RollupConfigBuilder } from './types';
+import type { PreRollupConfig, RollupConfigBuilder } from './types.js';
 
 /**
  * The `input` helper designates the entrypoint to Rollup.
@@ -11,7 +11,12 @@ export function input(input: string): Partial<PreRollupConfig> {
   };
 }
 
-export const builder =
-  (preConfig: PreRollupConfig): RollupConfigBuilder =>
-  (config) =>
-    preConfig.input != null ? { input: preConfig.input } : {};
+export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => {
+  return (config) => {
+    if (preConfig.input != null) {
+      return { input: preConfig.input };
+    }
+
+    return {};
+  };
+};

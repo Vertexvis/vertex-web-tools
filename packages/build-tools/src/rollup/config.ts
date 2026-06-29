@@ -1,6 +1,6 @@
-import { external } from './external';
-import { rollup } from './rollup';
-import { PreRollupConfig, RollupConfig } from './types';
+import { external } from './external.js';
+import { rollup } from './rollup.js';
+import type { PreRollupConfig, RollupConfig } from './types.js';
 
 /**
  * The `config` helper performs a shallow merge on the result of each provided RollupConfigBuilder
@@ -12,7 +12,7 @@ import { PreRollupConfig, RollupConfig } from './types';
  * export default config(
  *   input('src/index.ts'),
  *   typescript(),
- *   output('cjs', 'esm'),
+ *   output('esm'),
  *   minify()
  * )
  * ```

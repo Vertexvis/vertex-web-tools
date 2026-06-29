@@ -12,7 +12,16 @@
   "bugs": {
     "url": "https://github.com/Vertexvis/vertex-web-tools/issues"
   },
-  "main": "index.js",
+  "type": "module",
+  "main": "./jest.config.js",
+  "exports": {
+    ".": "./jest.config.js",
+    "./jest.config": "./jest.config.js",
+    "./jest.config.js": "./jest.config.js",
+    "./tsconfig": "./tsconfig.json",
+    "./tsconfig.json": "./tsconfig.json",
+    "./package.json": "./package.json"
+  },
   "publishConfig": {
     "registry": "https://registry.npmjs.org/",
     "access": "public"
@@ -20,7 +29,7 @@
   "scripts": {
     "build": "exit 0",
     "format": "yarn lint --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore ."
+    "lint": "eslint ."
   },
   "dependencies": {
     "@vertexvis/typescript-config-vertexvis": "1.1.0"

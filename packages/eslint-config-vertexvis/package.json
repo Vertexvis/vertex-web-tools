@@ -16,22 +16,27 @@
     "registry": "https://registry.npmjs.org/",
     "access": "public"
   },
+  "type": "module",
   "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
   "scripts": {
     "format": "yarn lint --fix",
-    "lint": "eslint --ext .ts,.tsx,.js,.jsx --ignore-path ../../.gitignore .",
+    "lint": "eslint .",
     "build": "exit 0",
     "test": "echo 'No unit tests defined'",
     "test:coverage": "echo 'No unit tests defined'"
   },
   "dependencies": {
-    "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-config-prettier": "^9.1.2",
+    "eslint-plugin-prettier": "^5.5.6",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "prettier": "^3.0.3"
+    "prettier": "^3.8.4"
   },
   "peerDependencies": {
-    "eslint": ">=7.0.0"
+    "eslint": ">=8.0.0"
   },
   "devDependencies": {
     "eslint": "^8.6.0"

@@ -21,9 +21,9 @@ Jest configuration file.
 
 ```js
 // jest.config.js
-const jestConfig = require('@vertexvis/jest-config-vertexvis/jest.config');
+import jestConfig from '@vertexvis/jest-config-vertexvis/jest.config';
 
-module.exports = jestConfig;
+export default jestConfig;
 ```
 
 The Vertex Jest config supports overriding the default TypeScript settings. It
