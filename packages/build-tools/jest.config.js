@@ -1,6 +1,7 @@
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
 import jestConfig from '@vertexvis/jest-config-vertexvis/jest.config';
-import path from 'path';
-import { fileURLToPath } from 'url';
 
 const rootDir = path.dirname(fileURLToPath(import.meta.url));
 
