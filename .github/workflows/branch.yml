@@ -9,10 +9,13 @@ jobs:
       - name: 'Checkout changes'
         uses: actions/checkout@v6
       - name: 'Setup Node'
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '22'
-          cache: 'yarn'
+          node-version-file: .nvmrc
+          cache: yarn
+          cache-dependency-path: yarn.lock
+      - name: Enable Corepack
+        run: corepack enable
       - name: 'Install'
         run: 'yarn install'
       - name: 'Build'

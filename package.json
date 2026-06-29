@@ -9,7 +9,8 @@
     "release": "./scripts/release.sh",
     "test": "lerna run test",
     "lint": "lerna run lint",
-    "format": "lerna run format",
+    "format:prettier": "prettier --write --list-different .",
+    "format": "lerna run format && lerna run format:prettier",
     "clean": "yarn workspaces foreach -A run clean || rm -rf node_modules packages/*/node_modules",
     "validate": "yarn build && yarn test && yarn lint"
   },
