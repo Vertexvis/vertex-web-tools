@@ -1,7 +1,13 @@
-import { ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
+import {
+  InputPluginOption,
+  ModuleFormat,
+  OutputOptions,
+  RollupOptions,
+} from 'rollup';
 
-export type RollupConfig = Omit<RollupOptions, 'output'> & {
+export type RollupConfig = Omit<RollupOptions, 'output' | 'plugins'> & {
   output?: OutputOptions | OutputOptions[];
+  plugins?: InputPluginOption[];
 };
 
 export type RollupConfigBuilder = (config: RollupConfig) => RollupConfig;
@@ -14,4 +20,4 @@ export interface PreRollupConfig {
   plugins?: Record<string, any>;
 }
 
-export { ModuleFormat, OutputOptions };
+export { InputPluginOption, ModuleFormat, OutputOptions };

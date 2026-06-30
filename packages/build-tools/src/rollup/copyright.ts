@@ -1,6 +1,10 @@
 import { copyright as copyrightPlugin } from '@vertexvis/rollup-plugin-vertexvis-copyright';
 
-import type { PreRollupConfig, RollupConfigBuilder } from './types.js';
+import type {
+  InputPluginOption,
+  PreRollupConfig,
+  RollupConfigBuilder,
+} from './types.js';
 
 /**
  * Adds the provided `copyrightString` to the bundle after minification.
@@ -20,7 +24,11 @@ export function copyright(copyrightString?: string): Partial<PreRollupConfig> {
 export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => {
   return (config) => {
     if (preConfig.plugins?.copyright != null) {
-      return { plugins: [copyrightPlugin(preConfig.plugins.copyright)] };
+      return {
+        plugins: [
+          copyrightPlugin(preConfig.plugins.copyright) as InputPluginOption,
+        ],
+      };
     }
 
     return {};

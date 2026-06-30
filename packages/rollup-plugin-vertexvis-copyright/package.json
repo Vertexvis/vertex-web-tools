@@ -40,14 +40,14 @@
     "test": "echo 'No unit tests defined'",
     "test:coverage": "echo 'No unit tests defined'"
   },
-  "dependencies": {
-    "rollup": "^2.63.0"
-  },
   "devDependencies": {
     "@vertexvis/eslint-config-vertexvis-typescript": "0.5.2",
     "@vertexvis/typescript-config-vertexvis": "1.1.0",
-    "rollup-plugin-terser": "^7.0.2",
+    "rollup": "^4.62.2",
     "rollup-plugin-typescript2": "^0.37.0",
     "typescript": "^5.2.0"
+  },
+  "peerDependencies": {
+    "rollup": "^4"
   }
 }
