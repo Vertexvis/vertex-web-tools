@@ -1,5 +1,5 @@
+import terser from '@rollup/plugin-terser';
 import { OutputOptions } from 'rollup';
-import { terser } from 'rollup-plugin-terser';
 
 import type {
   ModuleFormat,
