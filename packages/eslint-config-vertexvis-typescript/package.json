@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/eslint-config-vertexvis-typescript",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "description": "The Vertex sharable ESLint config for TypeScript.",
   "license": "MIT",
   "author": "Vertex Developers <support@vertexvis.com> (https://developer.vertexvis.com)",
@@ -32,7 +32,7 @@
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^8.62.1",
     "@typescript-eslint/parser": "^8.62.1",
-    "@vertexvis/eslint-config-vertexvis": "0.7.2",
+    "@vertexvis/eslint-config-vertexvis": "0.8.0",
     "eslint-config-prettier": "^10.1.8"
   },
   "devDependencies": {
