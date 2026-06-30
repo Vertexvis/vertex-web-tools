@@ -50,8 +50,8 @@
     "@rollup/plugin-commonjs": "^29.0.3",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
-    "@vertexvis/rollup-plugin-vertexvis-copyright": "0.4.3",
     "@rollup/plugin-terser": "^1.0.0",
+    "@vertexvis/rollup-plugin-vertexvis-copyright": "0.4.3",
     "rollup-plugin-typescript2": "^0.37.0"
   },
   "devDependencies": {
