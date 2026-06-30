@@ -19,7 +19,7 @@ project's `package.json`.
 // package.json
 {
   "devDependencies": {
-    "@vertexvis/typescript-config-vertexvis": "0.0.0"
+    "@vertexvis/typescript-config-vertexvis": "1.3.0"
   }
 }
 ```
