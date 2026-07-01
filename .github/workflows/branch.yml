@@ -50,7 +50,7 @@ jobs:
       - name: 'Prepare build artifacts'
         run: './scripts/post_download_artifacts.sh'
       - name: 'Publish changes'
-        uses: Vertexvis/npm-publish-action@tagFailTollerant
+        uses: Vertexvis/npm-publish-action@2.5.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
