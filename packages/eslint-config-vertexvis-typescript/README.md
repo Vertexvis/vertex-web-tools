@@ -12,8 +12,8 @@ Add this package and ESLint as `devDependencies` to your `package.json`.
 // package.json
 {
   "devDependencies": {
-    "@vertexvis/eslint-config-vertexvis-typescript": "0.0.0",
-    "eslint": "^6.1.0"
+    "@vertexvis/eslint-config-vertexvis-typescript": "0.6.0",
+    "eslint": "^8.57.0"
   }
 }
 ```
