@@ -17,7 +17,7 @@
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
-      "default": "./dist/bundle.esm.js"
+      "default": "./dist/bundle.js"
     },
     "./package.json": "./package.json"
   },
