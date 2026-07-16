@@ -1,6 +1,6 @@
 {
   "name": "@vertexvis/typescript-config-vertexvis",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Sharable TypeScript configs for Vertex",
   "license": "MIT",
   "author": "Vertex Developers <support@vertexvis.com> (https://developer.vertexvis.com)",
