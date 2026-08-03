@@ -15,6 +15,7 @@
     "validate": "yarn build && yarn test && yarn lint"
   },
   "devDependencies": {
+    "@vertexvis/prettier-config-vertexvis": "0.1.0",
     "lerna": "^9.0.7"
   },
   "workspaces": [
