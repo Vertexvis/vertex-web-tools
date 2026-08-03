@@ -1,0 +1,37 @@
+{
+  "name": "@vertexvis/prettier-config-vertexvis",
+  "version": "0.1.0",
+  "description": "The shared Vertex config for Prettier",
+  "license": "MIT",
+  "author": "Vertex Developers <support@vertexvis.com> (https://developer.vertexvis.com)",
+  "homepage": "https://github.com/Vertexvis/vertex-web-tools#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Vertexvis/vertex-web-tools.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Vertexvis/vertex-web-tools/issues"
+  },
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "scripts": {
+    "build": "exit 0",
+    "format": "yarn lint --fix",
+    "lint": "eslint ."
+  },
+  "peerDependencies": {
+    "prettier": ">=3.0.0"
+  },
+  "devDependencies": {
+    "@vertexvis/eslint-config-vertexvis-typescript": "0.6.1",
+    "eslint": "^8.6.0"
+  }
+}
