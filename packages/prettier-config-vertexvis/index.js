@@ -4,5 +4,5 @@ export default {
   singleQuote: true,
   printWidth: 90,
   singleAttributePerLine: false,
-  trailingComma: 'all',
+  trailingComma: 'es5',
 };

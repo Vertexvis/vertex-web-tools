@@ -100,7 +100,7 @@ export function output({
       },
       {
         output: [],
-      },
+      }
     ),
   };
 }

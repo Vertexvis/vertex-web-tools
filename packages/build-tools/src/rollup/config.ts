@@ -57,13 +57,13 @@ const buildPreConfig = (
         }),
       };
     },
-    { plugins: {} },
+    { plugins: {} }
   );
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const mergePlugins = (
   existing: Record<string, any>,
-  added: Record<string, any>,
+  added: Record<string, any>
 ): Record<string, any> =>
   Object.keys(existing)
     .concat(Object.keys(added).filter((key) => existing[key] == null))

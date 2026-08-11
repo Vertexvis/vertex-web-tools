@@ -66,7 +66,7 @@ export const builder = (preConfig: PreRollupConfig): RollupConfigBuilder => {
           ...partialConfig,
           external: [...partialConfig.external, dependency],
         }),
-        { external: [] },
+        { external: [] }
       ),
     };
   };
