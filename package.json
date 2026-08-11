@@ -10,6 +10,7 @@
     "test": "lerna run test",
     "lint": "lerna run lint",
     "format:prettier": "prettier --write --list-different .",
+    "format:check": "prettier --check .",
     "format": "lerna run format && lerna run format:prettier",
     "clean": "yarn workspaces foreach -A run clean || rm -rf node_modules packages/*/node_modules",
     "validate": "yarn build && yarn test && yarn lint"
