@@ -8,23 +8,23 @@ configuration, so our house formatting style can be distributed across repos.
 Add `@vertexvis/prettier-config-vertexvis` and Prettier as `devDependencies` to
 your project's `package.json`.
 
-```jsonc
+```json
 // package.json
 {
   "devDependencies": {
     "@vertexvis/prettier-config-vertexvis": "0.1.0",
-    "prettier": "^3.0.0",
-  },
+    "prettier": "^3.0.0"
+  }
 }
 ```
 
 Then reference this config from the `prettier` key in your `package.json`. No
 separate config file is needed.
 
-```jsonc
+```json
 // package.json
 {
-  "prettier": "@vertexvis/prettier-config-vertexvis",
+  "prettier": "@vertexvis/prettier-config-vertexvis"
 }
 ```
 
