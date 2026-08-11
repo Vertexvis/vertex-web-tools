@@ -1,7 +1,5 @@
 import commonjs, { RollupCommonJSOptions } from '@rollup/plugin-commonjs';
-import nodeResolve, {
-  RollupNodeResolveOptions,
-} from '@rollup/plugin-node-resolve';
+import nodeResolve, { RollupNodeResolveOptions } from '@rollup/plugin-node-resolve';
 
 import type { PreRollupConfig, RollupConfigBuilder } from './types.js';
 

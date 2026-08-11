@@ -16,8 +16,10 @@
   },
   "devDependencies": {
     "@vertexvis/prettier-config-vertexvis": "0.1.0",
-    "lerna": "^9.0.7"
+    "lerna": "^9.0.7",
+    "prettier": "^3.8.4"
   },
+  "prettier": "@vertexvis/prettier-config-vertexvis",
   "workspaces": [
     "packages/*"
   ],

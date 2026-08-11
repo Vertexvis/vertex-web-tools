@@ -1,9 +1,4 @@
-import {
-  InputPluginOption,
-  ModuleFormat,
-  OutputOptions,
-  RollupOptions,
-} from 'rollup';
+import { InputPluginOption, ModuleFormat, OutputOptions, RollupOptions } from 'rollup';
 
 export type RollupConfig = Omit<RollupOptions, 'output' | 'plugins'> & {
   output?: OutputOptions | OutputOptions[];
