@@ -70,10 +70,7 @@ const mergePlugins = (
     .reduce((plugins, key) => {
       return {
         ...plugins,
-        [key]:
-          plugins[key] != null
-            ? { ...plugins[key], ...added[key] }
-            : added[key],
+        [key]: plugins[key] != null ? { ...plugins[key], ...added[key] } : added[key],
       };
     }, existing);
 /* eslint-enable @typescript-eslint/no-explicit-any */

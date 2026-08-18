@@ -14,11 +14,7 @@ export default [
       eqeqeq: [2, 'smart'],
       'func-call-spacing': 'off',
       indent: ['error', 2],
-      'lines-between-class-members': [
-        'error',
-        'always',
-        { exceptAfterSingleLine: true },
-      ],
+      'lines-between-class-members': ['error', 'always', { exceptAfterSingleLine: true }],
       'padding-line-between-statements': [
         'error',
         { blankLine: 'always', prev: 'function', next: 'function' },

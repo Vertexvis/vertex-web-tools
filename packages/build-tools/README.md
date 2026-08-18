@@ -27,12 +27,7 @@ configuration for a TypeScript project will look like the following:
 
 ```js
 // rollup.config.js
-import {
-  config,
-  input,
-  output,
-  typescript,
-} from '@vertexvis/build-tools';
+import { config, input, output, typescript } from '@vertexvis/build-tools';
 
 export default config(input('src/index.ts'), typescript(), output());
 ```
