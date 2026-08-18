@@ -1,12 +1,12 @@
 # Corepack and Yarn
 
-Corepack is part of helping us migrate to newer versions of yarn in a repo by repo manner. it will help seemlessly switch between repos that use different versions of yarn without any manual intervention.
+Corepack is part of helping us migrate to newer versions of yarn in a repo by repo manner. It will help seamlessly switch between repos that use different versions of yarn without any manual intervention.
 
 ## 🛠️ Phase 1: Setting Up Corepack Environment
 
 Devs should ensure Corepack is active on their machines.
 * If using Node.js 24 or older (Active/Maintenance LTS), Corepack is built-in.
-* If using Node.js 25+, must install Corepack globally first. 
+* If using Node.js 25+, developers must install Corepack globally first. 
 * Yarn documentation on corepack https://yarnpkg.com/corepack 
 
 ### Step 1: Install Corepack (Node 25+ Only)
@@ -24,13 +24,13 @@ corepack enable
 
 Note: If using version managers like nvm or fnm, you may need to do this every time they install a new Node version.
 
-### Step 3: yarn install
+### Step 3: Run `yarn install`
 
-Most of our projects should already have a packageManager entry in the package.json file. And if so you should be ready to go. running a `yarn install`. Should install the specified version of yarn if you don't already have it, and then use that to install all dependencies. 
+Most of our projects should already have a packageManager entry in the package.json file. And if so you should be ready to go. Running a `yarn install` should install the specified version of yarn if you don't already have it, and then use that to install all dependencies.
 
 ## 🚀 Phase 2: Migrating a Legacy Project to Yarn 4
 
-Many projects have already done some of the setup to prep for the move. such as preemptively defining new .gitignore entries.  
+Many projects have already done some of the setup to prep for the move, such as preemptively defining new .gitignore entries. 
 
 ### Step 1: Set the Yarn Version
 
@@ -46,11 +46,11 @@ Or target a specific version to match our other projects:
 yarn set version 4.17.1
 ```
 
-You should see the `"packageManager”` entry in `package.json` update to something like `“yarn@4.17.1+sha512.ccbfa…”
+You should see the `"packageManager"` entry in `package.json` update to something like `"yarn@4.17.1+sha512.ccbfa…"`
 
 ### Step 2: Configure the Node Linker
 
-By default, Yarn 4 tries to use Plug'n'Play. To maintain backward compatibility with your legacy projects and avoid a massive headache, we often will chose to explicitly tell Yarn to keep using node_modules.
+By default, Yarn 4 tries to use Plug'n'Play. To maintain backward compatibility with your legacy projects and avoid a massive headache, we often will choose to explicitly tell Yarn to keep using node_modules.
 
 Create or edit the .yarnrc.yml file in the project root and add:
 ``` yaml
@@ -75,7 +75,7 @@ Yarn 4 generates new directories for its binaries and caches. If git is tracking
 
 ### Step 4: Clear Old State and Reinstall
 
-Migration of the lockfile, trigger a fresh install.
+Trigger a fresh install to migrate the existing lockfile.
 
 ``` bash
 yarn install
@@ -100,4 +100,4 @@ Once the installation is successful and the project runs locally, commit the cha
 
 💡 Quick Tips for the Team
 * Command Changes: A few Yarn 1 commands have changed. For example, `yarn upgrade` is now `yarn up`, and `yarn install --frozen-lockfile` (often used in CI) is now `yarn install --immutable`. 
-* Patching: If your legacy projects relied on patch-package via postinstall scripts, Yarn 4 has native patching built-in. You can transition those by running yarn patch <package-name>.
+* Patching: If your legacy projects relied on patch-package via postinstall scripts, Yarn 4 has native patching built-in. You can transition those by running `yarn patch <package-name>`.
