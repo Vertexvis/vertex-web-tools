@@ -12,6 +12,6 @@
     "inlineSources": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "lib": ["ES2020"],
-  },
+    "lib": ["ES2020"]
+  }
 }

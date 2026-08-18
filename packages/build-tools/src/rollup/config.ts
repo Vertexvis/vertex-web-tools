@@ -57,23 +57,20 @@ const buildPreConfig = (
         }),
       };
     },
-    { plugins: {} }
+    { plugins: {} },
   );
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 const mergePlugins = (
   existing: Record<string, any>,
-  added: Record<string, any>
+  added: Record<string, any>,
 ): Record<string, any> =>
   Object.keys(existing)
     .concat(Object.keys(added).filter((key) => existing[key] == null))
     .reduce((plugins, key) => {
       return {
         ...plugins,
-        [key]:
-          plugins[key] != null
-            ? { ...plugins[key], ...added[key] }
-            : added[key],
+        [key]: plugins[key] != null ? { ...plugins[key], ...added[key] } : added[key],
       };
     }, existing);
 /* eslint-enable @typescript-eslint/no-explicit-any */

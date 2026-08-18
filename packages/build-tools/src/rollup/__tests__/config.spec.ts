@@ -11,7 +11,7 @@ describe(defineConfig, () => {
   it('should consolidate plugin configuration', () => {
     const config = defineConfig(
       resolve({ commonjs: { ignoreGlobal: true } }),
-      resolve({ resolve: { browser: true } })
+      resolve({ resolve: { browser: true } }),
     );
 
     expect(config.plugins).toMatchObject({
@@ -27,9 +27,7 @@ describe(config, () => {
   const packageJsonPath = path.resolve(__dirname, 'package.json');
 
   it('should not externalize peer dependencies if peer deps disabled', () => {
-    const rollup = config(
-      external({ peerDependencies: false, packageJsonPath })
-    );
+    const rollup = config(external({ peerDependencies: false, packageJsonPath }));
 
     expect(rollup.external).toEqual([]);
   });
@@ -41,11 +39,11 @@ describe(config, () => {
         peerDependencies: true,
         modules: ['foo'],
         packageJsonPath,
-      })
+      }),
     );
 
     expect(rollup.external).toEqual(
-      expect.arrayContaining(['foo', 'foo-dep', 'foo-peer-dep'])
+      expect.arrayContaining(['foo', 'foo-dep', 'foo-peer-dep']),
     );
   });
 
@@ -62,7 +60,7 @@ describe(config, () => {
       expect.arrayContaining([
         expect.objectContaining({ name: 'commonjs' }),
         expect.objectContaining({ name: 'node-resolve' }),
-      ])
+      ]),
     );
   });
 
@@ -70,7 +68,7 @@ describe(config, () => {
     const rollup = config(
       input('src/index.ts'),
       output({ formats: ['esm'], minify: true }),
-      typescript()
+      typescript(),
     );
 
     expect(rollup).toEqual(
@@ -90,7 +88,7 @@ describe(config, () => {
           }),
         ],
         plugins: [expect.objectContaining({ name: 'rpt2' })],
-      })
+      }),
     );
   });
 });
