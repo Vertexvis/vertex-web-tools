@@ -1,8 +1,7 @@
 # Vertex Prettier Config
 
-This package contains Vertex's sharable [Prettier](https://prettier.io)
-configuration, so our house formatting style (including
-`trailingComma: "es5"`) can be distributed across repos.
+This package contains Vertex's shareable [Prettier](https://prettier.io)
+configuration, so our house formatting style can be distributed across repos.
 
 ## Usage
 
@@ -13,8 +12,8 @@ your project's `package.json`.
 // package.json
 {
   "devDependencies": {
-    "@vertexvis/prettier-config-vertexvis": "0.0.0",
-    "prettier": "^3"
+    "@vertexvis/prettier-config-vertexvis": "0.1.0",
+    "prettier": "^3.0.0"
   }
 }
 ```
@@ -47,5 +46,15 @@ export default {
 ## Note on `trailingComma`
 
 Prettier 3 changed the default value of `trailingComma` from `es5` to `all`.
-This config pins it to `es5` so the value is consistent regardless of the
-installed Prettier version.
+This config pins it to `all` so the value is explicitly declared. This includes trailing commas in
+function parameters and arguments. Override as follows:
+
+```js
+// prettier.config.js
+import vertexvis from '@vertexvis/prettier-config-vertexvis';
+
+export default {
+  ...vertexvis,
+  trailingComma: 'es5',
+};
+```

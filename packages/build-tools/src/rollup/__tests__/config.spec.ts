@@ -27,9 +27,7 @@ describe(config, () => {
   const packageJsonPath = path.resolve(__dirname, 'package.json');
 
   it('should not externalize peer dependencies if peer deps disabled', () => {
-    const rollup = config(
-      external({ peerDependencies: false, packageJsonPath })
-    );
+    const rollup = config(external({ peerDependencies: false, packageJsonPath }));
 
     expect(rollup.external).toEqual([]);
   });

@@ -1,11 +1,7 @@
 import terser from '@rollup/plugin-terser';
 import { OutputOptions } from 'rollup';
 
-import type {
-  ModuleFormat,
-  PreRollupConfig,
-  RollupConfigBuilder,
-} from './types.js';
+import type { ModuleFormat, PreRollupConfig, RollupConfigBuilder } from './types.js';
 
 interface Options {
   /**
@@ -109,11 +105,7 @@ export function output({
   };
 }
 
-function getFilename(
-  bundleName: string,
-  format: string,
-  minified: boolean
-): string {
+function getFilename(bundleName: string, format: string, minified: boolean): string {
   return minified
     ? `dist/${bundleName}.${format}.min.js`
     : `dist/${bundleName}.${format}.js`;

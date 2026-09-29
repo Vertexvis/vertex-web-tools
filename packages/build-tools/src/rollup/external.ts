@@ -1,11 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 
-import type {
-  PreRollupConfig,
-  RollupConfig,
-  RollupConfigBuilder,
-} from './types.js';
+import type { PreRollupConfig, RollupConfig, RollupConfigBuilder } from './types.js';
 
 interface ExternalOptions {
   /**
