@@ -33,15 +33,15 @@ Running `code ./vertex-web-tools.code-workspace` will open VS Code workspace.
 ## Building
 
 The project exposes a top-level script to build (`yarn build`) any project
-that exposes a `build` NPM script. 
+that exposes a `build` NPM script.
 
-Running a `yarn build` at the top-level will run `lerna run build`, which will execute any 
+Running a `yarn build` at the top-level will run `lerna run build`, which will execute any
 NPM `build` script for each package specified in the `lerna.json` file.
 
 ## Formatting & Linting
 
 The project exposes two top-level scripts to format (`yarn format`) and lint
-(`yarn lint`) using `lerna run` to execute any NPM `lint` or `format` scripts 
+(`yarn lint`) using `lerna run` to execute any NPM `lint` or `format` scripts
 present for each package.
 
 These scripts are run during CI builds and will fail your build if it contains
@@ -65,7 +65,7 @@ Once the version changes have been configured, the script will push up a release
 will be named `release-{{ timestamp }}`, and contain a single "Release Changes" commit, which will
 indicate the versions that will be changed when merged.
 
-This branch can then be merged into master, and uses https://github.com/Vertexvis/npm-publish-action 
+This branch can then be merged into master, and uses https://github.com/Vertexvis/npm-publish-action
 to publish changed packages to NPM, in addition to pushing up a new tag for each version change.
 
 ## Semver

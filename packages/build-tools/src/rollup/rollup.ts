@@ -34,5 +34,5 @@ export const rollup = (preConfig: PreRollupConfig): RollupConfig =>
         }),
       };
     },
-    { plugins: [] }
+    { plugins: [] },
   );
