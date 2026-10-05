@@ -15,8 +15,8 @@
     "moduleResolution": "bundler",
     "target": "es2019",
     "esModuleInterop": true,
-    "lib": ["ES2020"],
+    "lib": ["ES2020"]
   },
   "include": ["**/*.ts"],
-  "exclude": ["node_modules", "lib"],
+  "exclude": ["node_modules", "lib"]
 }
