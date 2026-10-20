@@ -5,20 +5,24 @@ Corepack is part of helping us migrate to newer versions of yarn in a repo by re
 ## 🛠️ Phase 1: Setting Up Corepack Environment
 
 Devs should ensure Corepack is active on their machines.
-* If using Node.js 24 or older (Active/Maintenance LTS), Corepack is built-in.
-* If using Node.js 25+, developers must install Corepack globally first. 
-* Yarn documentation on corepack https://yarnpkg.com/corepack 
+
+- If using Node.js 24 or older (Active/Maintenance LTS), Corepack is built-in.
+- If using Node.js 25+, developers must install Corepack globally first.
+- Yarn documentation on corepack https://yarnpkg.com/corepack 
 
 ### Step 1: Install Corepack (Node 25+ Only)
+
 If developers are on the newest Node versions, they should run:
-``` sh
+
+```sh
 npm install -g corepack
 ```
 
 ### Step 2: Enable Corepack
+
 Regardless of the Node version, everyone must enable Corepack to allow it to intercept Yarn commands and route them to the correct binary version specified in the project.
 
-``` bash
+```bash
 corepack enable
 ```
 
@@ -30,19 +34,19 @@ Most of our projects should already have a packageManager entry in the package.j
 
 ## 🚀 Phase 2: Migrating a Legacy Project to Yarn 4
 
-Many projects have already done some of the setup to prep for the move, such as preemptively defining new .gitignore entries. 
+Many projects have already done some of the setup to prep for the move, such as preemptively defining new .gitignore entries.
 
 ### Step 1: Set the Yarn Version
 
 Run the following command at the root of the project to download the Yarn 4 binary and update the "packageManager" field in package.json:
 
-``` bash
+```bash
 yarn set version berry
 ```
 
 Or target a specific version to match our other projects:
 
-``` bash 
+```bash
 yarn set version 4.17.1
 ```
 
@@ -53,7 +57,8 @@ You should see the `"packageManager"` entry in `package.json` update to somethin
 By default, Yarn 4 tries to use Plug'n'Play. To maintain backward compatibility with your legacy projects and avoid a massive headache, we often will choose to explicitly tell Yarn to keep using node_modules.
 
 Create or edit the .yarnrc.yml file in the project root and add:
-``` yaml
+
+```yaml
 nodeLinker: node-modules
 ```
 
@@ -63,7 +68,7 @@ nodeLinker: node-modules
 
 Yarn 4 generates new directories for its binaries and caches. If git is tracking new files add the following to your .gitignore to keep the repository clean:
 
-``` txt
+```txt
 # Yarn Berry
 .yarn/*
 !.yarn/patches
@@ -77,7 +82,7 @@ Yarn 4 generates new directories for its binaries and caches. If git is tracking
 
 Trigger a fresh install to migrate the existing lockfile.
 
-``` bash
+```bash
 yarn install
 ```
 
@@ -90,14 +95,14 @@ Migration of the config .yml files to add `corepack enable` step or yarn 4 updat
 ### Step 6: Commit the Changes
 
 Once the installation is successful and the project runs locally, commit the changes:
-* package.json (Updated packageManager field)
-* .yarnrc.yml
-* yarn.lock (New format)
-* .gitignore
-* .github/workflows/config.yml files
 
-
+- package.json (Updated packageManager field)
+- .yarnrc.yml
+- yarn.lock (New format)
+- .gitignore
+- .github/workflows/config.yml files
 
 💡 Quick Tips for the Team
-* Command Changes: A few Yarn 1 commands have changed. For example, `yarn upgrade` is now `yarn up`, and `yarn install --frozen-lockfile` (often used in CI) is now `yarn install --immutable`. 
-* Patching: If your legacy projects relied on patch-package via postinstall scripts, Yarn 4 has native patching built-in. You can transition those by running `yarn patch <package-name>`.
+
+- Command Changes: A few Yarn 1 commands have changed. For example, `yarn upgrade` is now `yarn up`, and `yarn install --frozen-lockfile` (often used in CI) is now `yarn install --immutable`.
+- Patching: If your legacy projects relied on patch-package via postinstall scripts, Yarn 4 has native patching built-in. You can transition those by running `yarn patch <package-name>`.
