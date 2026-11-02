@@ -7,11 +7,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 'Checkout changes'
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Enable Corepack
         run: corepack enable
       - name: 'Setup Node'
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@v7
         with:
           node-version-file: .nvmrc
           cache: yarn
@@ -31,7 +31,7 @@ jobs:
       - name: 'Prepare build artifacts'
         run: './scripts/pre_upload_artifacts.sh'
       - name: 'Upload build artifacts'
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: dist
           path: dist
@@ -41,11 +41,11 @@ jobs:
     needs: [build-and-analyze]
     steps:
       - name: 'Checkout changes'
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 2
       - name: 'Pull build artifacts'
-        uses: actions/download-artifact@v6
+        uses: actions/download-artifact@v8
         with:
           name: dist
           path: dist

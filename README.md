@@ -26,7 +26,7 @@ Code workspaces, extensions are run within the context of sub-projects, so
 features like Jest debugging still work.
 
 The workspace file will be created automatically when running `yarn install`.
-Otherwise you can generate the file manually by running `yarn generate:vscode-workspace`.
+Otherwise, you can generate the file manually by running `yarn generate:vscode-workspace`.
 
 Running `code ./vertex-web-tools.code-workspace` will open VS Code workspace.
 
